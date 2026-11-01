@@ -3,8 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Proyectos de diseño gráfico.">
-    <title>Proyectos — WebPortfolio</title>
+    <meta name="description" content="Proyectos de diseño gráfico, diseño editorial e identidad visual de Clara González Blanco.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Proyectos — Clara González Blanco">
+    <meta property="og:description" content="Proyectos de diseño gráfico, diseño editorial e identidad visual de Clara González Blanco.">
+    <meta property="og:locale" content="es_ES">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <title>Proyectos — Clara González Blanco</title>
     <link rel="stylesheet" href="css/tipos.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
@@ -24,36 +29,7 @@
         </div>
       </div>
     </header>
-    <main class="container">
-      <section class="hero container">
-        <p class="hero-copy">
-          <span data-es>Este apartado está en proceso...</span><span data-en hidden>Working on it...</span>
-        </p>
-      </section>      
-    </main>
-<!--     <footer class="site-footer">
-      <div class="footer-inner">
-        <span>© Clara González Blanco · WebPortfolio</span>
-      </div>
-    </footer> -->
-    <script>
-      const languageButtons = document.querySelectorAll("[data-lang]");
-      function setLanguage(lang) {
-        document.documentElement.lang = lang;
-        document.querySelectorAll("[data-es]").forEach(el => {
-          el.hidden = lang !== "es";
-        });
-        document.querySelectorAll("[data-en]").forEach(el => {
-          el.hidden = lang !== "en";
-        });
-        languageButtons.forEach(button => {
-          button.setAttribute("aria-pressed", String(button.dataset.lang === lang));
-        });
-      }
-      languageButtons.forEach(button => {
-        button.addEventListener("click", () => setLanguage(button.dataset.lang));
-      });
-      setLanguage("es");
-    </script>
+    <main class="container"></main>
+    <script src="js/main.js"></script>
   </body>
 </html>

@@ -4,6 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Contacta con Clara González Blanco.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contacto — Clara González Blanco">
+    <meta property="og:description" content="Contacta con Clara González Blanco.">
+    <meta property="og:locale" content="es_ES">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <title>
       Contacto — Clara González Blanco
     </title>
@@ -40,7 +45,7 @@
             <span data-es>Si quieres colaborar, consultar disponibilidad o contactar conmigo, puedes escribirme a través de los siguientes canales.</span><span data-en hidden>If you’d like to collaborate, ask about availability or talk about design, you can reach me through the channels below.</span>
           </p>
           <div class="contact-links">
-            <a href="mailto:gonzalezblancoclara3a@gmail.com">gonzalezblancoclara3a@gmail.com ↗</a><a href="https://www.instagram.com/claarart/" target="_blank" rel="noreferrer">Instagram · @claarart ↗</a><a href="https://www.linkedin.com/in/clara-gonzález-blanco-802003390/">LinkedIn · Clara González Blanco ↗</a>
+            <a href="mailto:gonzalezblancoclara3a@gmail.com">gonzalezblancoclara3a@gmail.com ↗</a><a href="https://www.instagram.com/claarart/" target="_blank" rel="noreferrer">Instagram · @claarart ↗</a><a href="https://www.linkedin.com/in/clara-gonz%C3%A1lez-blanco-802003390/" target="_blank" rel="noreferrer">LinkedIn · Clara González Blanco ↗</a>
           </div>
         </div>
       </section>
@@ -51,29 +56,6 @@
       </p>
 
     </footer>
-    <script>
-  (function () {
-    const buttons = document.querySelectorAll('[data-lang]');
-
-    function setLanguage(lang) {
-      document.documentElement.lang = lang;
-      document.querySelectorAll('[data-es]').forEach((element) => {
-        element.hidden = lang !== 'es';
-      });
-      document.querySelectorAll('[data-en]').forEach((element) => {
-        element.hidden = lang !== 'en';
-      });
-      buttons.forEach((button) => {
-        button.setAttribute('aria-pressed', String(button.dataset.lang === lang));
-      });
-    }
-
-    buttons.forEach((button) => {
-      button.addEventListener('click', () => setLanguage(button.dataset.lang));
-    });
-    setLanguage('es');
-
-  })();
-</script>
+    <script src="js/main.js"></script>
   </body>
 </html>

@@ -4,6 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Perfil, formación y experiencia de Clara González Blanco, diseñadora gráfica.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sobre mí — Clara González Blanco">
+    <meta property="og:description" content="Perfil, formación y experiencia de Clara González Blanco, diseñadora gráfica.">
+    <meta property="og:locale" content="es_ES">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <title>
       Sobre mí — Clara González Blanco
     </title>
@@ -33,7 +38,7 @@
     <main class="container">
       <section class="section two-column about-layout">
         <aside class="about-profile">
-          <img class="editorial-image" src="img/retrato.jpeg">
+          <img class="editorial-image" src="img/retrato.jpeg" alt="Retrato de Clara González Blanco">
           <div class="about-profile-intro">
             <h2>
               <span data-es>Del concepto al resultado.</span><span data-en hidden>From concept to outcome.</span>
@@ -102,7 +107,7 @@
                   <span class="cv-entry-year">2022_2023</span>
                 </h3>
                 <p>
-                  University of the Arts London, Fine Arts: Painting.
+                  <span data-es>University of the Arts London, Bellas Artes: Pintura.</span><span data-en hidden>University of the Arts London, Fine Arts: Painting.</span>
                 </p>
               </div>
             </div>
@@ -156,34 +161,6 @@
         </div>
       </section>
     </main>
-<!--     <footer class="site-footer">
-      <p>
-        © Clara González Blanco · WebPortfolio
-      </p>
-
-    </footer> -->
-    <script>
-  (function () {
-    const buttons = document.querySelectorAll('[data-lang]');
-
-    function setLanguage(lang) {
-      document.documentElement.lang = lang;
-      document.querySelectorAll('[data-es]').forEach((element) => {
-        element.hidden = lang !== 'es';
-      });
-      document.querySelectorAll('[data-en]').forEach((element) => {
-        element.hidden = lang !== 'en';
-      });
-      buttons.forEach((button) => {
-        button.setAttribute('aria-pressed', String(button.dataset.lang === lang));
-      });
-    }
-
-    buttons.forEach((button) => {
-      button.addEventListener('click', () => setLanguage(button.dataset.lang));
-    });
-    setLanguage('es');
-  })();
-</script>
+    <script src="js/main.js"></script>
   </body>
 </html>

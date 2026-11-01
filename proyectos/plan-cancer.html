@@ -4,6 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Proyecto editorial de ejemplo — Clara González Blanco.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Forma y página — Clara González Blanco">
+    <meta property="og:description" content="Proyecto editorial de ejemplo — Clara González Blanco.">
+    <meta property="og:locale" content="es_ES">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
     <title>
       Forma y página — Clara González Blanco
     </title>
@@ -63,12 +68,12 @@
       </section>
       <div class="case-gallery-stack">
         <div class="case-gallery-large">
-          <img src="../img/placeholder-editorial.svg">
-          <img src="../img/placeholder-digital.svg">
+          <img loading="lazy" decoding="async" src="../img/placeholder-editorial.svg">
+          <img loading="lazy" decoding="async" src="../img/placeholder-digital.svg">
         </div>
         <div class="case-gallery">
-          <img src="../img/placeholder-editorial.svg">
-          <img src="../img/placeholder-arte.svg">
+          <img loading="lazy" decoding="async" src="../img/placeholder-editorial.svg">
+          <img loading="lazy" decoding="async" src="../img/placeholder-arte.svg">
         </div>
       </div>
       <section class="case-copy">
@@ -81,8 +86,8 @@
       </section>
       <div class="case-gallery-stack">
         <div class="case-gallery-large">
-          <img src="../img/placeholder-editorial.svg">
-          <img src="../img/placeholder-digital.svg">
+          <img loading="lazy" decoding="async" src="../img/placeholder-editorial.svg">
+          <img loading="lazy" decoding="async" src="../img/placeholder-digital.svg">
         </div>
       </div>
       <section class="case-copy">
@@ -92,31 +97,6 @@
         </div>
       </section>                   
     </main>
-<!--     <footer class="site-footer">
-      <p>© Clara González Blanco · WebPortfolio</p>
-    </footer> -->
-    <script>
-      (function () {
-        const buttons = document.querySelectorAll('[data-lang]');
-
-        function setLanguage(lang) {
-          document.documentElement.lang = lang;
-          document.querySelectorAll('[data-es]').forEach((element) => {
-            element.hidden = lang !== 'es';
-          });
-          document.querySelectorAll('[data-en]').forEach((element) => {
-            element.hidden = lang !== 'en';
-          });
-          buttons.forEach((button) => {
-            button.setAttribute('aria-pressed', String(button.dataset.lang === lang));
-          });
-        }
-
-        buttons.forEach((button) => {
-          button.addEventListener('click', () => setLanguage(button.dataset.lang));
-        });
-        setLanguage('es');
-      })();
-    </script>
+    <script src="../js/main.js"></script>
   </body>
 </html>
