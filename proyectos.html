@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Proyectos de diseño gráfico.">
-    <title>Proyectos — WebPortfolio</title>
+    <meta name="description" content="Proyectos de diseño gráfico, diseño editorial e identidad visual de Clara González Blanco.">
+    <title>Proyectos — Clara González Blanco</title>
     <link rel="stylesheet" href="css/tipos.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
@@ -25,35 +25,81 @@
       </div>
     </header>
     <main class="container">
-      <section class="hero container">
-        <p class="hero-copy">
-          <span data-es>Este apartado está en proceso...</span><span data-en hidden>Working on it...</span>
-        </p>
-      </section>      
-    </main>
+      <section class="section" id="proyectos">
+        <div class="section-heading">
+          <p>
+            <span data-es>01 — 04 / Proyectos</span><span data-en hidden>01 — 04 / Projects</span>
+          </p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <a href="proyectos/el-precio-de-pertenecer.html">
+              <div class="project-image">
+                <img src="img/epdp1.webp" alt="">
+              </div>
+              <div class="project-meta">
+                <span>01</span><span>Trabajo Fin de Máster</span>
+              </div>
+              <h3>El precio de pertenecer</h3>
+              <p>
+                <span data-es>Diseño gráfico, packaging y diseño web</span><span data-en hidden>Graphic design, packaging and web design</span>
+              </p>
+            </a>
+          </article>
+          <article class="project-card">
+            <a href="proyectos/proyecto-horizonte3.0.html">
+              <div class="project-image">
+                <img src="img/ho3.0.svg" alt="">
+              </div>
+              <div class="project-meta">
+                <span>02</span><span>Consejería de Sanidad</span>
+              </div>
+              <h3>
+                <span data-es>Identidad horizonte 3.0</span><span data-en hidden>Identity horizonte 3.0</span>
+              </h3>
+              <p>
+                <span data-es>Proyecto de diseño de identidad visual</span><span data-en hidden>Visual identity design project</span>
+              </p>
+            </a>
+          </article>
+          <article class="project-card">
+            <a href="proyectos/en-el-limite.html">
+              <div class="project-image">
+                <img src="img/mockup_libro.jpg" alt="">
+              </div>
+              <div class="project-meta">
+                <span>03</span><span><span data-es>Proyecto personal</span><span data-en hidden>Personal project</span></span>
+              </div>
+              <h3>Fotolibro "en el límite"</h3>
+              <p>
+                <span data-es>Maquetación editorial dentro de un contexto artístico</span><span data-en hidden>Editorial design within an artistic context</span>
+              </p>
+            </a>
+          </article>
+          <article class="project-card">
+            <a href="proyectos/plan-cancer.html">
+              <div class="project-image">
+                <img src="img/mockup_plan_cancer.jpg" alt="">
+              </div>
+              <div class="project-meta">
+                <span>04</span><span>Consejería de Sanidad</span>
+              </div>
+              <h3>
+                <span data-es>Plan contra el cáncer</span><span data-en hidden>Cancer Control Plan</span>
+              </h3>
+              <p>
+                <span data-es>Maquetación editorial e institucional</span><span data-en hidden>Institutional and editorial Design</span>
+              </p>
+            </a>
+          </article>
+        </div>
+      </section>
+</main>
 <!--     <footer class="site-footer">
       <div class="footer-inner">
         <span>© Clara González Blanco · WebPortfolio</span>
       </div>
     </footer> -->
-    <script>
-      const languageButtons = document.querySelectorAll("[data-lang]");
-      function setLanguage(lang) {
-        document.documentElement.lang = lang;
-        document.querySelectorAll("[data-es]").forEach(el => {
-          el.hidden = lang !== "es";
-        });
-        document.querySelectorAll("[data-en]").forEach(el => {
-          el.hidden = lang !== "en";
-        });
-        languageButtons.forEach(button => {
-          button.setAttribute("aria-pressed", String(button.dataset.lang === lang));
-        });
-      }
-      languageButtons.forEach(button => {
-        button.addEventListener("click", () => setLanguage(button.dataset.lang));
-      });
-      setLanguage("es");
-    </script>
+    <script src="js/main.js"></script>
   </body>
 </html>

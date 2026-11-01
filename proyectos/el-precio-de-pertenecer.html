@@ -116,7 +116,7 @@
       <section class="case-copy">
         <div class="content-block result-block">
           <p>
-            <span data-es>Se puede encontrar más información sobre el proyecto en su página web: <a href="https://www.elpreciodepertenecer.com/">elpreciodepertener.com.</a></span><span data-en hidden>More information about the project can be found on its website: <a href="https://www.elpreciodepertenecer.com/">elpreciodepertener.com.</a></span>
+            <span data-es>Se puede encontrar más información sobre el proyecto en su página web: <a href="https://www.elpreciodepertenecer.com/">elpreciodepertenecer.com.</a></span><span data-en hidden>More information about the project can be found on its website: <a href="https://www.elpreciodepertenecer.com/">elpreciodepertenecer.com.</a></span>
           </p>
         </div>
       </section>      
@@ -126,29 +126,8 @@
         © Clara González Blanco · WebPortfolio
       </p>
     </footer> -->
+    <script src="../js/main.js"></script>
     <script>
-      (function () {
-        const buttons = document.querySelectorAll('[data-lang]');
-
-        function setLanguage(lang) {
-          document.documentElement.lang = lang;
-          document.querySelectorAll('[data-es]').forEach((element) => {
-            element.hidden = lang !== 'es';
-          });
-          document.querySelectorAll('[data-en]').forEach((element) => {
-            element.hidden = lang !== 'en';
-          });
-          buttons.forEach((button) => {
-            button.setAttribute('aria-pressed', String(button.dataset.lang === lang));
-          });
-        }
-
-        buttons.forEach((button) => {
-          button.addEventListener('click', () => setLanguage(button.dataset.lang));
-        });
-        setLanguage('es');
-      })();
-
       // Muestra la imagen fija por defecto y activa el GIF solo al pasar el cursor o enfocar la imagen.
       document.querySelectorAll('[data-hover-gallery] .hover-gif').forEach((img) => {
         const showAnimation = () => {

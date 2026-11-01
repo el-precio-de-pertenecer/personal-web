@@ -63,7 +63,7 @@
           <article class="project-card">
             <a href="proyectos/proyecto-horizonte3.0.html">
               <div class="project-image">
-                <img src="img/ho3.0.svg">
+                <img src="img/ho3.0.svg" alt="">
               </div>
               <div class="project-meta">
                 <span>02</span><span>Consejería de Sanidad</span>
@@ -114,28 +114,6 @@
         © Clara González Blanco · WebPortfolio
       </p>
     </footer> -->
-    <script>
-  (function () {
-    const buttons = document.querySelectorAll('[data-lang]');
-
-    function setLanguage(lang) {
-      document.documentElement.lang = lang;
-      document.querySelectorAll('[data-es]').forEach((element) => {
-        element.hidden = lang !== 'es';
-      });
-      document.querySelectorAll('[data-en]').forEach((element) => {
-        element.hidden = lang !== 'en';
-      });
-      buttons.forEach((button) => {
-        button.setAttribute('aria-pressed', String(button.dataset.lang === lang));
-      });
-    }
-
-    buttons.forEach((button) => {
-      button.addEventListener('click', () => setLanguage(button.dataset.lang));
-    });
-    setLanguage('es');
-  })();
-</script>
+    <script src="js/main.js"></script>
   </body>
 </html>

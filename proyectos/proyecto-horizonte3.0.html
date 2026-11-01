@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Proyecto editorial de ejemplo — Clara González Blanco.">
+    <meta name="description" content="Identidad visual de horizonte 3.0, el plan de salud del SESCAM — Clara González Blanco.">
     <title>
-      Identidad horizonte 3.0
+      Identidad horizonte 3.0 — Clara González Blanco
     </title>
     <link rel="stylesheet" href="../css/tipos.css">
     <link rel="stylesheet" href="../css/style.css">
@@ -57,7 +57,7 @@
           <span data-es>Resumen</span><span data-en hidden>Abstract</span>
         </h2>
         <p>
-          <span data-es>horizonte 3.0 es el nombre del nuevo plan de salud del organismo público de sanidad de Castilla-La Mancha (SESCAM). Su enfoque principal es la promoción de hábitos saludables, incluyendo alimentación balanceada, actividad física y prácticas que fomenten el bienestar mental y emocional.</span><span data-en hidden>...</span>
+          <span data-es>horizonte 3.0 es el nombre del nuevo plan de salud del organismo público de sanidad de Castilla-La Mancha (SESCAM). Su enfoque principal es la promoción de hábitos saludables, incluyendo alimentación balanceada, actividad física y prácticas que fomenten el bienestar mental y emocional.</span><span data-en hidden>horizonte 3.0 is the name of the new health plan of the regional public health service of Castilla-La Mancha (SESCAM). Its main focus is the promotion of healthy habits, including balanced nutrition, physical activity and practices that foster mental and emotional well-being.</span>
         </p>
         <div class="content-block">
           <h3><span data-es>Proceso</span><span data-en hidden>Process</span></h3>
@@ -71,12 +71,12 @@
       </section>
       <div class="case-gallery-stack">
         <div class="case-gallery-large">
-          <img src="../img/ho3.0.svg">
-          <img src="../img/ho3.0.svg">
+          <img src="../img/ho3.0.svg" alt="Identidad visual de horizonte 3.0">
+          <img src="../img/ho3.0.svg" alt="Identidad visual de horizonte 3.0">
         </div>
         <div class="case-gallery">
-          <img src="../img/ho3.0.svg">
-          <img src="../img/ho3.0.svg">
+          <img src="../img/ho3.0.svg" alt="Identidad visual de horizonte 3.0">
+          <img src="../img/ho3.0.svg" alt="Identidad visual de horizonte 3.0">
         </div>
       </div>
       <section class="case-copy">
@@ -86,8 +86,8 @@
       </section>
       <div class="case-gallery-stack">
         <div class="case-gallery-large">
-          <img src="../img/ho3.0.svg">
-          <img src="../img/ho3.0.svg">
+          <img src="../img/ho3.0.svg" alt="Identidad visual de horizonte 3.0">
+          <img src="../img/ho3.0.svg" alt="Identidad visual de horizonte 3.0">
         </div>
       </div>
       <section class="case-copy">
@@ -100,28 +100,6 @@
 <!--     <footer class="site-footer">
       <p>© Clara González Blanco · WebPortfolio</p>
     </footer> -->
-    <script>
-      (function () {
-        const buttons = document.querySelectorAll('[data-lang]');
-
-        function setLanguage(lang) {
-          document.documentElement.lang = lang;
-          document.querySelectorAll('[data-es]').forEach((element) => {
-            element.hidden = lang !== 'es';
-          });
-          document.querySelectorAll('[data-en]').forEach((element) => {
-            element.hidden = lang !== 'en';
-          });
-          buttons.forEach((button) => {
-            button.setAttribute('aria-pressed', String(button.dataset.lang === lang));
-          });
-        }
-
-        buttons.forEach((button) => {
-          button.addEventListener('click', () => setLanguage(button.dataset.lang));
-        });
-        setLanguage('es');
-      })();
-    </script>
+    <script src="../js/main.js"></script>
   </body>
 </html>
