@@ -312,6 +312,12 @@ body > main > #proyectos {
   width: 100%;
   object-fit: contain;
 }
+/* Vídeo con marco invisible: se ve más pequeño y queda centrado.
+   Para cambiar el tamaño, ajusta --video-inset (más grande = vídeo más pequeño). */
+.case-gallery-stack.video-framed {
+  --video-inset: clamp(1.25rem, 12vw, 10rem);
+  padding-inline: var(--video-inset);
+}
 
 /* Galería animada (anverso y reverso) */
 main.container .case-gallery-stack .synced-gif-gallery {
