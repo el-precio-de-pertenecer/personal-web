@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Proyectos de diseño gráfico.">
+    <title>Proyectos — WebPortfolio</title>
+    <link rel="stylesheet" href="css/tipos.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html">CLARA GONZÁLEZ BLANCO</a>
+        <div class="nav-wrap">
+          <nav class="site-nav" aria-label="Navegación principal">
+            <a href="index.html"><span data-es>Inicio</span><span data-en hidden>Home</span></a><a href="proyectos.html" aria-current="page"><span data-es>Proyectos</span><span data-en hidden>Projects</span></a><a href="sobre-mi.html"><span data-es>Sobre mí</span><span data-en hidden>About</span></a><a href="contacto.html"><span data-es>Contacto</span><span data-en hidden>Contact</span></a>
+          </nav>
+          <div class="language-switch" aria-label="Idioma">
+            <button type="button" data-lang="es" aria-pressed="true">ES</button>
+            <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="container">
+      <section class="hero container">
+        <p class="hero-copy">
+          <span data-es>Este apartado está en proceso...</span><span data-en hidden>Working on it...</span>
+        </p>
+      </section>      
+    </main>
+<!--     <footer class="site-footer">
+      <div class="footer-inner">
+        <span>© Clara González Blanco · WebPortfolio</span>
+      </div>
+    </footer> -->
+    <script>
+      const languageButtons = document.querySelectorAll("[data-lang]");
+      function setLanguage(lang) {
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-es]").forEach(el => {
+          el.hidden = lang !== "es";
+        });
+        document.querySelectorAll("[data-en]").forEach(el => {
+          el.hidden = lang !== "en";
+        });
+        languageButtons.forEach(button => {
+          button.setAttribute("aria-pressed", String(button.dataset.lang === lang));
+        });
+      }
+      languageButtons.forEach(button => {
+        button.addEventListener("click", () => setLanguage(button.dataset.lang));
+      });
+      setLanguage("es");
+    </script>
+  </body>
+</html>

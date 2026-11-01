@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Contacta con Clara González Blanco.">
+    <title>
+      Contacto — Clara González Blanco
+    </title>
+    <link rel="stylesheet" href="css/tipos.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+  </head>
+  <body class="contact-page">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html">CLARA GONZÁLEZ BLANCO</a>
+        <div class="nav-wrap">
+          <nav class="site-nav" aria-label="Navegación principal">
+            <a href="index.html"><span data-es>Inicio</span><span data-en hidden>Home</span></a><a href="proyectos.html"><span data-es>Proyectos</span><span data-en hidden>Projects</span></a><a href="sobre-mi.html"><span data-es>Sobre mí</span><span data-en hidden>About</span></a><a href="contacto.html" aria-current="page"><span data-es>Contacto</span><span data-en hidden>Contact</span></a>
+          </nav>
+          <div class="language-switch" aria-label="Idioma">
+            <button type="button" data-lang="es" aria-pressed="true">
+              ES
+            </button>
+            <button type="button" data-lang="en" aria-pressed="false">
+              EN
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="container">
+<section class="section contact-layout">
+        <div>
+          <h2>
+             <span data-es>¿Tienes un proyecto en mente?</span><span data-en hidden>Have a project in mind?</span>
+          </h2>
+          <p>
+            <span data-es>Si quieres colaborar, consultar disponibilidad o contactar conmigo, puedes escribirme a través de los siguientes canales.</span><span data-en hidden>If you’d like to collaborate, ask about availability or talk about design, you can reach me through the channels below.</span>
+          </p>
+          <div class="contact-links">
+            <a href="mailto:gonzalezblancoclara3a@gmail.com">gonzalezblancoclara3a@gmail.com ↗</a><a href="https://www.instagram.com/claarart/" target="_blank" rel="noreferrer">Instagram · @claarart ↗</a><a href="https://www.linkedin.com/in/clara-gonzález-blanco-802003390/">LinkedIn · Clara González Blanco ↗</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <p>
+        © Clara González Blanco · WebPortfolio
+      </p>
+
+    </footer>
+    <script>
+  (function () {
+    const buttons = document.querySelectorAll('[data-lang]');
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-es]').forEach((element) => {
+        element.hidden = lang !== 'es';
+      });
+      document.querySelectorAll('[data-en]').forEach((element) => {
+        element.hidden = lang !== 'en';
+      });
+      buttons.forEach((button) => {
+        button.setAttribute('aria-pressed', String(button.dataset.lang === lang));
+      });
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => setLanguage(button.dataset.lang));
+    });
+    setLanguage('es');
+
+  })();
+</script>
+  </body>
+</html>

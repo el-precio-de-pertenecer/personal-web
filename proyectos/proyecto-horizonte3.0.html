@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Proyecto editorial de ejemplo — Clara González Blanco.">
+    <title>
+      Identidad horizonte 3.0
+    </title>
+    <link rel="stylesheet" href="../css/tipos.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="../index.html">CLARA GONZÁLEZ BLANCO</a>
+        <div class="nav-wrap">
+          <nav class="site-nav" aria-label="Navegación principal">
+            <a href="../index.html"><span data-es>Inicio</span><span data-en hidden>Home</span></a><a href="../proyectos.html"><span data-es>Proyectos</span><span data-en hidden>Projects</span></a><a href="../sobre-mi.html"><span data-es>Sobre mí</span><span data-en hidden>About</span></a><a href="../contacto.html"><span data-es>Contacto</span><span data-en hidden>Contact</span></a>
+          </nav>
+          <div class="language-switch" aria-label="Idioma">
+            <button type="button" data-lang="es" aria-pressed="true">ES</button>
+            <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="container">
+      <section class="case-hero">
+        <h1>
+          <span data-es>Identidad horizonte 3.0</span><span data-en hidden>Identity horizonte 3.0</span>
+        </h1>
+      </section>
+        <div class="case-gallery-stack">
+          <video autoplay muted loop playsinline preload="metadata" aria-label="Vídeo de la identidad horizonte 3.0">
+            <source src="../img/ho3.0.mp4" type="video/mp4">
+            Tu navegador no puede reproducir este vídeo.
+          </video>
+        </div>
+      <dl class="case-details">
+        <div>
+          <dt><span data-es>Disciplinas</span><span data-en hidden>Disciplines</span></dt>
+          <dd><span data-es>Identidad visual / logotipo</span><span data-en hidden>Visual identity</span></dd>
+        </div>
+        <div>
+          <dt><span data-es>Tipo</span><span data-en hidden>Type</span></dt>
+          <dd><span data-es>Proyecto encargado</span><span data-en hidden>Commissioned project</span></dd>
+        </div>
+        <div>
+          <dt><span data-es>Fecha</span><span data-en hidden>Date</span></dt>
+          <dd>2026</dd>
+        </div>
+      </dl>
+      <section class="case-copy">
+        <h2>
+          <span data-es>Resumen</span><span data-en hidden>Abstract</span>
+        </h2>
+        <p>
+          <span data-es>horizonte 3.0 es el nombre del nuevo plan de salud del organismo público de sanidad de Castilla-La Mancha (SESCAM). Su enfoque principal es la promoción de hábitos saludables, incluyendo alimentación balanceada, actividad física y prácticas que fomenten el bienestar mental y emocional.</span><span data-en hidden>...</span>
+        </p>
+        <div class="content-block">
+          <h3><span data-es>Proceso</span><span data-en hidden>Process</span></h3>
+          <p>
+            <span data-es>La identidad visual de la campaña está diseñada para ser actual, juvenil y atractiva, utilizando un estilo gráfico limpio que comunica de manera clara y efectiva.</span><span data-en hidden>The campaign’s visual identity is designed to be contemporary, youthful and appealing, using a clean graphic style that communicates clearly and effectively.</span>
+          </p>
+          <p>
+            <span data-es>El logotipo contará con distintas variantes, tantas como categorías o temáticas se aborden en la campaña. Cada una de estas versiones estará representada por un símbolo situado sobre la ‘o’ con arco y dispondrá de un color propio que la identifique.</span><span data-en hidden>The logo will feature different variants, one for each category or theme covered by the campaign. Each of these versions will be represented by a symbol placed above the arched ‘o’ and will have its own distinctive colour.</span>
+          </p>
+        </div>
+      </section>
+      <div class="case-gallery-stack">
+        <div class="case-gallery-large">
+          <img src="../img/ho3.0.svg">
+          <img src="../img/ho3.0.svg">
+        </div>
+        <div class="case-gallery">
+          <img src="../img/ho3.0.svg">
+          <img src="../img/ho3.0.svg">
+        </div>
+      </div>
+      <section class="case-copy">
+        <div class="content-block">
+          <h3><span data-es>Resultado</span><span data-en hidden>Outcome</span></h3>
+        </div>
+      </section>
+      <div class="case-gallery-stack">
+        <div class="case-gallery-large">
+          <img src="../img/ho3.0.svg">
+          <img src="../img/ho3.0.svg">
+        </div>
+      </div>
+      <section class="case-copy">
+        <div class="content-block result-block">
+          <p>
+          </p>
+        </div>
+      </section>                   
+    </main>
+<!--     <footer class="site-footer">
+      <p>© Clara González Blanco · WebPortfolio</p>
+    </footer> -->
+    <script>
+      (function () {
+        const buttons = document.querySelectorAll('[data-lang]');
+
+        function setLanguage(lang) {
+          document.documentElement.lang = lang;
+          document.querySelectorAll('[data-es]').forEach((element) => {
+            element.hidden = lang !== 'es';
+          });
+          document.querySelectorAll('[data-en]').forEach((element) => {
+            element.hidden = lang !== 'en';
+          });
+          buttons.forEach((button) => {
+            button.setAttribute('aria-pressed', String(button.dataset.lang === lang));
+          });
+        }
+
+        buttons.forEach((button) => {
+          button.addEventListener('click', () => setLanguage(button.dataset.lang));
+        });
+        setLanguage('es');
+      })();
+    </script>
+  </body>
+</html>
