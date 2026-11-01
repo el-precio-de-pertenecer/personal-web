@@ -9,40 +9,33 @@
   --space: clamp(3rem, 8vw, 8rem);
 }
 
+/* Base */
 * {
-	box-sizing: border-box;
-
+  box-sizing: border-box;
 }
 html {
   scroll-behavior: smooth;
 }
 body {
-  width: 100%;
-  max-width: none;
   margin: 0;
   background: var(--paper);
   color: var(--ink);
   font-family: "WorkSans-Regular", "Work Sans", Arial, sans-serif;
   font-size: clamp(14px, calc(12.8px + 0.25vw), 16.8px);
   line-height: 1.4;
-  text-align: left;
   -webkit-font-smoothing: antialiased;
 }
 p {
-  text-align: left;
+  max-width: 68ch;
   hyphens: none;
   overflow-wrap: break-word;
 }
-
 dd, li {
-	text-align: left;
-	overflow-wrap: break-word;
-
+  overflow-wrap: break-word;
 }
 img, svg, video {
-	display: block;
-	max-width: 100%;
-
+  display: block;
+  max-width: 100%;
 }
 img {
   height: auto;
@@ -60,8 +53,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   outline-offset: 4px;
 }
 h1, h2, h3, h4, p {
-	margin-top: 0;
-
+  margin-top: 0;
 }
 h1, h2, h3 {
   font-family: "CarteroBold", "Work Sans", sans-serif;
@@ -72,27 +64,22 @@ h1 {
   font-size: clamp(2rem, 5.8vw, 7.4rem);
 }
 h2 {
-	font-size: clamp(2.2rem, 5vw, 5rem);
-	/* letter-spacing: -.04em; */
-	margin-bottom: 1.4rem;
-
+  font-size: clamp(2.2rem, 5vw, 5rem);
+  margin-bottom: 1.4rem;
 }
 h3 {
-	font-size: clamp(1.35rem, 2vw, 2rem);
-
-}
-p {
-  max-width: 68ch;
+  font-size: clamp(1.35rem, 2vw, 2rem);
 }
 .container {
   width: min(100% - 2 * var(--gutter), var(--content));
   margin-inline: auto;
 }
+
+/* Cabecera y navegación */
 .site-header {
   position: relative;
   z-index: 10;
   padding: 1.25rem var(--gutter);
-  border-bottom: 0;
 }
 .header-inner {
   width: min(100%, var(--content));
@@ -148,53 +135,23 @@ p {
 main {
   min-height: 65vh;
 }
+
+/* Portada */
 .hero {
   padding-block: clamp(7rem, 10vw, 10rem) clamp(3rem, 6vw, 7rem);
-}
-.eyebrow {
-  margin-bottom: 3.5rem;
-  color: var(--blue);
-  font-family: "CarteroRegular", monospace;
-  font-size: clamp(0.85rem, calc(0.75rem + 0.4vw), 1.1rem);
-  letter-spacing: .04em;
-  text-transform: uppercase;
 }
 .hero h1 {
   max-width: 12ch;
   margin-bottom: 1.5rem;
 }
-.hero-copy,
-.lead {
+.hero-copy {
   max-width: 35rem;
   font-size: clamp(0.5rem, 2vw, 1.4rem);
-}
-.hero-bottom {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 2rem;
-  margin-top: clamp(3rem, 10vw, 9rem);
-}
-.hero-note {
-  max-width: 20rem;
-  font-size: clamp(0.722rem, calc(0.637rem + 0.4vw), 0.935rem);
-  color: var(--muted);
-}
-.text-link {
-  display: inline-flex;
-  align-items: center;
-  gap: .65rem;
-  color: var(--blue);
-  font-size: clamp(0.85rem, calc(0.75rem + 0.4vw), 1.1rem);
-  text-decoration: none;
-  border-bottom: 1px solid currentColor;
-  padding-bottom: .25rem;
 }
 .section {
   padding-block: var(--space);
   border-top: 1px solid var(--line);
 }
-
 body > main > #proyectos {
   border-top: 0;
 }
@@ -205,13 +162,12 @@ body > main > #proyectos {
   gap: 2rem;
   margin-bottom: clamp(2rem, 4vw, 4rem);
 }
-.section-heading h2 {
-  margin-bottom: 0;
-}
 .section-heading p {
   color: var(--muted);
   font-size: clamp(0.85rem, calc(0.75rem + 0.4vw), 1.1rem);
 }
+
+/* Rejilla de proyectos */
 .project-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -258,22 +214,13 @@ body > main > #proyectos {
   color: var(--muted);
   font-size: clamp(0.935rem, calc(0.825rem + 0.4vw), 1.21rem);
 }
-.provisional-note {
-  display: inline-block;
-  margin-top: .8rem;
-  color: var(--muted);
-  font-size: clamp(0.612rem, calc(0.54rem + 0.4vw), 0.792rem);
+@media (hover: none) {
+  .project-card a:hover .project-image img {
+    transform: none;
+  }
 }
-.page-intro {
-  padding-block: clamp(4rem, 10vw, 10rem) clamp(3rem, 6vw, 6rem);
-}
-.page-intro h1 {
-  max-width: 13ch;
-}
-.lead {
-  max-width: 52rem;
-  font-size: clamp(1.1rem, 2.2vw, 1.65rem);
-}
+
+/* Estructura general de dos columnas */
 .two-column {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
@@ -281,50 +228,33 @@ body > main > #proyectos {
   align-items: start;
 }
 .editorial-image {
-	width: 100%;
-	background: var(--line);
-
+  width: 100%;
+  background: var(--line);
 }
+
+/* Páginas de proyecto */
 .content-block {
   padding-block: 1.5rem;
   border-top: 1px solid var(--line);
 }
-
 .case-copy .content-block {
   border-top: 0;
 }
 .content-block h3 {
   margin-bottom: .8rem;
 }
-.detail-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.detail-list li {
-  padding: .8rem 0;
-  border-bottom: 1px solid var(--line);
-}
 .case-hero {
   padding-block: clamp(3rem, 7vw, 7rem) 5.5rem;
-}
-.case-hero .eyebrow {
-  margin-bottom: 1.5rem;
 }
 .case-hero h1 {
   max-width: none;
   width: 100%;
   margin-bottom: 0;
-  text-align: left;
   font-size: clamp(2.2rem, 3vw, 3.5rem);
 }
 .case-cover {
-  display: block;
   width: 100%;
-  height: auto;
-  max-height: none;
   object-fit: contain;
-  background: transparent;
 }
 .case-details {
   display: grid;
@@ -343,14 +273,12 @@ body > main > #proyectos {
   max-width: 32ch;
   margin: 0;
   line-height: 1.45;
-  overflow-wrap: break-word;
   text-wrap: pretty;
 }
 .case-copy {
   max-width: 700px;
   padding-block: clamp(1.5rem, 2vw, 2rem);
 }
-
 @media (min-width: 681px) {
   .case-copy {
     max-width: 450px;
@@ -381,40 +309,41 @@ body > main > #proyectos {
 }
 .case-gallery-stack img,
 .case-gallery-stack video {
-  display: block;
   width: 100%;
-  height: auto;
-  max-height: none;
   object-fit: contain;
-  background: transparent;
 }
-.case-gallery-stack video {
-  border: 0;
-  outline: 0;
-  box-shadow: none;
-  vertical-align: top;
+
+/* Galería animada (anverso y reverso) */
+main.container .case-gallery-stack .synced-gif-gallery {
+  --gallery-inset: clamp(4.5rem, 7vw, 6rem);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--gallery-inset);
+  width: min(1800px, 100%);
+  max-width: 1800px;
+  min-width: 0;
+  padding-inline: var(--gallery-inset);
+  margin: 0 auto 2.5rem;
 }
-.cv-grid {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: clamp(2rem, 7vw, 7rem);
+main.container .case-gallery-stack .synced-gif-gallery > .hover-gif {
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 0;
+  box-shadow: 0 8px 24px rgba(36, 36, 36, 0.14);
 }
-.cv-sidebar {
-  padding-top: .5rem;
-}
+
+/* Currículum */
 .cv-section {
   padding-block: 1.5rem;
   border-top: 1px solid var(--line);
 }
 .cv-entry {
-	display: grid;
-	grid-template-columns: minmax(6rem, .7fr) 2fr;
-	gap: 0.5rem;
-	padding-block: 1.2rem;
-	/* border-bottom: 1px solid var(--line); */
-
+  display: grid;
+  grid-template-columns: minmax(6rem, .7fr) 2fr;
+  gap: 0.5rem;
+  padding-block: 1.2rem;
 }
-
 .about-page .cv-section:has(.experience-title) .cv-entry,
 .about-page .about-main-content > .cv-section:nth-of-type(2) .cv-entry {
   grid-template-columns: 1fr;
@@ -423,11 +352,12 @@ body > main > #proyectos {
   margin-bottom: .4rem;
 }
 .cv-date {
-	color: var(--blue);
-	font-family: "CarteroRegular", monospace;
-	font-size: clamp(0.637rem, calc(0.563rem + 0.4vw), 0.825rem);
-
+  color: var(--blue);
+  font-family: "CarteroRegular", monospace;
+  font-size: clamp(0.637rem, calc(0.563rem + 0.4vw), 0.825rem);
 }
+
+/* Botón */
 .button {
   display: inline-flex;
   align-items: center;
@@ -445,6 +375,8 @@ body > main > #proyectos {
   background: transparent;
   color: var(--blue);
 }
+
+/* Contacto */
 .contact-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -459,150 +391,63 @@ body > main > #proyectos {
   width: fit-content;
   color: var(--blue);
 }
-.contact-form {
-  display: grid;
-  gap: 1.1rem;
+.contact-page .section {
+  border: 0;
 }
-.form-field {
-  display: grid;
-  gap: .4rem;
+.contact-page .contact-layout {
+  padding-block: clamp(3rem, 6vw, 5rem);
 }
-.form-field label {
-  font-size: clamp(0.68rem, calc(0.6rem + 0.4vw), 0.88rem);
-}
-.form-field input, .form-field textarea {
-  width: 100%;
-  padding: .85rem 1rem;
-  border: 1px solid #bcbab4;
-  border-radius: 0;
-  background: transparent;
-  color: var(--ink);
-  font: inherit;
-}
-.form-field textarea {
-  min-height: 9rem;
-  resize: vertical;
-}
-.form-status {
-  font-size: clamp(0.722rem, calc(0.637rem + 0.4vw), 0.935rem);
-  color: var(--blue);
-}
+
+/* Pie de página */
 .site-footer {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1.5rem var(--gutter);
-  padding-top: 5rem;
-  border-top: 0;
+  padding: 5rem var(--gutter) 1.5rem;
   color: var(--muted);
   font-size: clamp(0.637rem, calc(0.563rem + 0.4vw), 0.825rem);
 }
 .site-footer p {
   margin: 0;
 }
-@media (hover: none) {
-  .project-card a:hover .project-image img {
-    transform: none;
-  }
-}
 
-/* Galería animada*/
-main.container .case-gallery-stack .synced-gif-gallery {
-  --gallery-inset: clamp(4.5rem, 7vw, 6rem);
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: stretch;
-  gap: var(--gallery-inset);
-  width: min(1800px, 100%);
-  max-width: 1800px;
-  min-width: 0;
-  box-sizing: border-box;
-  padding-inline: var(--gallery-inset);
-  margin: 0 auto;
-  margin-bottom: 2.5rem;
-}
-.result-block {
-  border-top: 0;
-}
-main.container .case-gallery-stack .synced-gif-gallery > .hover-gif {
-  display: block;
-  flex: 0 0 auto;
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  min-width: 0;
-  align-self: stretch;
-  box-shadow: 0 8px 24px rgba(36, 36, 36, 0.14);
-}
-
-
-/* Página Sobre mí: eliminar líneas divisorias y bordes de cajas. */
+/* Página Sobre mí: sin líneas divisorias; perfil a la izquierda y contenido a la derecha */
 .about-page .section,
 .about-page .content-block,
-.about-page .detail-list li,
 .about-page .cv-section,
-.about-page .cv-entry {
-  border: 0;
-}
+.about-page .cv-entry,
 .about-page .button {
   border: 0;
 }
-
-
-/* Página Sobre mí: perfil en columna izquierda y contenido alineado a la derecha. */
 .about-page .about-layout {
-	grid-template-columns: minmax(0, 0.9fr) minmax(0, 2fr);
-	align-items: start;
-	gap: 6rem;
-
-}
-.about-page .about-profile-caption {
-  margin-top: 1.2rem;
-}
-.about-page .about-profile-caption h3 {
-  margin-bottom: .35rem;
-  font-size: clamp(1rem, 1.3vw, 1.25rem);
-  letter-spacing: 0;
-}
-.about-page .about-profile-caption p {
-  margin-bottom: 0;
-  color: var(--muted);
-  font-size: clamp(0.765rem, calc(0.675rem + 0.4vw), 0.99rem);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 2fr);
+  align-items: start;
+  gap: 6rem;
+  padding-block: clamp(3rem, 6vw, 5rem);
 }
 .about-page .about-profile-intro {
   width: 100%;
   margin-top: 1.2rem;
 }
 .about-page .about-profile-intro h2 {
-	margin-bottom: .8rem;
-	font-size: clamp(1.35rem, 2vw, 1.8rem);
-	/* letter-spacing: -.02em; */
-	line-height: 1.1;
-
+  margin-bottom: .8rem;
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+  line-height: 1.1;
 }
 .about-page .about-profile-intro p {
-	width: 100%;
-	max-width: none;
-	margin-bottom: 0;
-	font-size: clamp(0.765rem, calc(0.675rem + 0.4vw), 0.99rem);
-	line-height: 1.5;
-
+  width: 100%;
+  max-width: none;
+  margin-bottom: 0;
+  font-size: clamp(0.765rem, calc(0.675rem + 0.4vw), 0.99rem);
+  line-height: 1.5;
 }
 .about-page .about-cv-download {
   margin-top: 2rem;
 }
 .about-page .about-cv-download h3 {
-	font-size: clamp(1.02rem, calc(0.9rem + 0.4vw), 1.32rem);
-	line-height: 1.2;
-	margin-bottom: 1.5rem;
-
-}
-.about-page .about-main-content > .cv-section:first-of-type {
-  margin-top: var(--space);
-}
-.about-page .about-main-content .cv-section {
-	/* padding-block: 1.5rem; */
-
+  font-size: clamp(1.02rem, calc(0.9rem + 0.4vw), 1.32rem);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
 }
 @media (max-width: 680px) {
   .about-page .about-layout {
@@ -612,142 +457,44 @@ main.container .case-gallery-stack .synced-gif-gallery > .hover-gif {
   .about-page .about-profile {
     max-width: 100%;
   }
-  .about-page .about-profile-caption h3 {
-    font-size: clamp(0.935rem, calc(0.825rem + 0.4vw), 1.21rem);
-  }
   .about-page .about-cv-download {
     margin-top: 1.5rem;
   }
-  .about-page .about-main-content > .cv-section:first-of-type {
-    margin-top: 3rem;
-  }
 }
 
-
-/* Página Contacto: eliminar líneas divisorias y bordes. */
-.contact-page .section,
-.contact-page .contact-layout,
-.contact-page .contact-form,
-.contact-page .form-field,
-.contact-page .contact-links {
-  border: 0;
-}
-.contact-page .form-field input,
-.contact-page .form-field textarea {
-  border: 0;
-  border-bottom: 1px solid transparent;
-  outline-offset: 3px;
-}
-
-
-/* Sobre mí y Contacto: eliminar también el espacio que dejaban los bordes. */
-.about-page .about-layout,
-.contact-page .contact-layout {
-  border: 0;
+/* Sobre mí: ritmo vertical del currículum */
+.about-page .content-block {
   padding-block: 0;
+  margin-block: 1.75rem 0;
 }
-.about-page .content-block,
 .about-page .cv-section,
 .about-page .cv-entry {
   padding-block: 0;
   margin-block: 0;
 }
-.about-page .content-block {
-  margin-top: 1.25rem;
-}
-.about-page .detail-list li {
-  padding-block: .35rem;
-}
-.about-page .cv-section + .cv-section {
-  margin-top: 1.5rem;
-}
-.about-page .cv-entry + .cv-entry {
-  margin-top: .8rem;
-}
 .about-page .about-main-content > .cv-section:first-of-type {
-	margin-top: 0.5rem;
-
-}
-.contact-page .contact-layout > div > h2 {
-  margin-top: 0;
-}
-.contact-page .contact-links {
-  margin-top: 1.25rem;
-}
-.contact-page .contact-form {
-  gap: .9rem;
-}
-.contact-page .form-field input,
-.contact-page .form-field textarea {
-  padding-inline: 0;
-}
-
-
-/* Recuperar el margen de sección sin reintroducir líneas divisorias. */
-.about-page .about-layout,
-.contact-page .contact-layout {
-	padding-block: clamp(3rem, 6vw, 5rem);
-
-}
-.about-page .content-block {
-  margin-top: 1.75rem;
+  margin-top: 0.5rem;
 }
 .about-page .cv-section + .cv-section {
-	margin-top: 2.5rem;
-
+  margin-top: 2.5rem;
 }
 .about-page .cv-entry + .cv-entry {
   margin-top: 1rem;
 }
-.contact-page .contact-links {
-  margin-top: 2rem;
-}
 
-/* Recuperar el estilo original de los campos del formulario. */
-.contact-page .form-field input,
-.contact-page .form-field textarea {
-  padding: .85rem 1rem;
-  border: 1px solid #bcbab4;
-  border-radius: 0;
-  background: transparent;
-}
-.contact-page .form-field input:focus,
-.contact-page .form-field textarea:focus {
-  outline: 2px solid var(--blue);
-  outline-offset: 2px;
-}
-
-
-/* Sobre mí: responsabilidades con viñetas y jerarquía tipográfica más contenida. */
-.about-page .experience-responsibilities {
-	margin: .6rem 0 0;
-	padding-left: 1.8rem;
-	list-style: disc;
-
-}
-.about-page .experience-responsibilities li {
-	display: list-item;
-	padding: .35rem 0;
-	font-size: clamp(0.765rem, calc(0.675rem + 0.4vw), 0.99rem);
-	line-height: 1.5;
-
-}
-.about-page .about-main-content > h2 {
-  font-size: clamp(1.4rem, 2vw, 1.8rem);
-}
+/* Sobre mí: tipografía del currículum */
 .about-page .cv-section > h2 {
   font-size: clamp(1.35rem, 2vw, 1.8rem);
   line-height: 1.1;
 }
 .about-page .cv-entry h3 {
-	font-size: clamp(1.02rem, calc(0.9rem + 0.4vw), 1.32rem);
-	line-height: 1.2;
-	margin-bottom: 0.5rem;
+  font-size: clamp(1.02rem, calc(0.9rem + 0.4vw), 1.32rem);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
 }
 .about-page .cv-entry h3 strong {
-	color: var(--blue);
-	font-weight: 650;
-
+  color: var(--blue);
+  font-weight: 650;
 }
 .about-page .cv-entry-year {
   color: var(--blue);
@@ -755,29 +502,25 @@ main.container .case-gallery-stack .synced-gif-gallery > .hover-gif {
   font-weight: 400;
 }
 .about-page .cv-entry p {
-	font-size: clamp(0.765rem, calc(0.675rem + 0.4vw), 0.99rem);
-	line-height: 1.5;
-
+  font-size: clamp(0.765rem, calc(0.675rem + 0.4vw), 0.99rem);
+  line-height: 1.5;
 }
-
-
-/* Igualar el tamaño de las fechas al texto de la experiencia y formación. */
 .about-page .cv-date {
-	font-size: clamp(0.85rem, calc(0.75rem + 0.4vw), 1.1rem);
-	line-height: 1.6;
-
+  font-size: clamp(0.85rem, calc(0.75rem + 0.4vw), 1.1rem);
+  line-height: 1.6;
 }
-
-
-
-/* Sobre mí: igualar únicamente el tamaño de "Descargar Curriculum" al de los títulos de formación. */
-.about-page .about-cv-download h3 {
-  font-size: clamp(1.02rem, calc(0.9rem + 0.4vw), 1.32rem);
+.about-page .experience-responsibilities {
+  margin: .6rem 0 0;
+  padding-left: 1.8rem;
+  list-style: disc;
 }
-
-/* Sobre mí: dar más peso a los encabezados de cada responsabilidad. */
+.about-page .experience-responsibilities li {
+  display: list-item;
+  padding: .35rem 0;
+  font-size: clamp(0.765rem, calc(0.675rem + 0.4vw), 0.99rem);
+  line-height: 1.5;
+}
 .about-page .experience-responsibilities li strong {
-	font-family: "WorkSans-VariableFont_wght", "Work Sans", Arial, sans-serif;
-	font-weight: 580;
-
+  font-family: "WorkSans-VariableFont_wght", "Work Sans", Arial, sans-serif;
+  font-weight: 580;
 }
