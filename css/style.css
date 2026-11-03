@@ -116,6 +116,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   font-size: 15px;
   line-height: 1.45;
 }
+.portfolio-project-meta span:first-child { font-weight: 600; }
 .portfolio-project-meta span:last-child { white-space: nowrap; }
 .portfolio-project:hover .portfolio-project-meta { color: var(--blue); }
 
@@ -149,8 +150,9 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   min-height: 44px;
   cursor: pointer;
   list-style: none;
-  font-family: "WorkSans-VariableFont_wght", "Work Sans", sans-serif;
-  font-weight: 600;
+  font-family: "CarteroBold", "Work Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
 }
 .cv-accordion summary::-webkit-details-marker { display: none; }
 .cv-accordion summary span { font-size: 18px; font-weight: 400; }
@@ -164,6 +166,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   line-height: 1.45;
 }
 .accordion-content h3 span { margin-left: 5px; font-weight: 400; }
+.accordion-content strong { color: var(--blue); }
 .accordion-content p { margin-bottom: 10px; max-width: 760px; }
 .accordion-content ul { margin: 4px 0 0; padding-left: 17px; }
 .accordion-content li { padding: 2px 0; }
