@@ -547,3 +547,258 @@ main.container > .case-gallery-stack.video-framed > video {
   margin: 0;
   object-fit: contain;
 }
+
+
+/* NUEVA ESTRUCTURA PORTFOLIO — retícula de las referencias PDF */
+:root {
+  --portfolio-blue: #002FA7;
+  --portfolio-gutter: 20px;
+}
+body.portfolio-home,
+body.about-page,
+body.contact-page,
+body.case-page {
+  font-family: "WorkSans-Regular", "Work Sans", Arial, sans-serif;
+  font-size: 10px;
+  line-height: 1.35;
+  color: #202020;
+}
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  padding: 17px var(--portfolio-gutter) 12px;
+  background: #fff;
+}
+.header-inner {
+  width: 100%;
+  max-width: none;
+  min-height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.brand {
+  font-family: "CarteroRegular", monospace;
+  font-size: 10px;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(28px, 8vw, 110px);
+}
+.site-nav a {
+  font-family: "WorkSans-Regular", "Work Sans", Arial, sans-serif;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.site-nav a[aria-current="page"] { color: var(--portfolio-blue); }
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 52px);
+  padding: 54px var(--portfolio-gutter) 30px;
+  align-items: start;
+}
+.portfolio-intro {
+  position: sticky;
+  top: 68px;
+  align-self: start;
+  max-width: 440px;
+}
+.intro-copy {
+  max-width: 390px;
+  margin: 0 0 17px;
+  font-size: 10px;
+  line-height: 1.4;
+}
+.discipline-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: #777;
+  font-size: 9px;
+  line-height: 1.85;
+}
+.portfolio-projects {
+  display: grid;
+  gap: 30px;
+  min-width: 0;
+}
+.portfolio-project {
+  display: block;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+.portfolio-project > img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.7 / 1;
+  object-fit: contain;
+  background: #f5f5f5;
+}
+.portfolio-project-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 14px;
+  margin-top: 7px;
+  font-size: 9px;
+  line-height: 1.3;
+}
+.portfolio-project-meta span:last-child { white-space: nowrap; }
+.portfolio-project:hover .portfolio-project-meta { color: var(--portfolio-blue); }
+
+/* Ficha de proyecto: texto fijo y galería vertical desplazable */
+.case-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .72fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 52px);
+  padding: 22px var(--portfolio-gutter) 40px;
+  align-items: start;
+}
+.case-fixed {
+  position: sticky;
+  top: 60px;
+  align-self: start;
+  max-width: 430px;
+  min-height: calc(100vh - 85px);
+  font-size: 10px;
+  line-height: 1.4;
+}
+.case-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 27px;
+  font-size: 9px;
+}
+.case-fixed p { max-width: 390px; margin: 0 0 12px; }
+.case-fixed h2 {
+  margin: 16px 0 7px;
+  font: 600 10px/1.3 "WorkSans-Regular", "Work Sans", sans-serif;
+}
+.case-fixed a:not(.close-project) { text-decoration: underline; }
+.case-fixed .close-project {
+  position: fixed;
+  top: 59px;
+  right: var(--portfolio-gutter);
+  color: #333;
+  text-decoration: none;
+}
+.case-gallery {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+.case-gallery img,
+.case-gallery video {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: #f6f6f6;
+}
+
+/* Sobre mí: retrato y presentación fijos; CV desplegable a la derecha */
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .72fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 52px);
+  padding: 55px var(--portfolio-gutter) 40px;
+  align-items: start;
+}
+.about-fixed {
+  position: sticky;
+  top: 68px;
+  align-self: start;
+  max-width: 440px;
+}
+.about-fixed img {
+  width: 110px;
+  height: 155px;
+  object-fit: cover;
+  object-position: center top;
+  border: 1px solid #ddd;
+  margin-bottom: 9px;
+}
+.about-fixed p {
+  max-width: 390px;
+  margin: 0;
+  font-size: 10px;
+  line-height: 1.4;
+}
+.about-accordions { min-width: 0; padding-top: 0; }
+.cv-accordion {
+  border-top: 1px solid #cfcfcf;
+  font-size: 10px;
+}
+.cv-accordion:last-child { border-bottom: 1px solid #cfcfcf; }
+.cv-accordion summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 27px;
+  cursor: pointer;
+  list-style: none;
+  font-family: "WorkSans-VariableFont_wght", "Work Sans", sans-serif;
+  font-weight: 600;
+}
+.cv-accordion summary::-webkit-details-marker { display: none; }
+.cv-accordion summary span { font-size: 12px; font-weight: 400; }
+.cv-accordion[open] summary span { transform: rotate(45deg); }
+.accordion-content { padding: 4px 0 17px; line-height: 1.4; }
+.accordion-content h3 {
+  margin: 8px 0 3px;
+  font: 600 10px/1.35 "WorkSans-Regular", "Work Sans", sans-serif;
+}
+.accordion-content h3 span { font-weight: 400; margin-left: 5px; }
+.accordion-content p { margin: 0 0 7px; max-width: 760px; }
+.accordion-content ul { margin: 4px 0 0; padding-left: 17px; }
+.accordion-content li { padding: 2px 0; }
+
+/* Contacto: composición sencilla y alineada con la retícula */
+.contact-simple {
+  padding: 55px var(--portfolio-gutter) 40px;
+  max-width: 680px;
+}
+.contact-simple h1 {
+  margin: 0 0 9px;
+  font: 600 11px/1.35 "WorkSans-Regular", "Work Sans", sans-serif;
+}
+.contact-simple p { margin: 0 0 13px; font-size: 10px; }
+.contact-simple .contact-line { margin: 0 0 5px; }
+.contact-simple a { text-decoration: none; }
+.contact-simple a:hover { color: var(--portfolio-blue); }
+
+@media (max-width: 700px) {
+  .site-header { padding: 14px 16px 10px; }
+  .header-inner { align-items: flex-start; gap: 12px; }
+  .brand { font-size: 9px; }
+  .site-nav { gap: clamp(12px, 4vw, 26px); }
+  .site-nav a { font-size: 9px; }
+  .portfolio-grid,
+  .case-grid,
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding: 28px 16px 30px;
+  }
+  .portfolio-intro,
+  .case-fixed,
+  .about-fixed { position: static; max-width: none; min-height: 0; }
+  .portfolio-projects { gap: 24px; }
+  .case-fixed .close-project { top: 52px; right: 16px; }
+  .about-fixed img { width: 100px; height: 140px; }
+  .contact-simple { padding: 35px 16px; }
+}
+@media (max-width: 420px) {
+  .header-inner { flex-direction: column; }
+  .site-nav { width: 100%; }
+}
