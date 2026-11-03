@@ -21,7 +21,7 @@
   .portfolio-grid, .about-grid, .case-grid {
     grid-template-columns: 1fr;
     gap: 30px;
-    padding: 36px var(--gutter) 40px;
+    padding: 36px var(--gutter) 104px;
   }
   .portfolio-intro, .about-fixed, .case-fixed {
     position: static;
@@ -32,6 +32,7 @@
   .portfolio-projects { gap: 34px; }
   .portfolio-project > img { aspect-ratio: 1.46 / 1; }
   .portfolio-project-meta { font-size: 15px; }
+  .portfolio-project-meta span:first-child { flex: 1; min-width: 0; text-wrap: balance; }
   .about-grid { padding-top: 36px; }
   .about-fixed img { width: 180px; height: 220px; margin-bottom: 18px; }
   .case-grid { padding-top: 0; }
