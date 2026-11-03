@@ -1,146 +1,47 @@
-/* Responsive layout: móvil, tableta y escritorio */
+/* Adaptación de la retícula común a tablet y móvil */
 @media (max-width: 900px) {
-  :root {
-    --gutter: clamp(1.5rem, 5vw, 2.75rem);
-    --space: clamp(3.5rem, 10vw, 6rem);
-  }
-  .header-inner {
-    align-items: flex-start;
-  }
-  .nav-wrap {
-    gap: 1rem;
-  }
-  .site-nav {
-    gap: .8rem 1rem;
-  }
-  .two-column {
-    grid-template-columns: 1fr 1.15fr;
-    gap: 2rem;
-  }
-  .project-grid {
-    gap: 2.5rem 1.25rem;
-  }
-  .case-details {
-    gap: 1rem;
+  :root { --gutter: clamp(24px, 4vw, 40px); --column-gap: 28px; }
+  .portfolio-grid, .about-grid, .case-grid {
+    grid-template-columns: minmax(0, .72fr) minmax(0, 1fr);
   }
 }
 
-@media (max-width: 680px) {
-  :root {
-    --gutter: 1.35rem;
-    --space: 4rem;
-  }
-  html {
-    scroll-behavior: auto;
-  }
-  .site-header {
-    padding-block: 1rem;
-  }
-  .header-inner {
-    flex-direction: column;
-    gap: .9rem;
-  }
-  .nav-wrap {
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    gap: .75rem;
-  }
-  .site-nav {
-    gap: .65rem 1rem;
-  }
-  .site-nav a {
-    font-size: clamp(0.714rem, calc(0.63rem + 0.4vw), 0.924rem);
-  }
-  .language-switch {
-    padding-left: .65rem;
-  }
-  .hero {
-    padding-block: 3.5rem 3rem;
-  }
-  .hero h1 {
-    max-width: 10ch;
-    margin-bottom: 1.25rem;
-    font-size: clamp(2.5rem, 11vw, 4rem);
-    line-height: 1.05;
-    letter-spacing: -.025em;
-    text-wrap: balance;
-  }
-  .hero-copy {
-    max-width: 34ch;
-    font-size: clamp(1rem, 4.2vw, 1.2rem);
-    line-height: 1.5;
-  }
-  .section-heading {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .project-grid {
+@media (max-width: 700px) {
+  :root { --gutter: 20px; }
+  .site-header { padding: 18px var(--gutter) 14px; }
+  .header-inner { grid-template-columns: 1fr; gap: 12px; }
+  .brand { grid-column: 1; font-size: 11px; }
+  .site-nav { grid-column: 1; gap: 14px; }
+  .site-nav a { font-size: 11px; }
+
+  .portfolio-grid, .about-grid, .case-grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 30px;
+    padding: 36px var(--gutter) 40px;
   }
-  .project-card:nth-child(even) {
+  .portfolio-intro, .about-fixed, .case-fixed {
+    position: static;
+    max-width: none;
+    min-height: 0;
     margin-top: 0;
   }
-  .project-card h3 {
-    font-size: clamp(1.7rem, calc(1.5rem + 0.4vw), 2.2rem);
-  }
-  .project-meta {
-    font-size: clamp(0.646rem, calc(0.57rem + 0.4vw), 0.836rem);
-  }
-  .two-column,
-  .contact-layout {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  .case-details {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.25rem;
-    padding-block: 1.5rem;
-  }
-  .case-details dt {
-    margin-bottom: .35rem;
-  }
-  .case-gallery {
-    grid-template-columns: 1fr;
-  }
-  .cv-entry {
-    grid-template-columns: 1fr;
-    gap: .45rem;
-  }
-  .case-hero {
-    padding-block: 3rem 2rem;
-  }
-  .case-hero h1 {
-    white-space: nowrap;
-    font-size: clamp(1.55rem, 6.2vw, 2.6rem);
-    letter-spacing: -.035em;
-  }
-  main.container .case-gallery-stack .synced-gif-gallery {
-    --gallery-inset: clamp(1.25rem, 3.5vw, 3rem);
-  }
-  .site-footer {
-    flex-direction: column;
-  }
+  .portfolio-projects { gap: 34px; }
+  .portfolio-project > img { aspect-ratio: 1.22 / 1; }
+  .portfolio-project-meta { font-size: 11px; }
+  .about-grid { padding-top: 36px; }
+  .about-fixed img { width: 150px; height: 220px; margin-bottom: 18px; }
+  .case-grid { padding-top: 0; }
+  .case-topbar { min-height: 44px; padding: 12px var(--gutter); font-size: 11px; }
+  .case-topbar-title { flex-wrap: wrap; gap: 7px; }
+  .case-topbar-title span { white-space: normal; }
+  .contact-simple { padding: 48px var(--gutter) 40px; }
 }
 
-@media (max-width: 380px) {
-  .site-nav {
-    gap: .55rem;
-  }
-  .site-nav a {
-    font-size: clamp(0.646rem, calc(0.57rem + 0.4vw), 0.836rem);
-  }
-  .brand {
-    font-size: clamp(0.697rem, calc(0.615rem + 0.4vw), 0.902rem);
-  }
-  .language-switch {
-    padding-left: .4rem;
-  }
-  .language-switch button {
-    font-size: clamp(0.578rem, calc(0.51rem + 0.4vw), 0.748rem);
-  }
+@media (max-width: 420px) {
+  .site-nav { gap: 12px; }
+  .site-nav a { font-size: 10px; }
+  .case-topbar { align-items: flex-start; }
+  .case-topbar-title { max-width: calc(100% - 60px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
