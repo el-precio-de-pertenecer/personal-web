@@ -561,3 +561,21 @@ main.container .case-gallery-stack .synced-gif-gallery > .hover-gif {
   main.container .case-gallery-stack .synced-gif-gallery { --gallery-inset: 0; width: 100%; }
   main.container .case-gallery-stack .synced-gif-gallery > .hover-gif { max-height: 60vh; }
 }
+
+
+/* Horizonte 3.0: el vídeo ocupa todo el ancho del viewport/body */
+main.container > .case-gallery-stack.video-framed {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding-inline: 0;
+}
+main.container > .case-gallery-stack.video-framed > video {
+  display: block;
+  width: 100%;
+  max-width: none;
+  max-height: none;
+  height: auto;
+  margin: 0;
+  object-fit: contain;
+}
