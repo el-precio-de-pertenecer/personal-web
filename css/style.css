@@ -117,6 +117,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   line-height: 1.45;
 }
 .portfolio-project-meta span:first-child { font-weight: 600; }
+.portfolio-project-meta .project-name { font-weight: 400; }
 .portfolio-project-meta span:last-child { white-space: nowrap; }
 .portfolio-project:hover .portfolio-project-meta { color: var(--blue); }
 
