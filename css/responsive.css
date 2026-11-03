@@ -26,7 +26,7 @@
     margin-top: 0;
   }
   .portfolio-projects { gap: 34px; }
-  .portfolio-project > img { aspect-ratio: 1.22 / 1; }
+  .portfolio-project > img { aspect-ratio: 1.46 / 1; }
   .portfolio-project-meta { font-size: 11px; }
   .about-grid { padding-top: 36px; }
   .about-fixed img { width: 150px; height: 220px; margin-bottom: 18px; }
@@ -34,7 +34,7 @@
   .case-topbar { min-height: 44px; padding: 12px var(--gutter); font-size: 11px; }
   .case-topbar-title { flex-wrap: wrap; gap: 7px; }
   .case-topbar-title span { white-space: normal; }
-  .contact-simple { padding: 48px var(--gutter) 40px; }
+  .contact-simple { padding: 36px var(--gutter) 40px; }
 }
 
 @media (max-width: 420px) {
