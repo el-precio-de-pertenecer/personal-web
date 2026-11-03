@@ -4,6 +4,10 @@
   .portfolio-grid, .about-grid, .case-grid {
     grid-template-columns: minmax(0, .72fr) minmax(0, 1fr);
   }
+  .header-inner {
+    grid-template-columns: minmax(0, .72fr) minmax(0, 1fr);
+    column-gap: var(--column-gap);
+  }
 }
 
 @media (max-width: 700px) {
