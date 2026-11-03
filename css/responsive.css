@@ -151,3 +151,67 @@
     transition-duration: .01ms !important;
   }
 }
+
+
+/* Ajustes responsive del rediseño minimal */
+@media (max-width: 900px) {
+  :root { --gutter: clamp(1.5rem, 5vw, 3rem); }
+  .hero { padding-block: 7rem 5rem; }
+  .about-page .about-layout { gap: 3rem; }
+  .contact-page .contact-layout { gap: 3rem; }
+}
+@media (max-width: 680px) {
+  :root { --gutter: 1.35rem; --space: 5rem; }
+  .site-header { padding-block: 1.1rem; }
+  .header-inner { align-items: flex-start; }
+  .brand { font-size: .72rem; }
+  .nav-wrap { align-items: center; }
+  .site-nav { gap: .7rem 1rem; }
+  .site-nav a { font-size: .72rem; }
+  .language-switch { padding-left: .55rem; }
+  .language-switch button { font-size: .68rem; }
+  .hero { padding-block: 5rem 4rem; }
+  .hero h1 {
+    max-width: 10ch;
+    margin-bottom: 1.5rem;
+    font-size: clamp(3rem, 13vw, 5rem);
+    line-height: .98;
+  }
+  .hero-copy { font-size: 1rem; line-height: 1.65; }
+  .section-heading { margin-bottom: 2.5rem; }
+  .project-grid { gap: 3.5rem; }
+  .project-card:nth-child(even) { margin-top: 0; }
+  .project-meta { margin-top: 1rem; }
+  .project-card h3 { font-size: 1.65rem; }
+  .project-card p { font-size: .9rem; }
+  .case-hero { padding-block: 4rem 2rem; }
+  .case-hero h1 {
+    white-space: normal;
+    font-size: clamp(2.2rem, 9vw, 3.6rem);
+    line-height: 1.02;
+  }
+  .case-details { padding-block: 2rem; gap: 1.2rem; }
+  .case-copy { padding-block: 3rem; }
+  .case-copy p { font-size: .96rem; }
+  .case-gallery-stack { gap: 1rem; }
+  .about-page .about-layout { padding-block: 3.5rem; gap: 3rem; }
+  .about-page .about-profile { max-width: 100%; }
+  .about-page .about-profile-intro h2 { font-size: 1.7rem; }
+  .about-page .cv-section > h2 { font-size: 1.8rem; }
+  .contact-page .contact-layout {
+    grid-template-columns: 1fr;
+    padding-block: 5rem;
+    gap: 2rem;
+  }
+  .contact-page .contact-layout h2 {
+    max-width: 12ch;
+    font-size: clamp(2.8rem, 12vw, 4.5rem);
+  }
+  .contact-links { margin-top: 2rem; }
+  .site-footer { padding-top: 3rem; }
+}
+@media (max-width: 380px) {
+  .site-nav { gap: .55rem; }
+  .site-nav a { font-size: .67rem; }
+  .brand { font-size: .66rem; }
+}
