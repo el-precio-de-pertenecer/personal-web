@@ -36,7 +36,8 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 }
 .header-inner {
   display: grid;
-  grid-template-columns: 46% minmax(0, 54%);
+  grid-template-columns: minmax(0, .613fr) minmax(0, 1fr);
+  column-gap: var(--column-gap);
   align-items: center;
   width: 100%;
 }
@@ -82,7 +83,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   top: 58px;
   align-self: start;
   max-width: 440px;
-  margin-top: 22px;
+  margin-top: 0;
 }
 .intro-copy {
   max-width: 440px;
