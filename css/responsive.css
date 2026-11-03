@@ -2,10 +2,10 @@
 @media (max-width: 900px) {
   :root { --gutter: clamp(24px, 4vw, 40px); --column-gap: 28px; }
   .portfolio-grid, .about-grid, .case-grid {
-    grid-template-columns: minmax(0, .72fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, .85fr) minmax(0, 1fr);
   }
   .header-inner {
-    grid-template-columns: minmax(0, .72fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, .85fr) minmax(0, 1fr);
     column-gap: var(--column-gap);
   }
 }
@@ -33,7 +33,7 @@
   .portfolio-project > img { aspect-ratio: 1.46 / 1; }
   .portfolio-project-meta { font-size: 15px; }
   .about-grid { padding-top: 36px; }
-  .about-fixed img { width: 150px; height: 220px; margin-bottom: 18px; }
+  .about-fixed img { width: 180px; height: 220px; margin-bottom: 18px; }
   .case-grid { padding-top: 0; }
   .case-topbar { min-height: 44px; padding: 12px var(--gutter); font-size: 15px; }
   .case-topbar-title { flex-wrap: wrap; gap: 7px; }
