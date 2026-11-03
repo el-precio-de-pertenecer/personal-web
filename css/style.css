@@ -36,7 +36,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 }
 .header-inner {
   display: grid;
-  grid-template-columns: minmax(0, .613fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1fr);
   column-gap: var(--column-gap);
   align-items: center;
   width: 100%;
@@ -69,7 +69,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 .about-grid,
 .case-grid {
   display: grid;
-  grid-template-columns: minmax(0, .613fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1fr);
   gap: var(--column-gap);
   align-items: start;
   padding-right: var(--gutter);
@@ -128,7 +128,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   max-width: 440px;
 }
 .about-fixed img {
-  width: min(100%, 185px);
+  width: min(100%, 240px);
   height: 300px;
   margin-bottom: 22px;
   border: 1px solid var(--line);
