@@ -7,16 +7,20 @@
   --column-gap: clamp(64px, 12.3vw, 190px);
 }
 
-* { box-sizing: border-box; }
+* {
+	box-sizing: border-box;
+
+}
 html { scroll-behavior: smooth; }
 body {
-  margin: 0;
-  background: #fff;
-  color: var(--ink);
-  font-family: "WorkSans-Regular", "Work Sans", Arial, sans-serif;
-  font-size: 15px;
-  line-height: 1.45;
-  -webkit-font-smoothing: antialiased;
+	margin: 0;
+	background: #fff;
+	color: var(--ink);
+	font-family: "WorkSans-Regular", "Work Sans", Arial, sans-serif;
+	font-size: 15px;
+	/* line-height: 1.45; */
+	-webkit-font-smoothing: antialiased;
+
 }
 img, video, svg { display: block; max-width: 100%; }
 img { height: auto; }
@@ -130,20 +134,28 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   max-width: 440px;
 }
 .about-fixed img {
-  width: min(100%, 240px);
-  height: 300px;
-  margin-bottom: 22px;
-  border: 0;
-  object-fit: cover;
-  object-position: center top;
+	width: min(100%, 245px);
+	height: 280px;
+	margin-bottom: 25px;
+	border: 0;
+	object-fit: cover;
+	object-position: center top;
+
 }
  .about-fixed p { max-width: 420px; font-size: 15px; line-height: 1.5; }
-.about-accordions { min-width: 0; }
-.cv-accordion {
-  border-top: 1px solid var(--ink);
-  font-size: 15px;
+.about-accordions {
+	min-width: 0;
+
 }
-.cv-accordion:last-child { border-bottom: 1px solid var(--ink); }
+.cv-accordion {
+	border-top: 0.75px solid var(--ink);
+	font-size: 15px;
+
+}
+.cv-accordion:last-child {
+	border-bottom: 0.75px solid var(--ink);
+
+}
 .cv-accordion summary {
   display: flex;
   justify-content: space-between;
@@ -160,14 +172,19 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 .cv-accordion[open] summary span { transform: rotate(45deg); }
 .accordion-content { padding: 8px 0 24px; font-size: 15px; line-height: 1.5; }
 .accordion-content h3 {
-  margin: 12px 0 5px;
-  font-family: "WorkSans-Regular", "Work Sans", sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1.45;
+	margin: 12px 0 5px;
+	font-family: "WorkSans-Regular", "Work Sans", sans-serif;
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1.45;
+	color: var(--blue);
+
 }
 .accordion-content h3 span { margin-left: 5px; font-weight: 400; }
-.accordion-content strong { color: var(--blue); }
+.accordion-content strong {
+	/* color: var(--blue); */
+
+}
 .accordion-content p { margin-bottom: 10px; max-width: 760px; }
 .accordion-content ul { margin: 4px 0 0; padding-left: 17px; }
 .accordion-content li { padding: 2px 0; }
