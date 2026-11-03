@@ -120,7 +120,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 .portfolio-project:hover .portfolio-project-meta { color: var(--blue); }
 
 /* Sobre mí */
-.about-grid { padding-top: clamp(92px, 12vh, 120px); padding-bottom: 56px; }
+.about-grid { padding-top: 52px; padding-bottom: 56px; }
 .about-fixed {
   position: sticky;
   top: 58px;
@@ -218,7 +218,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 .contact-simple {
   width: min(100%, 720px);
   margin: 0;
-  padding: clamp(92px, 12vh, 120px) var(--gutter) 56px;
+  padding: 52px var(--gutter) 56px;
 }
 .contact-simple h1 {
   margin-bottom: 16px;
