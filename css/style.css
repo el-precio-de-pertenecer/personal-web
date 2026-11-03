@@ -83,7 +83,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   top: 58px;
   align-self: start;
   max-width: 440px;
-  margin-top: 0;
+  margin-top: 22px;
 }
 .intro-copy {
   max-width: 440px;
