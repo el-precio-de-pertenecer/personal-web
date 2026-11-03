@@ -531,38 +531,6 @@ main.container .case-gallery-stack .synced-gif-gallery > .hover-gif {
   font-weight: 580;
 }
 
-
-/* Global image sizing: compact project cards and contained case-study media */
-.project-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.5rem, 2.5vw, 2.5rem); }
-.project-card:nth-child(even) { margin-top: 0; }
-.project-image { aspect-ratio: 5 / 4; }
-.case-cover { display: block; width: auto; max-width: 100%; max-height: 68vh; margin-inline: auto; }
-.case-gallery-large > img, .case-gallery-large > video, .case-gallery-large > picture,
-.case-gallery-stack > img, .case-gallery-stack > video {
-  display: block; width: auto; max-width: min(100%, 1000px); max-height: 76vh;
-  margin-inline: auto; object-fit: contain;
-}
-.case-gallery > img, .case-gallery > video, .case-gallery > picture {
-  width: 100%; max-height: 68vh; object-fit: contain;
-}
-main.container .case-gallery-stack .synced-gif-gallery {
-  --gallery-inset: clamp(1rem, 3vw, 2.5rem); width: min(1100px, 100%);
-}
-main.container .case-gallery-stack .synced-gif-gallery > .hover-gif {
-  max-height: 72vh; object-fit: contain;
-}
-@media (max-width: 900px) { .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 680px) {
-  .project-grid { grid-template-columns: 1fr; }
-  .case-cover { max-height: 55vh; }
-  .case-gallery-large > img, .case-gallery-large > video, .case-gallery-large > picture,
-  .case-gallery-stack > img, .case-gallery-stack > video { width: 100%; max-height: 65vh; }
-  .case-gallery > img, .case-gallery > video, .case-gallery > picture { max-height: 60vh; }
-  main.container .case-gallery-stack .synced-gif-gallery { --gallery-inset: 0; width: 100%; }
-  main.container .case-gallery-stack .synced-gif-gallery > .hover-gif { max-height: 60vh; }
-}
-
-
 /* Horizonte 3.0: el vídeo ocupa todo el ancho del viewport/body */
 main.container > .case-gallery-stack.video-framed {
   width: 100vw;
