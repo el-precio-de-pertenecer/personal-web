@@ -803,3 +803,181 @@ body.case-page {
   .header-inner { flex-direction: column; }
   .site-nav { width: 100%; }
 }
+
+
+/* AJUSTE DE ESCALA Y MÁRGENES — segunda revisión de la retícula */
+body.portfolio-home,
+body.about-page,
+body.contact-page,
+body.case-page {
+  font-size: 14px;
+  line-height: 1.45;
+}
+:root {
+  --portfolio-gutter: clamp(28px, 4.5vw, 68px);
+}
+.site-header {
+  padding: 24px var(--portfolio-gutter) 18px;
+}
+.header-inner {
+  min-height: 22px;
+}
+.brand,
+.site-nav a {
+  font-size: 12px;
+}
+.site-nav {
+  gap: clamp(26px, 6vw, 84px);
+}
+.portfolio-grid {
+  grid-template-columns: minmax(0, .82fr) minmax(0, 1fr);
+  gap: clamp(36px, 6vw, 88px);
+  padding: clamp(64px, 8vh, 100px) var(--portfolio-gutter) 56px;
+}
+.portfolio-intro {
+  top: 88px;
+  max-width: 500px;
+}
+.intro-copy {
+  max-width: 440px;
+  margin-bottom: 24px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.discipline-list {
+  font-size: 13px;
+  line-height: 1.9;
+}
+.portfolio-projects {
+  gap: clamp(38px, 5vw, 68px);
+}
+.portfolio-project > img {
+  aspect-ratio: 1.5 / 1;
+}
+.portfolio-project-meta {
+  margin-top: 10px;
+  gap: 18px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.case-grid,
+.about-grid {
+  gap: clamp(36px, 6vw, 88px);
+  padding: 38px var(--portfolio-gutter) 56px;
+}
+.case-fixed {
+  top: 86px;
+  max-width: 500px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.case-heading {
+  margin-bottom: 36px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.case-fixed p {
+  max-width: 440px;
+  margin-bottom: 18px;
+}
+.case-fixed h2 {
+  margin: 26px 0 10px;
+  font-size: 14px;
+}
+.case-fixed .close-project {
+  top: 84px;
+}
+.case-gallery {
+  gap: clamp(24px, 3vw, 42px);
+}
+.about-grid {
+  padding-top: clamp(64px, 8vh, 100px);
+}
+.about-fixed {
+  top: 88px;
+  max-width: 500px;
+}
+.about-fixed img {
+  width: 150px;
+  height: 205px;
+  margin-bottom: 16px;
+}
+.about-fixed p {
+  max-width: 440px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.cv-accordion {
+  font-size: 14px;
+}
+.cv-accordion summary {
+  min-height: 42px;
+  font-size: 14px;
+}
+.cv-accordion summary span {
+  font-size: 17px;
+}
+.accordion-content {
+  padding: 8px 0 24px;
+  line-height: 1.5;
+}
+.accordion-content h3 {
+  margin: 12px 0 5px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+.accordion-content p {
+  margin-bottom: 10px;
+}
+.contact-simple {
+  padding: clamp(64px, 8vh, 100px) var(--portfolio-gutter) 56px;
+  max-width: 820px;
+}
+.contact-simple h1 {
+  margin-bottom: 14px;
+  font-size: 17px;
+}
+.contact-simple p {
+  margin-bottom: 17px;
+  font-size: 14px;
+}
+.contact-simple .contact-line {
+  margin-bottom: 8px;
+}
+@media (max-width: 700px) {
+  :root { --portfolio-gutter: 20px; }
+  .site-header { padding: 18px 20px 14px; }
+  .brand, .site-nav a { font-size: 11px; }
+  .site-nav { gap: clamp(14px, 4vw, 26px); }
+  .portfolio-grid,
+  .case-grid,
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 36px 20px 40px;
+  }
+  .portfolio-intro,
+  .case-fixed,
+  .about-fixed {
+    position: static;
+    max-width: none;
+    min-height: 0;
+  }
+  .intro-copy,
+  .about-fixed p,
+  .case-fixed { font-size: 14px; }
+  .discipline-list { font-size: 12px; }
+  .portfolio-project-meta { font-size: 11px; }
+  .portfolio-projects { gap: 34px; }
+  .case-heading { margin-bottom: 24px; }
+  .case-fixed .close-project { top: 58px; right: 20px; }
+  .about-fixed img { width: 125px; height: 175px; }
+  .cv-accordion, .cv-accordion summary,
+  .accordion-content h3 { font-size: 13px; }
+  .contact-simple { padding: 42px 20px; }
+}
+@media (max-width: 420px) {
+  .header-inner { flex-direction: row; align-items: center; }
+  .site-nav { width: auto; }
+  .site-nav a { font-size: 10px; }
+}
