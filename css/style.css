@@ -132,7 +132,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   width: min(100%, 240px);
   height: 300px;
   margin-bottom: 22px;
-  border: 1px solid var(--line);
+  border: 0;
   object-fit: cover;
   object-position: center top;
 }
