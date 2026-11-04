@@ -106,6 +106,34 @@
     });
   }
 
+  /* ---------- 3) Anverso y reverso: imagen fija; el GIF se activa con hover (ratón) o con toque (móvil) ---------- */
+  function initGifs() {
+    var imgs = document.querySelectorAll('img[data-gif]');
+    if (!imgs.length) return;
+    var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    function play(img) { img.src = img.getAttribute('data-gif'); img.setAttribute('aria-pressed', 'true'); }
+    function stop(img) { img.src = img.getAttribute('data-still'); img.setAttribute('aria-pressed', 'false'); }
+    function isPlaying(img) { return img.getAttribute('aria-pressed') === 'true'; }
+
+    // Precarga los GIF cuando el navegador está libre, para que al activarlos no haya espera.
+    function preload() { imgs.forEach(function (img) { new Image().src = img.getAttribute('data-gif'); }); }
+    if ('requestIdleCallback' in window) requestIdleCallback(preload, { timeout: 4000 }); else setTimeout(preload, 2500);
+
+    imgs.forEach(function (img) {
+      if (canHover) {
+        img.addEventListener('mouseenter', function () { play(img); });
+        img.addEventListener('mouseleave', function () { stop(img); });
+      }
+      // Toque en móvil (y clic con teclado/Intro en cualquier dispositivo)
+      img.addEventListener('click', function (e) { if (canHover && e.detail) return; if (isPlaying(img)) stop(img); else play(img); });
+      img.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); img.click(); }
+      });
+    });
+  }
+
+  try { initGifs(); } catch (e) { /* sin script, se ve la imagen fija */ }
   try { initReveal(); } catch (e) { root.classList.remove('anim'); }
   try { initAccordions(); } catch (e) { /* si falla, los desplegables funcionan sin animación */ }
 })();
