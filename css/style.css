@@ -188,9 +188,9 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 .accordion-content { padding: 8px 0 24px; font-size: 15px; line-height: 1.5; }
 .accordion-content h3 {
 	margin: 12px 0 5px;
-	font-family: "WorkSans-Regular", "Work Sans", sans-serif;
+	font-family: "CarteroBold", "Work Sans", sans-serif;
 	font-size: 15px;
-	font-weight: 600;
+	font-weight: 400;
 	line-height: 1.45;
 	color: var(--blue);
 
