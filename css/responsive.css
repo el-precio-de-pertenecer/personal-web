@@ -8,6 +8,7 @@
     grid-template-columns: minmax(0, .85fr) minmax(0, 1fr);
     column-gap: var(--column-gap);
   }
+  .case-grid { grid-template-columns: minmax(0, .65fr) minmax(0, 1fr); }
 }
 
 @media (max-width: 700px) {
@@ -35,7 +36,7 @@
   .portfolio-project-meta span:first-child { flex: 1; min-width: 0; text-wrap: balance; }
   .about-grid { padding-top: 36px; }
   .about-fixed img { width: 180px; height: 220px; margin-bottom: 18px; }
-  .case-grid { padding-top: 0; }
+  .case-grid { grid-template-columns: 1fr; padding: 0 12px 104px; }
   .case-topbar { min-height: 44px; padding: 12px var(--gutter); font-size: 15px; }
   .case-topbar-title { flex-wrap: wrap; gap: 7px; }
   .case-topbar-title span { white-space: normal; }
