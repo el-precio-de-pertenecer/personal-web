@@ -265,3 +265,20 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 .contact-simple .contact-line { margin-bottom: 8px; }
 .contact-simple a { text-decoration: none; }
 .contact-simple a:hover { color: var(--blue); }
+
+/* Animaciones del anverso y reverso del billete — proyecto 01 */
+.case-gallery .synced-gif-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  min-width: 0;
+  width: 100%;
+}
+.case-gallery .synced-gif-gallery .hover-gif {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  cursor: pointer;
+}
