@@ -93,8 +93,10 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 .intro-copy {
   max-width: 440px;
   margin-bottom: 24px;
-  font-size: 15px;
-  line-height: 1.5;
+  font-family: "CarteroBold", "Work Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.15;
 }
 .discipline-list {
   margin: 0;
@@ -238,9 +240,9 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 .case-title {
   margin: 0 0 24px;
   font-family: "CarteroBold", "Work Sans", sans-serif;
-  font-size: clamp(26px, 2.6vw, 38px);
+  font-size: 18px;
   font-weight: 400;
-  line-height: 1.08;
+  line-height: 1.15;
 }
 .case-fixed p { max-width: 440px; margin-bottom: 18px; }
 .case-fixed h2 {
