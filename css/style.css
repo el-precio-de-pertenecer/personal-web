@@ -339,3 +339,9 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 /* Evita viudas (una sola palabra sola en la última línea) */
 p, li, .accordion-content { text-wrap: pretty; }
 h1, h2, h3, .portfolio-project-meta .project-name, .cv-accordion summary { text-wrap: balance; }
+
+/* Paleta de color de la identidad (horizonte 3.0) */
+.palette { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.palette-item { min-width: 0; }
+.palette .swatch { display: block; aspect-ratio: 4 / 3; }
+.palette-label { display: block; margin-top: 10px; font-family: "CarteroRegular", "Work Sans", sans-serif; font-size: 15px; line-height: 1.3; }
