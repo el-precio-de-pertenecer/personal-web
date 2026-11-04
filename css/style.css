@@ -93,7 +93,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 .intro-copy {
   max-width: 440px;
   margin-bottom: 24px;
-  font-family: "CarteroBold", "Work Sans", sans-serif;
+  font-family: "CarteroRegular", "Work Sans", sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 1.15;
@@ -221,7 +221,8 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 }
 .case-topbar-title { display: flex; align-items: baseline; gap: 12px; min-width: 0; }
 .case-topbar-title span { white-space: nowrap; }
-.case-topbar-title strong { font-family: "CarteroBold", "Work Sans", sans-serif; font-weight: 400; }
+.case-topbar-title strong,
+.portfolio-project-meta strong { font-family: "CarteroRegular", "Work Sans", sans-serif; font-weight: 400; }
 .case-topbar-close { flex: 0 0 auto; color: #333; text-decoration: none; }
 .case-topbar-close:hover { color: var(--blue); }
 .case-grid {
@@ -249,7 +250,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 .case-fixed p { max-width: 440px; margin-bottom: 18px; }
 .case-fixed h2 {
   margin: 26px 0 10px;
-  font-family: "CarteroBold", "Work Sans", sans-serif;
+  font-family: "CarteroRegular", "Work Sans", sans-serif;
   font-size: 15px;
   font-weight: 400;
   line-height: 1.4;
