@@ -10,10 +10,27 @@
 </aside>
 <section class="case-gallery" aria-label="Imágenes del proyecto">
 <img src="../img/epdp1.webp" alt="Billete conceptual de El precio de pertenecer">
+<div class="synced-gif-gallery" data-hover-gallery>
+<img class="hover-gif" src="../img/anverso.webp" data-preview-src="../img/anverso.webp" data-gif-src="../img/anverso.gif" alt="Anverso del billete; pasa el cursor para ver la animación" tabindex="0">
+<img class="hover-gif" src="../img/reverso.png" data-preview-src="../img/reverso.png" data-gif-src="../img/reverso.gif" alt="Reverso del billete; pasa el cursor para ver la animación" tabindex="0">
+</div>
+
 <img loading="lazy" src="../img/epdp2.webp" alt="Detalle del billete y su presentación">
 <img loading="lazy" src="../img/epdp4.webp" alt="Packaging del proyecto">
 <img loading="lazy" src="../img/epdp5.webp" alt="Detalle del packaging">
 <img loading="lazy" src="../img/epdp6.webp" alt="Material gráfico del proyecto">
 <video autoplay muted loop playsinline preload="metadata"><source src="../img/epdp.mp4" type="video/mp4"></video>
 </section></main>
+<script>
+document.querySelectorAll("[data-hover-gallery] .hover-gif").forEach((img) => {
+  const showAnimation = () => {
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) img.src = img.dataset.gifSrc;
+  };
+  const showPreview = () => { img.src = img.dataset.previewSrc; };
+  img.addEventListener("mouseenter", showAnimation);
+  img.addEventListener("mouseleave", showPreview);
+  img.addEventListener("focus", showAnimation);
+  img.addEventListener("blur", showPreview);
+});
+</script>
 </body></html>
