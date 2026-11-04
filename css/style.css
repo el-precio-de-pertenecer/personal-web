@@ -87,16 +87,14 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   position: sticky;
   top: 58px;
   align-self: start;
-  max-width: 520px;
+  max-width: 440px;
   margin-top: 22px;
 }
-/* Nivel 1 de jerarquía: la presentación es un título (Cartero Bold, 22-34 px según pantalla) */
 .intro-copy {
-  max-width: 520px;
+  max-width: 440px;
   margin-bottom: 24px;
-  font-family: "CarteroBold", "Work Sans", sans-serif;
-  font-size: clamp(22px, 2.3vw, 34px);
-  line-height: 1.14;
+  font-size: 15px;
+  line-height: 1.5;
 }
 .discipline-list {
   margin: 0;
@@ -302,11 +300,11 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
    y la persona no ha pedido movimiento reducido; sin ella la web se ve estática y completa.
    ============================================================ */
 
-/* 1) Aparición de imágenes al hacer scroll (js/animaciones.js añade .is-in al entrar en pantalla) */
-.anim :is(.portfolio-project, .about-fixed img, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img) {
+/* 1) Aparición de imágenes al hacer scroll (js/animaciones.js marca con .reveal solo lo que empieza fuera de pantalla y añade .is-in al llegar) */
+.anim .reveal {
   transition: opacity .9s var(--ease), transform .9s var(--ease);
 }
-.anim :is(.portfolio-project, .about-fixed img, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img):not(.is-in) {
+.anim .reveal:not(.is-in) {
   opacity: 0;
   transform: translateY(28px);
 }
@@ -318,20 +316,16 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   .portfolio-project:focus-visible .thumb img { transform: scale(1.035); }
 }
 
-/* 3) Transición entre páginas: fundido suave; la cabecera se mantiene en su sitio */
+/* 3) Transición entre páginas: fundido cruzado por defecto del navegador (sin pasar por blanco); la cabecera se mantiene en su sitio */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition { navigation: auto; }
   .site-header { view-transition-name: site-header; }
   .case-topbar { view-transition-name: case-topbar; }
-  ::view-transition-old(root) { animation: vt-out .25s ease both; }
-  ::view-transition-new(root) { animation: vt-in .45s ease both; }
 }
-@keyframes vt-out { to { opacity: 0; } }
-@keyframes vt-in { from { opacity: 0; } }
 
 /* Al imprimir, todo visible */
 @media print {
-  .anim :is(.portfolio-project, .about-fixed img, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img) {
+  .anim .reveal {
     opacity: 1 !important;
     transform: none !important;
   }

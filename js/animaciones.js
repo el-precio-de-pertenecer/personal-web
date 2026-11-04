@@ -44,7 +44,13 @@
       });
     }, { rootMargin: '0px 0px -6% 0px', threshold: 0.05 });
 
-    targets.forEach(function (el) { observer.observe(el); });
+    // Lo que ya se ve al cargar se queda como está (sin volver a aparecer tras la transición de página);
+    // solo se anima lo que empieza fuera de pantalla.
+    targets.forEach(function (el) {
+      if (el.getBoundingClientRect().top < window.innerHeight) return;
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
   }
 
   /* ---------- 2) Desplegables suaves (<details class="cv-accordion">) ---------- */
