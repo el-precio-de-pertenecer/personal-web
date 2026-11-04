@@ -218,7 +218,11 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 .case-topbar-title span { white-space: nowrap; }
 .case-topbar-close { flex: 0 0 auto; color: #333; text-decoration: none; }
 .case-topbar-close:hover { color: var(--blue); }
-.case-grid { padding-top: 0; padding-bottom: 56px; }
+.case-grid {
+  grid-template-columns: minmax(0, .55fr) minmax(0, 1fr);
+  padding-top: 0;
+  padding-bottom: 56px;
+}
 .case-fixed {
   position: sticky;
   top: 68px;
