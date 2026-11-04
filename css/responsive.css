@@ -31,7 +31,7 @@
     margin-top: 0;
   }
   .portfolio-projects { gap: 34px; }
-  .portfolio-project > img { aspect-ratio: 1.46 / 1; }
+  .portfolio-project .thumb img { aspect-ratio: 1.46 / 1; }
   .portfolio-project-meta { font-size: 15px; }
   .portfolio-project-meta span:first-child { flex: 1; min-width: 0; text-wrap: balance; }
   .about-grid { padding-top: 36px; }

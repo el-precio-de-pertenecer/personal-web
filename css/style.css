@@ -5,6 +5,7 @@
   --line: #d8d8d8;
   --gutter: clamp(24px, 2vw, 38px);
   --column-gap: clamp(64px, 12.3vw, 190px);
+  --ease: cubic-bezier(.2, .65, .2, 1);
 }
 
 * {
@@ -86,14 +87,16 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   position: sticky;
   top: 58px;
   align-self: start;
-  max-width: 440px;
+  max-width: 520px;
   margin-top: 22px;
 }
+/* Nivel 1 de jerarquía: la presentación es un título (Cartero Bold, 22-34 px según pantalla) */
 .intro-copy {
-  max-width: 440px;
+  max-width: 520px;
   margin-bottom: 24px;
-  font-size: 15px;
-  line-height: 1.5;
+  font-family: "CarteroBold", "Work Sans", sans-serif;
+  font-size: clamp(22px, 2.3vw, 34px);
+  line-height: 1.14;
 }
 .discipline-list {
   margin: 0;
@@ -110,12 +113,11 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 
 }
 .portfolio-project { display: block; min-width: 0; color: inherit; text-decoration: none; }
-.portfolio-project > img {
+.portfolio-project .thumb { display: block; overflow: hidden; }
+.portfolio-project .thumb img {
 	width: 100%;
 	aspect-ratio: 1.46 / 1;
 	object-fit: cover;
-	/* background: #f5f5f5; */
-
 }
 .portfolio-project-meta {
 	display: flex;
@@ -133,6 +135,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 }
 .portfolio-project-meta .project-name { font-weight: 400; }
 .portfolio-project-meta span:last-child { white-space: nowrap; }
+.portfolio-project-meta { transition: color .35s ease; }
 .portfolio-project:hover .portfolio-project-meta { color: var(--blue); }
 
 /* Sobre mí */
@@ -179,7 +182,8 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 }
 .cv-accordion summary::-webkit-details-marker { display: none; }
 .cv-accordion summary span { font-size: 18px; font-weight: 400; }
-.cv-accordion[open] summary span { transform: rotate(45deg); }
+.cv-accordion summary span { transition: transform .45s var(--ease); }
+.cv-accordion[open]:not(.is-closing) summary span { transform: rotate(45deg); }
 .accordion-content { padding: 8px 0 24px; font-size: 15px; line-height: 1.5; }
 .accordion-content h3 {
 	margin: 12px 0 5px;
@@ -232,6 +236,14 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   font-size: 15px;
   line-height: 1.5;
 }
+/* Nivel 1 de jerarquía: nombre del proyecto como título de entrada */
+.case-title {
+  margin: 0 0 24px;
+  font-family: "CarteroBold", "Work Sans", sans-serif;
+  font-size: clamp(26px, 2.6vw, 38px);
+  font-weight: 400;
+  line-height: 1.08;
+}
 .case-fixed p { max-width: 440px; margin-bottom: 18px; }
 .case-fixed h2 {
   margin: 26px 0 10px;
@@ -281,4 +293,46 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   height: auto;
   object-fit: contain;
   cursor: pointer;
+}
+
+/* ============================================================
+   ANIMACIONES
+   Sobrias y con propósito: solo opacidad y desplazamiento, entre 300 y 900 ms.
+   La clase .anim la pone un script mínimo del <head> solo si el navegador lo soporta
+   y la persona no ha pedido movimiento reducido; sin ella la web se ve estática y completa.
+   ============================================================ */
+
+/* 1) Aparición de imágenes al hacer scroll (js/animaciones.js añade .is-in al entrar en pantalla) */
+.anim :is(.portfolio-project, .about-fixed img, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img) {
+  transition: opacity .9s var(--ease), transform .9s var(--ease);
+}
+.anim :is(.portfolio-project, .about-fixed img, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img):not(.is-in) {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+/* 2) Hover en las tarjetas de proyecto: la imagen crece un poco (el color del título ya cambia arriba) */
+.portfolio-project .thumb img { transition: transform .9s var(--ease); }
+@media (hover: hover) and (pointer: fine) {
+  .portfolio-project:hover .thumb img,
+  .portfolio-project:focus-visible .thumb img { transform: scale(1.035); }
+}
+
+/* 3) Transición entre páginas: fundido suave; la cabecera se mantiene en su sitio */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  .site-header { view-transition-name: site-header; }
+  .case-topbar { view-transition-name: case-topbar; }
+  ::view-transition-old(root) { animation: vt-out .25s ease both; }
+  ::view-transition-new(root) { animation: vt-in .45s ease both; }
+}
+@keyframes vt-out { to { opacity: 0; } }
+@keyframes vt-in { from { opacity: 0; } }
+
+/* Al imprimir, todo visible */
+@media print {
+  .anim :is(.portfolio-project, .about-fixed img, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img) {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
