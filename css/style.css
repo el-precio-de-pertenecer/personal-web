@@ -343,5 +343,5 @@ h1, h2, h3, .portfolio-project-meta .project-name, .cv-accordion summary { text-
 /* Paleta de color de la identidad (horizonte 3.0) */
 .palette { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .palette-item { min-width: 0; }
-.palette .swatch { display: flex; align-items: center; justify-content: center; aspect-ratio: 4 / 3; padding: 12px; color: #fff; text-align: center; }
+.palette .swatch { display: flex; align-items: center; justify-content: center; aspect-ratio: 4 / 3; padding: 12px; color: var(--ink); text-align: center; }
 .palette-label { display: block; font-family: "CarteroRegular", "Work Sans", sans-serif; font-size: 15px; line-height: 1.3; }
