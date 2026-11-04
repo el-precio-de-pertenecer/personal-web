@@ -333,3 +333,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
     transform: none !important;
   }
 }
+
+/* Evita viudas (una sola palabra sola en la última línea) */
+p, li, .accordion-content { text-wrap: pretty; }
+h1, h2, h3, .portfolio-project-meta .project-name, .cv-accordion summary { text-wrap: balance; }
