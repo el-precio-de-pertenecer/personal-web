@@ -469,12 +469,12 @@ dialog.lightbox.is-zoomed img { cursor: zoom-out; }
   background: #f6f6f6;
   scroll-snap-align: start;
 }
-.carousel.is-ready .carousel-slides { overflow: hidden; }
+.carousel.is-ready .carousel-slides { overflow: hidden; scroll-snap-type: none; }
 .carousel.is-ready .carousel-track { transition: transform .9s var(--ease); will-change: transform; }
 .carousel.is-ready .carousel-track img { opacity: .45; transition: opacity .6s ease; }
 .carousel.is-ready .carousel-track img.is-active { opacity: 1; }
 .carousel.is-ready .carousel-track img:not(.is-active) { cursor: pointer; }
-.carousel-bars { display: flex; gap: 8px; width: var(--car-w); margin-top: 8px; }
+.carousel-bars { display: flex; gap: 8px; width: var(--car-w); margin: 8px auto 0; }
 .carousel-bars button { position: relative; flex: 1; height: 20px; padding: 0; border: 0; background: none; cursor: pointer; }
 .carousel-bars button::before, .carousel-bars button::after {
   content: "";

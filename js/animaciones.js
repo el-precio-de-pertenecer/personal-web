@@ -156,7 +156,9 @@
       function go(i) {
         current = i;
         var step = slides[1].offsetLeft - slides[0].offsetLeft;
-        track.style.transform = 'translateX(' + (-i * step) + 'px)';
+        track.parentElement.scrollLeft = 0;
+        var offset = (track.parentElement.clientWidth - slides[0].offsetWidth) / 2;   // la activa queda centrada
+        track.style.transform = 'translateX(' + (offset - i * step) + 'px)';
         slides.forEach(function (img, k) { img.classList.toggle('is-active', k === i); });
         buttons.forEach(function (b, k) {
           b.classList.remove('is-active');
