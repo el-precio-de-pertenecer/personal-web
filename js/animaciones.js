@@ -27,22 +27,37 @@
     closeBtn.type = 'button';
     closeBtn.className = 'lightbox-close';
     closeBtn.textContent = '(cerrar)';
-    dialog.appendChild(big);
+    var stage = document.createElement('div');
+    stage.className = 'lightbox-stage';
+    stage.appendChild(big);
+    dialog.appendChild(stage);
     dialog.appendChild(closeBtn);
     document.body.appendChild(dialog);
 
     var current = null, busy = false;
+
+    // Tamaño explícito en píxeles (más fiable en Safari que max-width/max-height dentro de un flex).
+    function fit() {
+      var nw = big.naturalWidth || 1, nh = big.naturalHeight || 1, ar = nw / nh;
+      var w = Math.min(window.innerWidth * 0.92, window.innerHeight * 0.88 * ar);
+      if (dialog.classList.contains('is-zoomed')) w = Math.max(nw, w);
+      big.style.width = Math.round(w) + 'px';
+      big.style.height = Math.round(w / ar) + 'px';
+    }
+    window.addEventListener('resize', function () { if (dialog.open) fit(); });
 
     function inView(r) { return r.bottom > 0 && r.top < window.innerHeight && r.right > 0 && r.left < window.innerWidth; }
 
     function open(thumb) {
       if (busy || dialog.open) return;
       busy = true; current = thumb;
+      big.getAnimations().forEach(function (a) { a.cancel(); });
       big.src = thumb.currentSrc || thumb.src;
       big.alt = thumb.alt;
       dialog.classList.remove('is-zoomed', 'is-closing');
       var ready = big.decode ? big.decode().catch(function () {}) : Promise.resolve();
       ready.then(function () {
+        fit();
         dialog.showModal();
         var from = thumb.getBoundingClientRect(), to = big.getBoundingClientRect();
         if (!reduceMotion && inView(from) && 'animate' in big) {
@@ -64,6 +79,8 @@
       function finish() {
         dialog.close();
         dialog.classList.remove('is-closing', 'is-zoomed');
+        big.getAnimations().forEach(function (a) { a.cancel(); });   // si no, la animación de cierre dejaba la imagen descentrada al abrir otra
+        big.style.width = big.style.height = '';
         if (thumb) thumb.style.visibility = '';
         busy = false;
       }
@@ -102,6 +119,7 @@
       var r = big.getBoundingClientRect();
       var fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height;
       var zoomed = dialog.classList.toggle('is-zoomed');
+      fit();
       if (zoomed) {
         dialog.scrollLeft = big.offsetLeft + fx * big.offsetWidth - dialog.clientWidth / 2;
         dialog.scrollTop = big.offsetTop + fy * big.offsetHeight - dialog.clientHeight / 2;

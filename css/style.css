@@ -407,24 +407,25 @@ dialog.lightbox {
   scroll-behavior: auto;
   color: var(--ink);
 }
-dialog.lightbox[open] { display: flex; }
+dialog.lightbox[open] { display: block; }
 dialog.lightbox::backdrop {
   background: rgba(255, 255, 255, .985);
   backdrop-filter: blur(10px);
   animation: lb-fade .35s ease both;
 }
 dialog.lightbox.is-closing::backdrop { animation: lb-fade .3s ease reverse both; }
-dialog.lightbox img {
-  display: block;
-  flex: none;
-  margin: auto;
-  max-width: 92vw;
-  max-height: 88vh;
-  width: auto;
-  height: auto;
-  cursor: zoom-in;
+/* El contenedor ocupa como mínimo toda la pantalla y centra la imagen; si la imagen es mayor, se desplaza con scroll. */
+.lightbox-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  height: max-content;
+  min-width: 100%;
+  min-height: 100%;
 }
-dialog.lightbox.is-zoomed img { max-width: none; max-height: none; width: min(2400px, 220vw); cursor: zoom-out; }
+dialog.lightbox img { display: block; flex: none; max-width: none; cursor: zoom-in; }
+dialog.lightbox.is-zoomed img { cursor: zoom-out; }
 .lightbox-close {
   position: fixed;
   top: 12px;
