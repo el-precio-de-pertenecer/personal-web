@@ -455,3 +455,41 @@ dialog.lightbox.is-zoomed img { cursor: zoom-out; }
 
 /* Tarjeta sin imagen todavía (se sustituye por <img> cuando haya portada) */
 .portfolio-project .thumb-empty { aspect-ratio: 1.46 / 1; background: #f1f1f1; }
+
+/* Carrusel de carteles (ficha 05) */
+.carousel { min-width: 0; width: min(100%, calc((100vh - 120px) * 0.707)); }  /* el cartel entero cabe en pantalla */
+.carousel-slides { position: relative; aspect-ratio: 2000 / 2828; overflow: hidden; background: #f6f6f6; }
+.case-gallery .carousel-slides img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: none;
+}
+/* Sin JS se ve solo la primera; con JS la activa se funde con la anterior */
+.carousel-slides img:not(:first-child) { display: none; }
+.carousel.is-ready .carousel-slides img { display: block; opacity: 0; transform: scale(1.025); pointer-events: none; transition: opacity .8s var(--ease), transform 1.2s var(--ease); }
+.carousel.is-ready .carousel-slides img.is-active { opacity: 1; transform: none; pointer-events: auto; }
+.carousel-bars { display: flex; gap: 8px; margin-top: 8px; }
+.carousel-bars button { position: relative; flex: 1; height: 20px; padding: 0; border: 0; background: none; cursor: pointer; }
+.carousel-bars button::before, .carousel-bars button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  margin-top: -1px;
+}
+.carousel-bars button::before { background: var(--line); }
+.carousel-bars button::after { background: var(--ink); transform: scaleX(0); transform-origin: 0 50%; }
+.carousel-bars button.is-active::after { transform: scaleX(1); }
+.carousel-bars button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+@media (prefers-reduced-motion: no-preference) {
+  .carousel-bars button.is-active::after { transform: scaleX(0); animation: car-fill 4.5s linear forwards; }
+  .carousel:hover .carousel-bars button.is-active::after,
+  .carousel:has(:focus-visible) .carousel-bars button.is-active::after,
+  .carousel.is-offscreen .carousel-bars button.is-active::after { animation-play-state: paused; }
+}
+@keyframes car-fill { to { transform: scaleX(1); } }

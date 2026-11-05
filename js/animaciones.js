@@ -12,7 +12,7 @@
      Funciona siempre; con movimiento reducido se abre y cierra sin animar.
      Clic en la imagen ampliada: alterna entre «ajustar a pantalla» y «tamaño real».
      Se cierra con (cerrar), Esc o pulsando fuera de la imagen. */
-  var ZOOM = '.synced-gif-gallery > img:not([data-gif])';
+  var ZOOM = '.synced-gif-gallery > img:not([data-gif]), .carousel-slides img';
 
   function initLightbox() {
     var thumbs = document.querySelectorAll(ZOOM);
@@ -60,7 +60,7 @@
         fit();
         dialog.showModal();
         var from = thumb.getBoundingClientRect(), to = big.getBoundingClientRect();
-        if (!reduceMotion && inView(from) && 'animate' in big) {
+        if (!reduceMotion && !thumb.closest('.carousel') && inView(from) && 'animate' in big) {
           big.style.transformOrigin = '0 0';
           big.animate([
             { transform: 'translate(' + (from.left - to.left) + 'px,' + (from.top - to.top) + 'px) scale(' + (from.width / to.width) + ')' },
@@ -85,7 +85,7 @@
         busy = false;
       }
       var from = big.getBoundingClientRect(), to = thumb ? thumb.getBoundingClientRect() : null;
-      if (reduceMotion || !to || !inView(to) || !('animate' in big) || dialog.classList.contains('is-zoomed')) {
+      if (reduceMotion || !to || (thumb && thumb.closest('.carousel')) || !inView(to) || !('animate' in big) || dialog.classList.contains('is-zoomed')) {
         if (!reduceMotion && 'animate' in dialog) {
           dialog.classList.add('is-closing');
           dialog.animate({ opacity: [1, 0] }, { duration: 220, easing: 'ease-out' }).onfinish = finish;
@@ -103,9 +103,11 @@
 
     thumbs.forEach(function (img) {
       img.classList.add('zoomable');
-      img.tabIndex = 0;
-      img.setAttribute('role', 'button');
-      img.setAttribute('aria-label', 'Ampliar imagen: ' + img.alt);
+      if (!img.closest('.carousel')) {   // las diapositivas ocultas del carrusel no deben recibir el foco
+        img.tabIndex = 0;
+        img.setAttribute('role', 'button');
+        img.setAttribute('aria-label', 'Ampliar imagen: ' + img.alt);
+      }
       img.addEventListener('click', function () { open(img); });
       img.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(img); }
@@ -130,13 +132,52 @@
     dialog.addEventListener('cancel', function (e) { e.preventDefault(); close(); });
   }
 
+  /* ---------- 0b) Carrusel automático ----------
+     Cambia solo cada pocos segundos (la barra de progreso marca el tiempo), se pausa al pasar el cursor
+     o al enfocarlo, y se puede cambiar a mano. Con movimiento reducido no avanza solo. */
+  function initCarousels() {
+    document.querySelectorAll('.carousel').forEach(function (car) {
+      var slides = Array.prototype.slice.call(car.querySelectorAll('.carousel-slides img'));
+      if (slides.length < 2) return;
+      var bars = document.createElement('div');
+      bars.className = 'carousel-bars';
+      var buttons = slides.map(function (img, i) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('aria-label', 'Ver ' + (i + 1) + ' de ' + slides.length + ': ' + img.alt);
+        b.addEventListener('click', function () { go(i); });
+        b.addEventListener('animationend', function () { go((current + 1) % slides.length); });
+        bars.appendChild(b);
+        return b;
+      });
+      car.appendChild(bars);
+      var current = 0;
+      function go(i) {
+        current = i;
+        slides.forEach(function (img, k) { img.classList.toggle('is-active', k === i); img.setAttribute('aria-hidden', k === i ? 'false' : 'true'); });
+        buttons.forEach(function (b, k) {
+          b.classList.remove('is-active');
+          if (k === i) { void b.offsetWidth; b.classList.add('is-active'); b.setAttribute('aria-current', 'true'); } else b.removeAttribute('aria-current');
+        });
+      }
+      car.classList.add('is-ready');
+      go(0);
+      // No avanza mientras no se ve en pantalla, para que al llegar se empiece por la primera.
+      if ('IntersectionObserver' in window) {
+        car.classList.add('is-offscreen');
+        new IntersectionObserver(function (es) { car.classList.toggle('is-offscreen', !es[0].isIntersecting); }, { threshold: 0.4 }).observe(car);
+      }
+    });
+  }
+
+  try { initCarousels(); } catch (e) { /* sin script se ve la primera imagen */ }
   try { initLightbox(); } catch (e) { /* sin lightbox, las imágenes se ven igual */ }
 
   if (reduceMotion) return;
 
   /* ---------- 1) Aparición de imágenes al hacer scroll ----------
      Debe coincidir con la lista de selectores del bloque «Animaciones» de css/style.css. */
-  var REVEAL = '.portfolio-project, .about-fixed img, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img';
+  var REVEAL = '.portfolio-project, .about-fixed img, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img, .carousel';
 
   function initReveal() {
     if (!root.classList.contains('anim') || !('IntersectionObserver' in window)) return;
