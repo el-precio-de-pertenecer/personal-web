@@ -452,3 +452,6 @@ dialog.lightbox.is-zoomed img { cursor: zoom-out; }
   .case-next-aside { display: none; }
   .case-next-end { display: block; }
 }
+
+/* Tarjeta sin imagen todavía (se sustituye por <img> cuando haya portada) */
+.portfolio-project .thumb-empty { aspect-ratio: 1.46 / 1; background: #f1f1f1; }
