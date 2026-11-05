@@ -12,7 +12,7 @@
      Funciona siempre; con movimiento reducido se abre y cierra sin animar.
      Clic en la imagen ampliada: alterna entre «ajustar a pantalla» y «tamaño real».
      Se cierra con (cerrar), Esc o pulsando fuera de la imagen. */
-  var ZOOM = '.synced-gif-gallery > img:not([data-gif]), .carousel-slides img';
+  var ZOOM = '.synced-gif-gallery > img:not([data-gif]), .carousel-track img';
 
   function initLightbox() {
     var thumbs = document.querySelectorAll(ZOOM);
@@ -137,8 +137,9 @@
      o al enfocarlo, y se puede cambiar a mano. Con movimiento reducido no avanza solo. */
   function initCarousels() {
     document.querySelectorAll('.carousel').forEach(function (car) {
-      var slides = Array.prototype.slice.call(car.querySelectorAll('.carousel-slides img'));
-      if (slides.length < 2) return;
+      var track = car.querySelector('.carousel-track');
+      var slides = Array.prototype.slice.call(car.querySelectorAll('.carousel-track img'));
+      if (!track || slides.length < 2) return;
       var bars = document.createElement('div');
       bars.className = 'carousel-bars';
       var buttons = slides.map(function (img, i) {
@@ -154,12 +155,19 @@
       var current = 0;
       function go(i) {
         current = i;
-        slides.forEach(function (img, k) { img.classList.toggle('is-active', k === i); img.setAttribute('aria-hidden', k === i ? 'false' : 'true'); });
+        var step = slides[1].offsetLeft - slides[0].offsetLeft;
+        track.style.transform = 'translateX(' + (-i * step) + 'px)';
+        slides.forEach(function (img, k) { img.classList.toggle('is-active', k === i); });
         buttons.forEach(function (b, k) {
           b.classList.remove('is-active');
           if (k === i) { void b.offsetWidth; b.classList.add('is-active'); b.setAttribute('aria-current', 'true'); } else b.removeAttribute('aria-current');
         });
       }
+      // Pulsar una diapositiva que asoma la trae al frente; pulsar la activa la amplía (lightbox).
+      slides.forEach(function (img, k) {
+        img.addEventListener('click', function (e) { if (k !== current) { e.stopImmediatePropagation(); go(k); } });
+      });
+      window.addEventListener('resize', function () { go(current); });
       car.classList.add('is-ready');
       go(0);
       // No avanza mientras no se ve en pantalla, para que al llegar se empiece por la primera.

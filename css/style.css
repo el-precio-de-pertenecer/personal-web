@@ -456,22 +456,25 @@ dialog.lightbox.is-zoomed img { cursor: zoom-out; }
 /* Tarjeta sin imagen todavía (se sustituye por <img> cuando haya portada) */
 .portfolio-project .thumb-empty { aspect-ratio: 1.46 / 1; background: #f1f1f1; }
 
-/* Carrusel de carteles (ficha 05) */
-.carousel { min-width: 0; width: min(100%, calc((100vh - 120px) * 0.707)); }  /* el cartel entero cabe en pantalla */
-.carousel-slides { position: relative; aspect-ratio: 2000 / 2828; overflow: hidden; background: #f6f6f6; }
-.case-gallery .carousel-slides img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+/* Carrusel horizontal de carteles (ficha 05): tira con separación entre imágenes; asoma la siguiente */
+.carousel { min-width: 0; --car-w: min(100%, calc((100vh - 120px) * 0.707)); --car-gap: 20px; }
+.carousel-slides { overflow-x: auto; scroll-snap-type: x mandatory; }          /* sin JS: se desliza a mano */
+.carousel-track { display: flex; gap: var(--car-gap); width: 100%; }
+.case-gallery .carousel-track img {
+  flex: 0 0 var(--car-w);
+  width: var(--car-w);
+  height: auto;
+  aspect-ratio: 2000 / 2828;
   object-fit: contain;
-  background: none;
+  background: #f6f6f6;
+  scroll-snap-align: start;
 }
-/* Sin JS se ve solo la primera; con JS la activa se funde con la anterior */
-.carousel-slides img:not(:first-child) { display: none; }
-.carousel.is-ready .carousel-slides img { display: block; opacity: 0; transform: scale(1.025); pointer-events: none; transition: opacity .8s var(--ease), transform 1.2s var(--ease); }
-.carousel.is-ready .carousel-slides img.is-active { opacity: 1; transform: none; pointer-events: auto; }
-.carousel-bars { display: flex; gap: 8px; margin-top: 8px; }
+.carousel.is-ready .carousel-slides { overflow: hidden; }
+.carousel.is-ready .carousel-track { transition: transform .9s var(--ease); will-change: transform; }
+.carousel.is-ready .carousel-track img { opacity: .45; transition: opacity .6s ease; }
+.carousel.is-ready .carousel-track img.is-active { opacity: 1; }
+.carousel.is-ready .carousel-track img:not(.is-active) { cursor: pointer; }
+.carousel-bars { display: flex; gap: 8px; width: var(--car-w); margin-top: 8px; }
 .carousel-bars button { position: relative; flex: 1; height: 20px; padding: 0; border: 0; background: none; cursor: pointer; }
 .carousel-bars button::before, .carousel-bars button::after {
   content: "";
