@@ -404,6 +404,7 @@ dialog.lightbox {
   background: transparent;
   overflow: auto;
   overscroll-behavior: contain;
+  scroll-behavior: auto;
   color: var(--ink);
 }
 dialog.lightbox[open] { display: flex; }
@@ -415,6 +416,7 @@ dialog.lightbox::backdrop {
 dialog.lightbox.is-closing::backdrop { animation: lb-fade .3s ease reverse both; }
 dialog.lightbox img {
   display: block;
+  flex: none;
   margin: auto;
   max-width: 92vw;
   max-height: 88vh;

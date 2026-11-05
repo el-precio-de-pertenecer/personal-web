@@ -98,7 +98,14 @@
     big.addEventListener('click', function (e) {
       e.stopPropagation();
       if (big.naturalWidth <= window.innerWidth * 0.92 && !dialog.classList.contains('is-zoomed')) return;
-      dialog.classList.toggle('is-zoomed');
+      // Al pasar a tamaño real, el zoom se centra en el punto donde se ha hecho clic (no en la esquina).
+      var r = big.getBoundingClientRect();
+      var fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height;
+      var zoomed = dialog.classList.toggle('is-zoomed');
+      if (zoomed) {
+        dialog.scrollLeft = big.offsetLeft + fx * big.offsetWidth - dialog.clientWidth / 2;
+        dialog.scrollTop = big.offsetTop + fy * big.offsetHeight - dialog.clientHeight / 2;
+      } else { dialog.scrollLeft = 0; dialog.scrollTop = 0; }
     });
     closeBtn.addEventListener('click', function (e) { e.stopPropagation(); close(); });
     dialog.addEventListener('click', function (e) { if (e.target === dialog) close(); });
