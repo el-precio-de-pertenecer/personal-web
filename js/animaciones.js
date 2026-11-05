@@ -7,6 +7,106 @@
 
   var root = document.documentElement;
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- 0) Ampliar imágenes (lightbox) ----------
+     Funciona siempre; con movimiento reducido se abre y cierra sin animar.
+     Clic en la imagen ampliada: alterna entre «ajustar a pantalla» y «tamaño real».
+     Se cierra con (cerrar), Esc o pulsando fuera de la imagen. */
+  var ZOOM = '.synced-gif-gallery > img:not([data-gif])';
+
+  function initLightbox() {
+    var thumbs = document.querySelectorAll(ZOOM);
+    if (!thumbs.length || typeof HTMLDialogElement === 'undefined') return;
+
+    var EASE = 'cubic-bezier(.2, .65, .2, 1)';
+    var dialog = document.createElement('dialog');
+    dialog.className = 'lightbox';
+    dialog.setAttribute('aria-label', 'Imagen ampliada');
+    var big = document.createElement('img');
+    var closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.className = 'lightbox-close';
+    closeBtn.textContent = '(cerrar)';
+    dialog.appendChild(big);
+    dialog.appendChild(closeBtn);
+    document.body.appendChild(dialog);
+
+    var current = null, busy = false;
+
+    function inView(r) { return r.bottom > 0 && r.top < window.innerHeight && r.right > 0 && r.left < window.innerWidth; }
+
+    function open(thumb) {
+      if (busy || dialog.open) return;
+      busy = true; current = thumb;
+      big.src = thumb.currentSrc || thumb.src;
+      big.alt = thumb.alt;
+      dialog.classList.remove('is-zoomed', 'is-closing');
+      var ready = big.decode ? big.decode().catch(function () {}) : Promise.resolve();
+      ready.then(function () {
+        dialog.showModal();
+        var from = thumb.getBoundingClientRect(), to = big.getBoundingClientRect();
+        if (!reduceMotion && inView(from) && 'animate' in big) {
+          big.style.transformOrigin = '0 0';
+          big.animate([
+            { transform: 'translate(' + (from.left - to.left) + 'px,' + (from.top - to.top) + 'px) scale(' + (from.width / to.width) + ')' },
+            { transform: 'none' }
+          ], { duration: 460, easing: EASE });
+          thumb.style.visibility = 'hidden';
+        }
+        busy = false;
+      });
+    }
+
+    function close() {
+      if (!dialog.open || busy) return;
+      busy = true;
+      var thumb = current;
+      function finish() {
+        dialog.close();
+        dialog.classList.remove('is-closing', 'is-zoomed');
+        if (thumb) thumb.style.visibility = '';
+        busy = false;
+      }
+      var from = big.getBoundingClientRect(), to = thumb ? thumb.getBoundingClientRect() : null;
+      if (reduceMotion || !to || !inView(to) || !('animate' in big) || dialog.classList.contains('is-zoomed')) {
+        if (!reduceMotion && 'animate' in dialog) {
+          dialog.classList.add('is-closing');
+          dialog.animate({ opacity: [1, 0] }, { duration: 220, easing: 'ease-out' }).onfinish = finish;
+        } else finish();
+        return;
+      }
+      dialog.classList.add('is-closing');
+      big.style.transformOrigin = '0 0';
+      var a = big.animate([
+        { transform: 'none' },
+        { transform: 'translate(' + (to.left - from.left) + 'px,' + (to.top - from.top) + 'px) scale(' + (to.width / from.width) + ')' }
+      ], { duration: 380, easing: EASE, fill: 'forwards' });
+      a.onfinish = finish;
+    }
+
+    thumbs.forEach(function (img) {
+      img.classList.add('zoomable');
+      img.tabIndex = 0;
+      img.setAttribute('role', 'button');
+      img.setAttribute('aria-label', 'Ampliar imagen: ' + img.alt);
+      img.addEventListener('click', function () { open(img); });
+      img.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(img); }
+      });
+    });
+
+    big.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (big.naturalWidth <= window.innerWidth * 0.92 && !dialog.classList.contains('is-zoomed')) return;
+      dialog.classList.toggle('is-zoomed');
+    });
+    closeBtn.addEventListener('click', function (e) { e.stopPropagation(); close(); });
+    dialog.addEventListener('click', function (e) { if (e.target === dialog) close(); });
+    dialog.addEventListener('cancel', function (e) { e.preventDefault(); close(); });
+  }
+
+  try { initLightbox(); } catch (e) { /* sin lightbox, las imágenes se ven igual */ }
+
   if (reduceMotion) return;
 
   /* ---------- 1) Aparición de imágenes al hacer scroll ----------
