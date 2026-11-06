@@ -470,13 +470,12 @@ dialog.lightbox.is-zoomed img { cursor: zoom-out; }
   scroll-snap-align: start;
 }
 /* Variante para el fotolibro (ficha 04): cada página conserva su proporción, todas a la misma altura */
-.carousel--libro { --car-w: min(100%, 420px); --car-h: min(72vh, 620px); }
+.carousel--libro { --car-w: min(100%, 460px); --slide-w: min(100%, 880px, calc((100vh - 140px) * 1.44)); }
 .case-gallery .carousel--libro .carousel-track img {
   flex: 0 0 auto;
-  width: auto;
-  height: var(--car-h);
-  max-width: 100%;
-  aspect-ratio: auto;
+  width: var(--slide-w);
+  height: auto;
+  aspect-ratio: 3200 / 2224;
   background: none;
 }
 .carousel.is-ready .carousel-slides { overflow: hidden; scroll-snap-type: none; }
