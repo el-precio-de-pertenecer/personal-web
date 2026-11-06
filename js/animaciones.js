@@ -155,10 +155,10 @@
       var current = 0;
       function go(i) {
         current = i;
-        var step = slides[1].offsetLeft - slides[0].offsetLeft;
         track.parentElement.scrollLeft = 0;
-        var offset = (track.parentElement.clientWidth - slides[0].offsetWidth) / 2;   // la activa queda centrada
-        track.style.transform = 'translateX(' + (offset - i * step) + 'px)';
+        // la activa queda centrada (vale también cuando las diapositivas tienen anchos distintos)
+        var offset = (track.parentElement.clientWidth - slides[i].offsetWidth) / 2 - slides[i].offsetLeft;
+        track.style.transform = 'translateX(' + offset + 'px)';
         slides.forEach(function (img, k) { img.classList.toggle('is-active', k === i); });
         buttons.forEach(function (b, k) {
           b.classList.remove('is-active');
