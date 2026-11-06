@@ -31,7 +31,8 @@
     prevBtn.type = nextBtn.type = 'button';
     prevBtn.className = 'lightbox-arrow lightbox-prev';
     nextBtn.className = 'lightbox-arrow lightbox-next';
-    prevBtn.textContent = '←'; nextBtn.textContent = '→';
+    var svg = function (d) { return '<svg viewBox="0 0 24 48" width="14" height="28" aria-hidden="true" focusable="false"><path d="' + d + '" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter"/></svg>'; };
+    prevBtn.innerHTML = svg('M20 4 L4 24 L20 44'); nextBtn.innerHTML = svg('M4 4 L20 24 L4 44');
     prevBtn.setAttribute('aria-label', 'Imagen anterior'); nextBtn.setAttribute('aria-label', 'Imagen siguiente');
     var stage = document.createElement('div');
     stage.className = 'lightbox-stage';
@@ -59,22 +60,32 @@
       var src = next.currentSrc || next.src;
       var probe = new Image(); probe.src = src;
       (probe.decode ? probe.decode().catch(function () {}) : Promise.resolve()).then(function () {
-        function swap() {
-          big.getAnimations().forEach(function (a) { a.cancel(); });
-          if (current) current.style.visibility = '';
-          current = next;
-          big.src = src; big.alt = next.alt;
-          dialog.classList.remove('is-zoomed');
-          dialog.scrollLeft = 0; dialog.scrollTop = 0;
-          fit();
-          if (!reduceMotion && 'animate' in big) {
-            big.animate({ opacity: [0, 1] }, { duration: 220, easing: 'ease-out' });
-            if (!next.closest('.carousel')) next.style.visibility = 'hidden';
-          }
-          busy = false;
+        // Fundido cruzado: la imagen anterior se desvanece mientras aparece la nueva.
+        var canFade = !reduceMotion && 'animate' in big;
+        var ghost = null;
+        if (canFade) {
+          var r = big.getBoundingClientRect();
+          ghost = document.createElement('img');
+          ghost.className = 'lightbox-ghost';
+          ghost.alt = '';
+          ghost.src = big.src;
+          ghost.style.cssText = 'left:' + r.left + 'px;top:' + r.top + 'px;width:' + r.width + 'px;height:' + r.height + 'px';
+          dialog.appendChild(ghost);
         }
-        if (!reduceMotion && 'animate' in big) big.animate({ opacity: [1, 0] }, { duration: 130, easing: 'ease-in', fill: 'forwards' }).onfinish = swap;
-        else swap();
+        big.getAnimations().forEach(function (a) { a.cancel(); });
+        if (current) current.style.visibility = '';
+        current = next;
+        big.src = src; big.alt = next.alt;
+        dialog.classList.remove('is-zoomed');
+        dialog.scrollLeft = 0; dialog.scrollTop = 0;
+        fit();
+        if (canFade) {
+          var opt = { duration: 520, easing: 'cubic-bezier(.4, 0, .2, 1)' };
+          big.animate({ opacity: [0, 1] }, opt);
+          ghost.animate({ opacity: [1, 0] }, opt).onfinish = function () { ghost.remove(); };
+          if (!next.closest('.carousel')) next.style.visibility = 'hidden';
+        }
+        busy = false;
       });
     }
     prevBtn.addEventListener('click', function (e) { e.stopPropagation(); step(-1); });

@@ -452,12 +452,13 @@ dialog.lightbox.is-zoomed img { cursor: zoom-out; }
   background: none;
   color: #333;
   font: inherit;
-  font-size: 28px;
-  line-height: 1;
+  line-height: 0;
   cursor: pointer;
   transition: color .2s ease, transform .25s var(--ease);
 }
-dialog.lightbox.has-nav .lightbox-arrow { display: block; }
+dialog.lightbox.has-nav .lightbox-arrow { display: flex; align-items: center; justify-content: center; }
+.lightbox-arrow svg { display: block; }
+.lightbox-ghost { position: fixed; display: block; pointer-events: none; z-index: 1; max-width: none; }
 .lightbox-prev { left: calc(var(--gutter) - 12px); }
 .lightbox-next { right: calc(var(--gutter) - 12px); }
 .lightbox-arrow:hover { color: var(--blue); }
