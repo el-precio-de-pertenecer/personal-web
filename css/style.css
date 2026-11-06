@@ -479,6 +479,21 @@ dialog.lightbox.is-zoomed img { cursor: zoom-out; }
   background: none;
 }
 .carousel.is-ready .carousel-slides { overflow: hidden; scroll-snap-type: none; }
+/* Efecto de pasar página (fotolibro): la hoja gira sobre el lomo central */
+.carousel--libro .carousel-slides { position: relative; }
+.page-flip { position: absolute; z-index: 2; perspective: 2400px; pointer-events: none; }
+.page-flip .pf-half, .page-flip .pf-shade { position: absolute; top: 0; height: 100%; width: 50%; background-repeat: no-repeat; background-size: 200% 100%; }
+.page-flip .pf-l { left: 0; background-position: left center; }
+.page-flip .pf-r { left: 50%; background-position: right center; }
+.pf-shade { background: linear-gradient(to right, rgba(0,0,0,.16), rgba(0,0,0,0) 22%); }
+.pf-shade.pf-l { background: linear-gradient(to left, rgba(0,0,0,.16), rgba(0,0,0,0) 22%); }
+.pf-flap { position: absolute; top: 0; height: 100%; width: 50%; transform-style: preserve-3d; will-change: transform; }
+.pf-flap.pf-r { left: 50%; transform-origin: 0 50%; }
+.pf-flap.pf-l { left: 0; transform-origin: 100% 50%; }
+.pf-flap .pf-face { left: 0 !important; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.pf-flap .pf-back { transform: rotateY(180deg); }
+.pf-face i { position: absolute; inset: 0; background: #000; opacity: 0; }
+.carousel--libro.is-flipping .carousel-track img { transition: none !important; }
 /* Fotolibro: las páginas se superponen y cambian por opacidad, sin desplazamiento */
 .case-gallery .carousel--libro.is-ready .carousel-track { display: grid; justify-items: center; transition: none; }
 .case-gallery .carousel--libro.is-ready .carousel-track img { grid-area: 1 / 1; opacity: 0; transition: opacity .8s ease; pointer-events: none; cursor: default; }
