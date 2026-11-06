@@ -470,7 +470,7 @@ dialog.lightbox.is-zoomed img { cursor: zoom-out; }
   scroll-snap-align: start;
 }
 /* Variante para el fotolibro (ficha 04): cada página conserva su proporción, todas a la misma altura */
-.carousel--libro { --car-w: min(100%, 460px); --slide-w: min(100%, 880px, calc((100vh - 140px) * 1.44)); }
+.carousel--libro { --car-time: 2.8s; --car-w: min(100%, 460px); --slide-w: min(100%, 880px, calc((100vh - 140px) * 1.44)); }
 .case-gallery .carousel--libro .carousel-track img {
   flex: 0 0 auto;
   width: var(--slide-w);
@@ -505,7 +505,7 @@ dialog.lightbox.is-zoomed img { cursor: zoom-out; }
 .carousel-bars button.is-active::after { transform: scaleX(1); }
 .carousel-bars button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 @media (prefers-reduced-motion: no-preference) {
-  .carousel-bars button.is-active::after { transform: scaleX(0); animation: car-fill 4.5s linear forwards; }
+  .carousel-bars button.is-active::after { transform: scaleX(0); animation: car-fill var(--car-time, 4.5s) linear forwards; }
   .carousel:hover .carousel-bars button.is-active::after,
   .carousel:has(:focus-visible) .carousel-bars button.is-active::after,
   .carousel.is-offscreen .carousel-bars button.is-active::after { animation-play-state: paused; }
