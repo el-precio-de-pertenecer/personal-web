@@ -158,7 +158,7 @@
         track.parentElement.scrollLeft = 0;
         // la activa queda centrada (vale también cuando las diapositivas tienen anchos distintos)
         var offset = (track.parentElement.clientWidth - slides[i].offsetWidth) / 2 - slides[i].offsetLeft;
-        track.style.transform = 'translateX(' + offset + 'px)';
+        if (!car.classList.contains('carousel--libro')) track.style.transform = 'translateX(' + offset + 'px)';   // el fotolibro cambia por opacidad
         slides.forEach(function (img, k) { img.classList.toggle('is-active', k === i); });
         buttons.forEach(function (b, k) {
           b.classList.remove('is-active');
