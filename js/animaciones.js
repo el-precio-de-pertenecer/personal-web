@@ -187,7 +187,7 @@
 
   /* ---------- 1) Aparición de imágenes al hacer scroll ----------
      Debe coincidir con la lista de selectores del bloque «Animaciones» de css/style.css. */
-  var REVEAL = '.portfolio-project, .about-fixed img, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img, .carousel';
+  var REVEAL = '.portfolio-project, .about-fixed img, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img, .carousel, .insta-row';
 
   function initReveal() {
     if (!root.classList.contains('anim') || !('IntersectionObserver' in window)) return;
