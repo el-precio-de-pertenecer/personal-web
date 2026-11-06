@@ -27,14 +27,70 @@
     closeBtn.type = 'button';
     closeBtn.className = 'lightbox-close';
     closeBtn.textContent = '(cerrar)';
+    var prevBtn = document.createElement('button'), nextBtn = document.createElement('button');
+    prevBtn.type = nextBtn.type = 'button';
+    prevBtn.className = 'lightbox-arrow lightbox-prev';
+    nextBtn.className = 'lightbox-arrow lightbox-next';
+    prevBtn.textContent = '←'; nextBtn.textContent = '→';
+    prevBtn.setAttribute('aria-label', 'Imagen anterior'); nextBtn.setAttribute('aria-label', 'Imagen siguiente');
     var stage = document.createElement('div');
     stage.className = 'lightbox-stage';
     stage.appendChild(big);
     dialog.appendChild(stage);
     dialog.appendChild(closeBtn);
+    dialog.appendChild(prevBtn);
+    dialog.appendChild(nextBtn);
     document.body.appendChild(dialog);
 
-    var current = null, busy = false;
+    var current = null, busy = false, group = [];
+
+    // Las imágenes que se pueden recorrer con las flechas: las de la misma galería o carrusel.
+    function groupOf(thumb) {
+      var box = thumb.closest('.synced-gif-gallery, .carousel') || document;
+      return Array.prototype.filter.call(box.querySelectorAll(ZOOM), function (el) { return el.tagName === 'IMG'; });
+    }
+
+    // Pasa a la imagen anterior / siguiente sin cerrar el visor.
+    function step(delta) {
+      if (!dialog.open || busy || group.length < 2) return;
+      var i = group.indexOf(current);
+      var next = group[(i + delta + group.length) % group.length];
+      busy = true;
+      var src = next.currentSrc || next.src;
+      var probe = new Image(); probe.src = src;
+      (probe.decode ? probe.decode().catch(function () {}) : Promise.resolve()).then(function () {
+        function swap() {
+          big.getAnimations().forEach(function (a) { a.cancel(); });
+          if (current) current.style.visibility = '';
+          current = next;
+          big.src = src; big.alt = next.alt;
+          dialog.classList.remove('is-zoomed');
+          dialog.scrollLeft = 0; dialog.scrollTop = 0;
+          fit();
+          if (!reduceMotion && 'animate' in big) {
+            big.animate({ opacity: [0, 1] }, { duration: 220, easing: 'ease-out' });
+            if (!next.closest('.carousel')) next.style.visibility = 'hidden';
+          }
+          busy = false;
+        }
+        if (!reduceMotion && 'animate' in big) big.animate({ opacity: [1, 0] }, { duration: 130, easing: 'ease-in', fill: 'forwards' }).onfinish = swap;
+        else swap();
+      });
+    }
+    prevBtn.addEventListener('click', function (e) { e.stopPropagation(); step(-1); });
+    nextBtn.addEventListener('click', function (e) { e.stopPropagation(); step(1); });
+    dialog.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+    });
+    // Deslizar con el dedo en la imagen ajustada a pantalla también pasa de imagen.
+    var tx = null;
+    dialog.addEventListener('touchstart', function (e) { tx = !dialog.classList.contains('is-zoomed') && e.touches.length === 1 ? e.touches[0].clientX : null; }, { passive: true });
+    dialog.addEventListener('touchend', function (e) {
+      if (tx === null) return;
+      var dx = e.changedTouches[0].clientX - tx; tx = null;
+      if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
+    }, { passive: true });
 
     // Tamaño explícito en píxeles (más fiable en Safari que max-width/max-height dentro de un flex).
     function fit() {
@@ -51,6 +107,8 @@
     function open(thumb) {
       if (busy || dialog.open) return;
       busy = true; current = thumb;
+      group = groupOf(thumb);
+      dialog.classList.toggle('has-nav', group.length > 1);
       big.getAnimations().forEach(function (a) { a.cancel(); });
       big.src = thumb.currentSrc || thumb.src;
       big.alt = thumb.alt;

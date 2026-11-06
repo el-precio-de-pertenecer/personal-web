@@ -440,6 +440,31 @@ dialog.lightbox.is-zoomed img { cursor: zoom-out; }
   cursor: pointer;
 }
 .lightbox-close:hover { color: var(--blue); }
+.lightbox-arrow {
+  position: fixed;
+  top: 50%;
+  display: none;
+  width: 48px;
+  height: 48px;
+  margin-top: -24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #333;
+  font: inherit;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color .2s ease, transform .25s var(--ease);
+}
+dialog.lightbox.has-nav .lightbox-arrow { display: block; }
+.lightbox-prev { left: calc(var(--gutter) - 12px); }
+.lightbox-next { right: calc(var(--gutter) - 12px); }
+.lightbox-arrow:hover { color: var(--blue); }
+.lightbox-prev:hover { transform: translateX(-3px); }
+.lightbox-next:hover { transform: translateX(3px); }
+.lightbox-arrow:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+@media (max-width: 700px) { .lightbox-arrow { top: auto; bottom: 14px; margin-top: 0; } .lightbox-prev { left: 8px; } .lightbox-next { right: 8px; } }
 @keyframes lb-fade { from { opacity: 0; } }
 
 /* Siguiente proyecto: mismo estilo que (cerrar). En escritorio va al pie de la columna de texto; en móvil, al final de la página. */
