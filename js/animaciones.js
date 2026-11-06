@@ -12,7 +12,7 @@
      Funciona siempre; con movimiento reducido se abre y cierra sin animar.
      Clic en la imagen ampliada: alterna entre «ajustar a pantalla» y «tamaño real».
      Se cierra con (cerrar), Esc o pulsando fuera de la imagen. */
-  var ZOOM = '.synced-gif-gallery > img:not([data-gif]), .carousel-track img, .post-grid > img';
+  var ZOOM = '.synced-gif-gallery > img:not([data-gif]), .carousel-track img, .post-grid > img, .gallery-zoom > img';
 
   function initLightbox() {
     var thumbs = document.querySelectorAll(ZOOM);
@@ -47,7 +47,7 @@
 
     // Las imágenes que se pueden recorrer con las flechas: las de la misma galería o carrusel.
     function groupOf(thumb) {
-      var box = thumb.closest('.synced-gif-gallery, .carousel, .post-grid') || document;
+      var box = thumb.closest('.synced-gif-gallery, .carousel, .post-grid, .gallery-zoom') || document;
       return Array.prototype.filter.call(box.querySelectorAll(ZOOM), function (el) { return el.tagName === 'IMG'; });
     }
 
