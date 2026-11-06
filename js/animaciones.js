@@ -147,93 +147,31 @@
         b.type = 'button';
         b.setAttribute('aria-label', 'Ver ' + (i + 1) + ' de ' + slides.length + ': ' + img.alt);
         b.addEventListener('click', function () { go(i); });
-        b.addEventListener('animationend', function () { go((current + 1) % slides.length, { forward: true }); });
+        b.addEventListener('animationend', function () { go((current + 1) % slides.length); });
         bars.appendChild(b);
         return b;
       });
       car.appendChild(bars);
       var current = 0;
-      var isBook = car.classList.contains('carousel--libro');
-      var flipping = null;
-      var pageFlip = isBook && !reduceMotion && 'animate' in document.documentElement;
-
-      function mark(i) {
+      function go(i) {
+        current = i;
+        track.parentElement.scrollLeft = 0;
+        // la activa queda centrada (vale también cuando las diapositivas tienen anchos distintos)
+        var offset = (track.parentElement.clientWidth - slides[i].offsetWidth) / 2 - slides[i].offsetLeft;
+        if (!car.classList.contains('carousel--libro')) track.style.transform = 'translateX(' + offset + 'px)';   // el fotolibro cambia por opacidad
         slides.forEach(function (img, k) { img.classList.toggle('is-active', k === i); });
         buttons.forEach(function (b, k) {
           b.classList.remove('is-active');
           if (k === i) { void b.offsetWidth; b.classList.add('is-active'); b.setAttribute('aria-current', 'true'); } else b.removeAttribute('aria-current');
         });
       }
-
-      // Pasar página: la mitad derecha (o izquierda, al volver) gira sobre el lomo como una hoja.
-      function flip(from, to, forward) {
-        var host = track.parentElement;
-        var a = slides[from], b = slides[to];
-        var box = { l: a.offsetLeft, t: a.offsetTop, w: a.offsetWidth, h: a.offsetHeight };
-        var wrap = document.createElement('div');
-        wrap.className = 'page-flip';
-        wrap.style.cssText = 'left:' + (host.scrollLeft + box.l) + 'px;top:' + box.t + 'px;width:' + box.w + 'px;height:' + box.h + 'px';
-        function half(src, side, cls) {
-          var d = document.createElement('div');
-          d.className = 'pf-half ' + (side === 'l' ? 'pf-l' : 'pf-r') + (cls ? ' ' + cls : '');
-          d.style.backgroundImage = 'url("' + src + '")';
-          return d;
-        }
-        var A = a.currentSrc || a.src, B = b.currentSrc || b.src;
-        var baseL = half(forward ? A : B, 'l'), baseR = half(forward ? B : A, 'r');
-        var shade = document.createElement('div'); shade.className = 'pf-shade ' + (forward ? 'pf-r' : 'pf-l');
-        var flap = document.createElement('div');
-        flap.className = 'pf-flap ' + (forward ? 'pf-r' : 'pf-l');
-        var front = half(forward ? A : A, forward ? 'r' : 'l', 'pf-face');
-        var back = half(B, forward ? 'l' : 'r', 'pf-face pf-back');
-        front.style.left = back.style.left = '0';
-        var fs = document.createElement('i'), bs = document.createElement('i');
-        front.appendChild(fs); back.appendChild(bs);
-        flap.appendChild(front); flap.appendChild(back);
-        wrap.appendChild(baseL); wrap.appendChild(baseR); wrap.appendChild(shade); wrap.appendChild(flap);
-        host.appendChild(wrap);
-        car.classList.add('is-flipping');
-        var dur = 1000, ease = 'cubic-bezier(.45,.05,.25,1)', sign = forward ? -1 : 1;
-        var anims = [
-          flap.animate([{ transform: 'rotateY(0deg)' }, { transform: 'rotateY(' + sign * 180 + 'deg)' }], { duration: dur, easing: ease, fill: 'forwards' }),
-          fs.animate([{ opacity: 0 }, { opacity: .28, offset: .5 }, { opacity: .28 }], { duration: dur, easing: ease, fill: 'forwards' }),
-          bs.animate([{ opacity: .28 }, { opacity: .28, offset: .5 }, { opacity: 0 }], { duration: dur, easing: ease, fill: 'forwards' }),
-          shade.animate([{ opacity: 0 }, { opacity: 1, offset: .45 }, { opacity: 0 }], { duration: dur, easing: ease, fill: 'forwards' })
-        ];
-        var done = function () {
-          if (flipping !== done) return;
-          flipping = null;
-          wrap.remove();
-          car.classList.remove('is-flipping');
-        };
-        flipping = done;
-        anims[0].onfinish = done;
-        done.cancel = function () { anims.forEach(function (x) { x.cancel(); }); wrap.remove(); car.classList.remove('is-flipping'); flipping = null; };
-      }
-
-      function go(i, opts) {
-        opts = opts || {};
-        if (flipping) flipping.cancel();
-        var prev = current;
-        current = i;
-        if (isBook) {
-          if (pageFlip && !opts.instant && i !== prev) flip(prev, i, opts.forward !== undefined ? opts.forward : i > prev);
-          mark(i);
-          return;
-        }
-        track.parentElement.scrollLeft = 0;
-        // la activa queda centrada (vale también cuando las diapositivas tienen anchos distintos)
-        var offset = (track.parentElement.clientWidth - slides[i].offsetWidth) / 2 - slides[i].offsetLeft;
-        track.style.transform = 'translateX(' + offset + 'px)';
-        mark(i);
-      }
       // Pulsar una diapositiva que asoma la trae al frente; pulsar la activa la amplía (lightbox).
       slides.forEach(function (img, k) {
         img.addEventListener('click', function (e) { if (k !== current) { e.stopImmediatePropagation(); go(k); } });
       });
-      window.addEventListener('resize', function () { go(current, { instant: true }); });
+      window.addEventListener('resize', function () { go(current); });
       car.classList.add('is-ready');
-      go(0, { instant: true });
+      go(0);
       // No avanza mientras no se ve en pantalla, para que al llegar se empiece por la primera.
       if ('IntersectionObserver' in window) {
         car.classList.add('is-offscreen');
