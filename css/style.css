@@ -537,8 +537,3 @@ dialog.lightbox.has-nav .lightbox-arrow { display: flex; align-items: center; ju
   .carousel.is-offscreen .carousel-bars button.is-active::after { animation-play-state: paused; }
 }
 @keyframes car-fill { to { transform: scaleX(1); } }
-
-/* Ejemplos publicados en Instagram (ficha 06): tres capturas en fila */
-.insta-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.case-gallery .insta-row img { width: 100%; height: auto; }
-@media (max-width: 700px) { .insta-row { grid-template-columns: 1fr; } }
