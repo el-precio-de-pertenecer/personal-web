@@ -1,18 +1,10 @@
-/* Animaciones de la web.
-   1) Las imágenes aparecen suavemente al entrar en pantalla.
-   2) Los desplegables de «Sobre mí» se abren y cierran con una transición de altura.
-   Todo es opcional: con movimiento reducido o si algo falla, la web funciona igual, sin animar. */
 (function () {
   'use strict';
 
-  window.__animOk = true;   // el <head> lo comprueba: si este script no llega a ejecutarse, quita .anim y todo se muestra
+  window.__animOk = true;
   var root = document.documentElement;
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- 0) Ampliar imágenes (lightbox) ----------
-     Funciona siempre; con movimiento reducido se abre y cierra sin animar.
-     Clic en la imagen ampliada: alterna entre «ajustar a pantalla» y «tamaño real».
-     Se cierra con (cerrar), Esc o pulsando fuera de la imagen. */
   var ZOOM = '.synced-gif-gallery > img:not([data-gif]), .carousel:not(.no-zoom) .carousel-track > img, .gallery-zoom > img, .post-grid > img';
 
   function initLightbox() {
@@ -46,13 +38,11 @@
 
     var current = null, busy = false, group = [];
 
-    // Las imágenes que se pueden recorrer con las flechas: las de la misma galería o carrusel.
     function groupOf(thumb) {
       var box = thumb.closest('.synced-gif-gallery, .carousel, .post-grid, .gallery-zoom') || document;
       return Array.prototype.filter.call(box.querySelectorAll(ZOOM), function (el) { return el.tagName === 'IMG'; });
     }
 
-    // Pasa a la imagen anterior / siguiente sin cerrar el visor.
     function step(delta) {
       if (!dialog.open || busy || group.length < 2) return;
       var i = group.indexOf(current);
@@ -61,7 +51,6 @@
       var src = next.currentSrc || next.src;
       var probe = new Image(); probe.src = src;
       (probe.decode ? probe.decode().catch(function () {}) : Promise.resolve()).then(function () {
-        // Fundido cruzado: la imagen anterior se desvanece mientras aparece la nueva.
         var canFade = !reduceMotion && 'animate' in big;
         var ghost = null;
         if (canFade) {
@@ -95,7 +84,7 @@
       if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
       else if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
     });
-    // Deslizar con el dedo en la imagen ajustada a pantalla también pasa de imagen.
+
     var tx = null;
     dialog.addEventListener('touchstart', function (e) { tx = !dialog.classList.contains('is-zoomed') && e.touches.length === 1 ? e.touches[0].clientX : null; }, { passive: true });
     dialog.addEventListener('touchend', function (e) {
@@ -104,7 +93,6 @@
       if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
     }, { passive: true });
 
-    // Tamaño explícito en píxeles (más fiable en Safari que max-width/max-height dentro de un flex).
     function fit() {
       var nw = big.naturalWidth || 1, nh = big.naturalHeight || 1, ar = nw / nh;
       var w = Math.min(window.innerWidth * 0.92, window.innerHeight * 0.88 * ar);
@@ -149,7 +137,7 @@
       function finish() {
         dialog.close();
         dialog.classList.remove('is-closing', 'is-zoomed');
-        big.getAnimations().forEach(function (a) { a.cancel(); });   // si no, la animación de cierre dejaba la imagen descentrada al abrir otra
+        big.getAnimations().forEach(function (a) { a.cancel(); });
         big.style.width = big.style.height = '';
         if (thumb) thumb.style.visibility = '';
         busy = false;
@@ -173,7 +161,7 @@
 
     thumbs.forEach(function (img) {
       img.classList.add('zoomable');
-      if (!img.closest('.carousel')) {   // las diapositivas ocultas del carrusel no deben recibir el foco
+      if (!img.closest('.carousel')) {
         img.tabIndex = 0;
         img.setAttribute('role', 'button');
         img.setAttribute('aria-label', 'Ampliar imagen: ' + img.alt);
@@ -187,7 +175,7 @@
     big.addEventListener('click', function (e) {
       e.stopPropagation();
       if (big.naturalWidth <= window.innerWidth * 0.92 && !dialog.classList.contains('is-zoomed')) return;
-      // Al pasar a tamaño real, el zoom se centra en el punto donde se ha hecho clic (no en la esquina).
+
       var r = big.getBoundingClientRect();
       var fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height;
       var zoomed = dialog.classList.toggle('is-zoomed');
@@ -202,9 +190,6 @@
     dialog.addEventListener('cancel', function (e) { e.preventDefault(); close(); });
   }
 
-  /* ---------- 0b) Carrusel automático ----------
-     Cambia solo cada pocos segundos (la barra de progreso marca el tiempo), se pausa al pasar el cursor
-     o al enfocarlo, y se puede cambiar a mano. Con movimiento reducido no avanza solo. */
   function initCarousels() {
     document.querySelectorAll('.carousel').forEach(function (car) {
       var track = car.querySelector('.carousel-track');
@@ -226,23 +211,22 @@
       function go(i) {
         current = i;
         track.parentElement.scrollLeft = 0;
-        // la activa queda centrada (vale también cuando las diapositivas tienen anchos distintos)
         var offset = (track.parentElement.clientWidth - slides[i].offsetWidth) / 2 - slides[i].offsetLeft;
-        if (!car.classList.contains('carousel--libro')) track.style.transform = 'translateX(' + offset + 'px)';   // el fotolibro cambia por opacidad
+        if (!car.classList.contains('carousel--libro')) track.style.transform = 'translateX(' + offset + 'px)';
         slides.forEach(function (img, k) { img.classList.toggle('is-active', k === i); });
         buttons.forEach(function (b, k) {
           b.classList.remove('is-active');
           if (k === i) { void b.offsetWidth; b.classList.add('is-active'); b.setAttribute('aria-current', 'true'); } else b.removeAttribute('aria-current');
         });
       }
-      // Pulsar una diapositiva que asoma la trae al frente; pulsar la activa la amplía (lightbox).
+
       slides.forEach(function (img, k) {
         img.addEventListener('click', function (e) { if (k !== current) { e.stopImmediatePropagation(); go(k); } });
       });
       window.addEventListener('resize', function () { go(current); });
       car.classList.add('is-ready');
       go(0);
-      // No avanza mientras no se ve en pantalla, para que al llegar se empiece por la primera.
+
       if ('IntersectionObserver' in window) {
         car.classList.add('is-offscreen');
         new IntersectionObserver(function (es) { car.classList.toggle('is-offscreen', !es[0].isIntersecting); }, { threshold: 0.4 }).observe(car);
@@ -250,16 +234,6 @@
     });
   }
 
-  try { initCarousels(); } catch (e) { /* sin script se ve la primera imagen */ }
-  try { initLightbox(); } catch (e) { /* sin lightbox, las imágenes se ven igual */ }
-
-  if (reduceMotion) return;
-
-  try { initSplit(); } catch (e) { /* sin esto el texto aparece igualmente */ }
-
-  /* ---------- 0c) Texto por líneas ----------
-     Envuelve cada palabra en un <span class="w">, numera las líneas (una vez cargadas las tipografías)
-     y deja que el CSS anime cada línea con un pequeño retraso respecto a la anterior. */
   function initSplit() {
     if (!root.classList.contains('anim')) return;
     var SEL = '.about-fixed > p, .portfolio-intro > p, .contact-simple > h1, .contact-simple > p';
@@ -301,8 +275,6 @@
     setTimeout(go, 1500);
   }
 
-  /* ---------- 1) Aparición de imágenes al hacer scroll ----------
-     Debe coincidir con la lista de selectores del bloque «Animaciones» de css/style.css. */
   var REVEAL = '.portfolio-project, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img, .carousel, .post-grid > img';
 
   function initReveal() {
@@ -311,7 +283,6 @@
     var targets = Array.prototype.slice.call(document.querySelectorAll(REVEAL));
     if (!targets.length) return;
 
-    // Espera (como mucho ~1 s) a que la imagen esté descargada, para que no aparezca el hueco en blanco.
     function whenReady(el, done) {
       var img = el.tagName === 'IMG' ? el : el.querySelector('img');
       if (!img || img.complete) return done();
@@ -323,28 +294,25 @@
     }
 
     var observer = new IntersectionObserver(function (entries) {
-      // Si entran varias a la vez (carga de la página), aparecen en cascada de arriba abajo.
       var visible = entries.filter(function (e) { return e.isIntersecting; })
         .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
       visible.forEach(function (entry, i) {
         var el = entry.target;
         observer.unobserve(el);
         whenReady(el, function () {
-          void el.offsetHeight;   // fija el estado oculto antes de mostrarla; si no, las de la parte alta aparecían de golpe, sin transición
+          void el.offsetHeight;
           el.style.transitionDelay = (150 + Math.min(i, 5) * 130) + 'ms';
           el.classList.add('is-in');
         });
       });
-    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });   // empieza cuando ya se ve una parte, no al asomar por el borde
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
 
-    // Todas las imágenes empiezan ocultas por CSS (también las de la parte alta) y aparecen al entrar en pantalla.
     targets.forEach(function (el) {
       el.classList.add('reveal');
       observer.observe(el);
     });
   }
 
-  /* ---------- 2) Desplegables suaves (<details class="cv-accordion">) ---------- */
   function initAccordions() {
     var list = document.querySelectorAll('.cv-accordion');
     if (!list.length || !('animate' in Element.prototype)) return;
@@ -359,26 +327,21 @@
       var running = null;
 
       function toggle(openNext) {
-        var from = details.getBoundingClientRect().height;   // altura de partida (también si se interrumpe a medias)
+        var from = details.getBoundingClientRect().height;
         if (running) { running.cancel(); running = null; }
-
-        // Mide la altura abierta y la cerrada para animar entre ambas.
         details.open = true;
         var openHeight = details.getBoundingClientRect().height;
         details.open = false;
         var closedHeight = details.getBoundingClientRect().height;
-        details.open = true;                                   // el contenido debe existir mientras se anima
-
+        details.open = true;
         details.classList.toggle('is-closing', !openNext);
         details.style.overflow = 'hidden';
-
         var anim = details.animate(
           { height: [from + 'px', (openNext ? openHeight : closedHeight) + 'px'] },
           { duration: DURATION, easing: EASING, fill: 'forwards' }
         );
         running = anim;
         if (openNext) content.animate({ opacity: [0, 1] }, { duration: DURATION, easing: 'ease-out' });
-
         anim.onfinish = function () {
           if (running !== anim) return;
           running = null;
@@ -390,14 +353,13 @@
       }
 
       summary.addEventListener('click', function (event) {
-        event.preventDefault();                                // sustituye el abrir/cerrar instantáneo
+        event.preventDefault();
         var isOpen = details.open && !details.classList.contains('is-closing');
         toggle(!isOpen);
       });
     });
   }
 
-  /* ---------- 3) Anverso y reverso: imagen fija; el GIF se activa con hover (ratón) o con toque (móvil) ---------- */
   function initGifs() {
     var imgs = document.querySelectorAll('img[data-gif]');
     if (!imgs.length) return;
@@ -407,7 +369,6 @@
     function stop(img) { img.src = img.getAttribute('data-still'); img.setAttribute('aria-pressed', 'false'); }
     function isPlaying(img) { return img.getAttribute('aria-pressed') === 'true'; }
 
-    // Precarga los GIF cuando el navegador está libre, para que al activarlos no haya espera.
     function preload() { imgs.forEach(function (img) { new Image().src = img.getAttribute('data-gif'); }); }
     if ('requestIdleCallback' in window) requestIdleCallback(preload, { timeout: 4000 }); else setTimeout(preload, 2500);
 
@@ -416,7 +377,7 @@
         img.addEventListener('mouseenter', function () { play(img); });
         img.addEventListener('mouseleave', function () { stop(img); });
       }
-      // Toque en móvil (y clic con teclado/Intro en cualquier dispositivo)
+
       img.addEventListener('click', function (e) { if (canHover && e.detail) return; if (isPlaying(img)) stop(img); else play(img); });
       img.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); img.click(); }
@@ -424,7 +385,13 @@
     });
   }
 
-  try { initGifs(); } catch (e) { /* sin script, se ve la imagen fija */ }
+  try { initCarousels(); } catch (e) {}
+  try { initLightbox(); } catch (e) {}
+
+  if (reduceMotion) return;
+
+  try { initSplit(); } catch (e) {}
+  try { initGifs(); } catch (e) {}
   try { initReveal(); } catch (e) { root.classList.remove('anim'); }
-  try { initAccordions(); } catch (e) { /* si falla, los desplegables funcionan sin animación */ }
+  try { initAccordions(); } catch (e) {}
 })();

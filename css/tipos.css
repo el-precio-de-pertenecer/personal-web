@@ -1,20 +1,21 @@
-/*listado de tipografías*/
-
 @font-face {
   font-family: "WorkSans-Regular";
   src: url("../fonts/WorkSans-Regular.ttf");
   font-display: block;
 }
+
 @font-face {
   font-family: "WorkSans-VariableFont_wght";
   src: url("../fonts/WorkSans-VariableFont_wght.ttf");
   font-display: block;
 }
+
 @font-face {
   font-family: "CarteroBold";
   src: url("../fonts/CarteroBold.otf");
   font-display: block;
 }
+
 @font-face {
   font-family: "CarteroRegular";
   src: url("../fonts/CarteroRegular.otf");
