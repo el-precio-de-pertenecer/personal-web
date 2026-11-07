@@ -5,6 +5,7 @@
 (function () {
   'use strict';
 
+  window.__animOk = true;   // el <head> lo comprueba: si este script no llega a ejecutarse, quita .anim y todo se muestra
   var root = document.documentElement;
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -329,6 +330,7 @@
         var el = entry.target;
         observer.unobserve(el);
         whenReady(el, function () {
+          void el.offsetHeight;   // fija el estado oculto antes de mostrarla; si no, las de la parte alta aparecían de golpe, sin transición
           el.style.transitionDelay = (150 + Math.min(i, 5) * 130) + 'ms';
           el.classList.add('is-in');
         });

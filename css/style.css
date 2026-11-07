@@ -307,15 +307,13 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 
 /* 1) Aparición de imágenes al hacer scroll (js/animaciones.js marca con .reveal solo lo que empieza fuera de pantalla y añade .is-in al llegar) */
 /* Todas las imágenes (también las de la parte alta) empiezan ocultas y aparecen con el scroll; el script añade .is-in al llegar.
-   Si el script no llegara a ejecutarse, se muestran solas a los 2,5 s. */
-@keyframes reveal-fallback { to { opacity: 1; transform: none; } }
+   Si el script no llegara a ejecutarse, el <head> quita la clase .anim a los 3 s y se muestran solas. */
 .anim :is(.portfolio-project, .about-fixed img, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img, .carousel, .post-grid > img) {
   transition: opacity 1.1s var(--ease), transform 1.1s var(--ease);
 }
 .anim :is(.portfolio-project, .about-fixed img, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img, .carousel, .post-grid > img):not(.is-in) {
   opacity: 0;
   transform: translateY(28px);
-  animation: reveal-fallback 0s 2.5s both;
 }
 
 /* 2) Hover en las tarjetas de proyecto: la imagen crece un poco (el color del título ya cambia arriba) */
