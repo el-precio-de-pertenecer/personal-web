@@ -431,6 +431,8 @@ h1, h2, h3, .portfolio-project-meta .project-name, .cv-accordion summary { text-
 /* Imágenes ampliables + lightbox */
 .zoomable { cursor: zoom-in; transition: filter .3s ease; }
 .zoomable:hover { filter: brightness(.97); }
+/* Las publicaciones del proyecto 06 no deben oscurecerse al pasar el cursor. */
+.case-gallery .post-grid > img.zoomable:hover { filter: none; }
 .zoomable:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
 html:has(dialog.lightbox[open]) { overflow: hidden; }
 dialog.lightbox {
