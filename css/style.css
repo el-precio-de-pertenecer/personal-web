@@ -588,6 +588,8 @@ dialog.lightbox.has-nav .lightbox-arrow { display: flex; align-items: center; ju
 
 /* Cuadrícula de publicaciones para el proyecto de contenido digital */
 .post-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+/* Espacio inicial para que la primera fila quede por debajo de la barra fija. */
+.case-gallery .post-grid { padding-top: 64px; }
 .case-gallery .post-grid > img {
   position: relative;
   width: 100%;
@@ -596,12 +598,13 @@ dialog.lightbox.has-nav .lightbox-arrow { display: flex; align-items: center; ju
 }
 @media (hover: hover) and (pointer: fine) {
   .case-gallery .post-grid > img:hover {
-    z-index: 120;
+    z-index: 1;
     transition: transform .9s var(--ease);
     transform: scale(1.06);
   }
 }
 @media (max-width: 900px) { .post-grid { gap: 10px; } }
+@media (max-width: 700px) { .case-gallery .post-grid { padding-top: 56px; } }
 /* La entrada al hacer scroll usa exactamente la misma duración y desplazamiento que el resto de imágenes de proyecto. */
 .anim .case-gallery .post-grid > img {
   transition: opacity 1.3s cubic-bezier(.3, 0, .2, 1), transform 1.3s cubic-bezier(.3, 0, .2, 1);
