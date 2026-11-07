@@ -13,7 +13,7 @@
      Funciona siempre; con movimiento reducido se abre y cierra sin animar.
      Clic en la imagen ampliada: alterna entre «ajustar a pantalla» y «tamaño real».
      Se cierra con (cerrar), Esc o pulsando fuera de la imagen. */
-  var ZOOM = '.synced-gif-gallery > img:not([data-gif]), .carousel:not(.no-zoom) .carousel-track img > img, .gallery-zoom > img';
+  var ZOOM = '.synced-gif-gallery > img:not([data-gif]), .carousel:not(.no-zoom) .carousel-track img > img, .gallery-zoom > img, .post-grid > img';
 
   function initLightbox() {
     var thumbs = document.querySelectorAll(ZOOM);
