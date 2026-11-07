@@ -48,7 +48,7 @@
 
     // Las imágenes que se pueden recorrer con las flechas: las de la misma galería o carrusel.
     function groupOf(thumb) {
-      var box = thumb.closest('.synced-gif-gallery, .carousel, .gallery-zoom') || document;
+      var box = thumb.closest('.synced-gif-gallery, .carousel, .post-grid, .gallery-zoom') || document;
       return Array.prototype.filter.call(box.querySelectorAll(ZOOM), function (el) { return el.tagName === 'IMG'; });
     }
 
@@ -303,7 +303,7 @@
 
   /* ---------- 1) Aparición de imágenes al hacer scroll ----------
      Debe coincidir con la lista de selectores del bloque «Animaciones» de css/style.css. */
-  var REVEAL = '.portfolio-project, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img, .carousel > img';
+  var REVEAL = '.portfolio-project, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img, .carousel, .post-grid > img';
 
   function initReveal() {
     if (!root.classList.contains('anim') || !('IntersectionObserver' in window)) return;
