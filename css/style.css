@@ -338,14 +338,14 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   @keyframes enter-title { from { opacity: 0; transform: translateY(16px); } }
   @keyframes enter-media { from { opacity: 0; transform: translateY(14px) scale(1.01); } }
 
-  .anim .case-topbar-title { animation: enter-text .65s cubic-bezier(.22,.61,.36,1) 0.04s both; }
-  .anim .case-fixed > * { animation: enter-text .65s cubic-bezier(.22,.61,.36,1) both; }
-  .anim .case-fixed > .case-title { animation-name: enter-title; animation-duration: .75s; animation-delay: 0.08s; }
-  .anim .case-fixed > :nth-child(2) { animation-delay: 0.14s; }
-  .anim .case-fixed > :nth-child(3) { animation-delay: 0.20s; }
-  .anim .case-fixed > :nth-child(4) { animation-delay: 0.26s; }
-  .anim .case-fixed > :nth-child(5) { animation-delay: 0.32s; }
-  .anim .case-fixed > :nth-child(n+6) { animation-delay: 0.38s; }
+  .anim .case-topbar-title { animation: enter-text 1.28s cubic-bezier(.22,.61,.36,1) 0.08s both; }
+  .anim .case-fixed > * { animation: enter-text 1.44s cubic-bezier(.22,.61,.36,1) both; }
+  .anim .case-fixed > .case-title { animation-name: enter-title; animation-duration: 1.68s; animation-delay: 0.16s; }
+  .anim .case-fixed > :nth-child(2) { animation-delay: 0.35s; }
+  .anim .case-fixed > :nth-child(3) { animation-delay: 0.48s; }
+  .anim .case-fixed > :nth-child(4) { animation-delay: 0.61s; }
+  .anim .case-fixed > :nth-child(5) { animation-delay: 0.74s; }
+  .anim .case-fixed > :nth-child(n+6) { animation-delay: 0.86s; }
 
 
   .anim .about-fixed > * { animation: enter-text 1.52s cubic-bezier(.22,.61,.36,1) both; }
@@ -368,14 +368,14 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 @media (prefers-reduced-motion: no-preference) {
   @keyframes word-in { from { opacity: 0; transform: translateY(.55em); } }
   @keyframes split-fallback { to { opacity: 1; } }
-  .anim :is(.case-fixed > h1, .case-fixed > h2, .case-fixed > p, .about-fixed > p, .portfolio-intro > p, .contact-simple > h1, .contact-simple > p):not(.split-ready) {
+  .anim :is(.about-fixed > p, .portfolio-intro > p, .contact-simple > h1, .contact-simple > p):not(.split-ready) {
     opacity: 0; animation: split-fallback 0s 2s both;
   }
   .anim .split-ready { animation: none !important; opacity: 1; filter: none; transform: none; }
   .split-ready .w {
     display: inline-block;
-    animation: word-in .48s cubic-bezier(.22,.61,.36,1) both;
-    animation-delay: calc(var(--l, 0) * 40ms + var(--d, 60ms));
+    animation: word-in 1s cubic-bezier(.22,.61,.36,1) both;
+    animation-delay: calc(var(--l, 0) * 85ms + var(--d, 120ms));
   }
 }
 
