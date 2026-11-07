@@ -261,7 +261,9 @@
   function initReveal() {
     if (!root.classList.contains('anim') || !('IntersectionObserver' in window)) return;
 
-    var targets = document.querySelectorAll(REVEAL);
+    // Lo que ya entra con animación CSS al cargar (apartado 4 de style.css) no se vuelve a animar aquí.
+    var INTRO = '.case-gallery > :first-child, .post-grid > img:nth-child(-n+4), .portfolio-grid .portfolio-project:nth-child(-n+4), .about-fixed img';
+    var targets = Array.prototype.filter.call(document.querySelectorAll(REVEAL), function (el) { return !el.matches(INTRO); });
     if (!targets.length) return;
 
     // Espera (como mucho ~1 s) a que la imagen esté descargada, para que no aparezca el hueco en blanco.
