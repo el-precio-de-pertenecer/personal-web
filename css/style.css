@@ -549,6 +549,7 @@ dialog.lightbox.has-nav .lightbox-arrow { display: flex; align-items: center; ju
 /* Variante para el fotolibro (ficha 04): cada página conserva su proporción, todas a la misma altura */
 .carousel--libro { --car-time: 2.8s; --car-w: min(100%, 460px); --ar: 3200 / 2224; --slide-w: min(100%, 880px, calc((100vh - 140px) * 1.44)); }
 .carousel--paginas { --ar: 2200 / 1467; --slide-w: min(100%, 880px, calc((100vh - 140px) * 1.5)); }
+.case-gallery .carousel.no-zoom.is-ready .carousel-track img, .case-gallery .carousel.no-zoom.is-ready .carousel-track img.is-active { cursor: default; }
 .case-gallery .carousel--libro .carousel-track img {
   flex: 0 0 auto;
   width: var(--slide-w);
