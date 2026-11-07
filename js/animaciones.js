@@ -32,8 +32,8 @@
     prevBtn.type = nextBtn.type = 'button';
     prevBtn.className = 'lightbox-arrow lightbox-prev';
     nextBtn.className = 'lightbox-arrow lightbox-next';
-    var svg = function (d) { return '<svg viewBox="0 0 24 48" width="14" height="28" aria-hidden="true" focusable="false"><path d="' + d + '" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter"/></svg>'; };
-    prevBtn.innerHTML = svg('M20 4 L4 24 L20 44'); nextBtn.innerHTML = svg('M4 4 L20 24 L4 44');
+    var svg = function (d) { return '<svg viewBox="0 0 24 20" width="12" height="10" aria-hidden="true" focusable="false"><path d="' + d + '" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="miter"/></svg>'; };
+    prevBtn.innerHTML = svg('M22 10 H3 M3 10 L9 4 M3 10 L9 16'); nextBtn.innerHTML = svg('M2 10 H21 M21 10 L15 4 M21 10 L15 16');
     prevBtn.setAttribute('aria-label', 'Imagen anterior'); nextBtn.setAttribute('aria-label', 'Imagen siguiente');
     var stage = document.createElement('div');
     stage.className = 'lightbox-stage';
