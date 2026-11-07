@@ -335,7 +335,7 @@
           el.classList.add('is-in');
         });
       });
-    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.05 });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });   // empieza cuando ya se ve una parte, no al asomar por el borde
 
     // Todas las imágenes empiezan ocultas por CSS (también las de la parte alta) y aparecen al entrar en pantalla.
     targets.forEach(function (el) {
