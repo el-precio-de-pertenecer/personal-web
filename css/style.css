@@ -332,8 +332,8 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
    Solo CSS y solo para lo que está siempre en la parte alta; lo demás aparece al hacer scroll (apartado 1).
    Mantén esta lista igual que INTRO en js/animaciones.js. */
 @media (prefers-reduced-motion: no-preference) {
-  @keyframes enter-text { from { opacity: 0; transform: translateY(12px); filter: blur(2px); } }
-  @keyframes enter-title { from { opacity: 0; transform: translateY(16px); filter: blur(3px); } }
+  @keyframes enter-text { from { opacity: 0; transform: translateY(12px); } }
+  @keyframes enter-title { from { opacity: 0; transform: translateY(16px); } }
   @keyframes enter-media { from { opacity: 0; transform: translateY(14px) scale(1.01); } }
 
   .anim .case-topbar-title { animation: enter-text 1.28s cubic-bezier(.22,.61,.36,1) 0.08s both; }
