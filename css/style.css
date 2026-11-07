@@ -348,6 +348,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   .anim .case-fixed > :nth-child(n+6) { animation-delay: 0.86s; }
 
 
+  .anim .about-fixed > img { animation: enter-media 1.2s cubic-bezier(.22,.61,.36,1) both; }
   .anim .about-fixed > :not(img) { animation: enter-text 1.52s cubic-bezier(.22,.61,.36,1) both; }
   .anim .about-fixed > p { animation-delay: 0.48s; }
   .anim .cv-accordion { animation: enter-text 1.36s cubic-bezier(.22,.61,.36,1) both; }
