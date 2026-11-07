@@ -367,8 +367,8 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   .anim .split-ready { animation: none !important; opacity: 1; filter: none; transform: none; }
   .split-ready .w {
     display: inline-block;
-    animation: word-in .7s cubic-bezier(.22,.61,.36,1) both;
-    animation-delay: calc(var(--l, 0) * 50ms + var(--d, 40ms));
+    animation: word-in 1s cubic-bezier(.22,.61,.36,1) both;
+    animation-delay: calc(var(--l, 0) * 85ms + var(--d, 120ms));
   }
 }
 
