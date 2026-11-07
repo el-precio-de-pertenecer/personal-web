@@ -254,6 +254,52 @@
 
   if (reduceMotion) return;
 
+  try { initSplit(); } catch (e) { /* sin esto el texto aparece igualmente */ }
+
+  /* ---------- 0c) Texto por líneas ----------
+     Envuelve cada palabra en un <span class="w">, numera las líneas (una vez cargadas las tipografías)
+     y deja que el CSS anime cada línea con un pequeño retraso respecto a la anterior. */
+  function initSplit() {
+    if (!root.classList.contains('anim')) return;
+    var SEL = '.case-fixed > h1, .case-fixed > h2, .case-fixed > p, .about-fixed > p, .contact-simple > h1, .contact-simple > p';
+    var els = Array.prototype.slice.call(document.querySelectorAll(SEL));
+    if (!els.length) return;
+
+    function wrap(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 3) {
+          var parts = n.nodeValue.split(/(\s+)/), frag = document.createDocumentFragment();
+          parts.forEach(function (t) {
+            if (!t) return;
+            if (/^\s+$/.test(t)) { frag.appendChild(document.createTextNode(t)); return; }
+            var w = document.createElement('span'); w.className = 'w'; w.textContent = t; frag.appendChild(w);
+          });
+          n.parentNode.replaceChild(frag, n);
+        } else if (n.nodeType === 1 && n.tagName !== 'BR') wrap(n);
+      });
+    }
+    els.forEach(function (el) { el.setAttribute('aria-label', el.textContent.replace(/\s+/g, ' ').trim()); wrap(el); });
+
+    var started = false;
+    function go() {
+      if (started) return; started = true;
+      var counters = new Map();
+      els.forEach(function (el) {
+        var parent = el.parentNode, line = counters.get(parent) || 0, lastTop = null;
+        el.querySelectorAll('.w').forEach(function (w) {
+          var top = w.offsetTop;
+          if (lastTop === null) lastTop = top; else if (Math.abs(top - lastTop) > 2) { line++; lastTop = top; }
+          w.style.setProperty('--l', line);
+        });
+        counters.set(parent, line + 1);
+        el.classList.add('split-ready');
+      });
+    }
+    var ready = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+    ready.then(function () { requestAnimationFrame(go); });
+    setTimeout(go, 1500);
+  }
+
   /* ---------- 1) Aparición de imágenes al hacer scroll ----------
      Debe coincidir con la lista de selectores del bloque «Animaciones» de css/style.css. */
   var REVEAL = '.portfolio-project, .about-fixed img, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img, .carousel, .post-grid > img';
