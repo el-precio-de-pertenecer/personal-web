@@ -306,12 +306,16 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
    ============================================================ */
 
 /* 1) Aparición de imágenes al hacer scroll (js/animaciones.js marca con .reveal solo lo que empieza fuera de pantalla y añade .is-in al llegar) */
-.anim .reveal {
-  transition: opacity .9s var(--ease), transform .9s var(--ease);
+/* Todas las imágenes (también las de la parte alta) empiezan ocultas y aparecen con el scroll; el script añade .is-in al llegar.
+   Si el script no llegara a ejecutarse, se muestran solas a los 2,5 s. */
+@keyframes reveal-fallback { to { opacity: 1; transform: none; } }
+.anim :is(.portfolio-project, .about-fixed img, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img, .carousel, .post-grid > img) {
+  transition: opacity 1.1s var(--ease), transform 1.1s var(--ease);
 }
-.anim .reveal:not(.is-in) {
+.anim :is(.portfolio-project, .about-fixed img, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img, .carousel, .post-grid > img):not(.is-in) {
   opacity: 0;
   transform: translateY(28px);
+  animation: reveal-fallback 0s 2.5s both;
 }
 
 /* 2) Hover en las tarjetas de proyecto: la imagen crece un poco (el color del título ya cambia arriba) */
@@ -344,21 +348,9 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   .anim .case-fixed > :nth-child(4) { animation-delay: 0.61s; }
   .anim .case-fixed > :nth-child(5) { animation-delay: 0.74s; }
   .anim .case-fixed > :nth-child(n+6) { animation-delay: 0.86s; }
-  .anim .case-gallery > :first-child:not(.post-grid) { animation: enter-media 1.76s cubic-bezier(.22,.61,.36,1) 0.48s both; }
-  .anim .post-grid > img:nth-child(-n+4) { animation: enter-media 1.60s cubic-bezier(.22,.61,.36,1) both; }
-  .anim .post-grid > img:nth-child(1) { animation-delay: 0.48s; }
-  .anim .post-grid > img:nth-child(2) { animation-delay: 0.64s; }
-  .anim .post-grid > img:nth-child(3) { animation-delay: 0.80s; }
-  .anim .post-grid > img:nth-child(4) { animation-delay: 0.96s; }
 
-  .anim .portfolio-grid .portfolio-project:nth-child(-n+4) { animation: enter-media 1.60s cubic-bezier(.22,.61,.36,1) both; }
-  .anim .portfolio-grid .portfolio-project:nth-child(1) { animation-delay: 0.16s; }
-  .anim .portfolio-grid .portfolio-project:nth-child(2) { animation-delay: 0.32s; }
-  .anim .portfolio-grid .portfolio-project:nth-child(3) { animation-delay: 0.48s; }
-  .anim .portfolio-grid .portfolio-project:nth-child(4) { animation-delay: 0.64s; }
 
   .anim .about-fixed > * { animation: enter-text 1.52s cubic-bezier(.22,.61,.36,1) both; }
-  .anim .about-fixed > img { animation-name: enter-media; animation-duration: 1.76s; animation-delay: 0.16s; }
   .anim .about-fixed > p { animation-delay: 0.48s; }
   .anim .cv-accordion { animation: enter-text 1.36s cubic-bezier(.22,.61,.36,1) both; }
   .anim .cv-accordion:nth-child(1) { animation-delay: 0.40s; }
@@ -371,24 +363,6 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   .anim .contact-simple > :nth-child(2) { animation-delay: 0.32s; }
   .anim .contact-simple > :nth-child(3) { animation-delay: 0.48s; }
   .anim .contact-simple > :nth-child(n+4) { animation-delay: 0.64s; }
-}
-
-/* 5) Aparición ligada al scroll: cada imagen se hace visible a medida que entra en pantalla, también las que ya asoman al cargar.
-   Solo donde el navegador soporta animation-timeline (Chrome, Edge, Safari reciente); en el resto lo hace el apartado 1 con JS. */
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    @keyframes scroll-in { from { opacity: 0; transform: translateY(44px); } to { opacity: 1; transform: none; } }
-    .anim .case-gallery > img:not(:first-child),
-    .anim .case-gallery > video:not(:first-child),
-    .anim .synced-gif-gallery > img,
-    .anim .carousel,
-    .anim .post-grid > img:nth-child(n+5),
-    .anim .portfolio-grid .portfolio-project:nth-child(n+5) {
-      animation: scroll-in cubic-bezier(.22,.61,.36,1) both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 55%;
-    }
-  }
 }
 
 /* 6) Texto por líneas: js/animaciones.js (initSplit) envuelve cada palabra y numera las líneas; cada línea entra con un fundido y una pequeña subida.

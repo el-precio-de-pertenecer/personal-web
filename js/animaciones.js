@@ -306,11 +306,8 @@
 
   function initReveal() {
     if (!root.classList.contains('anim') || !('IntersectionObserver' in window)) return;
-    if (window.CSS && CSS.supports && CSS.supports('animation-timeline', 'view()')) return;   // lo hace el CSS ligado al scroll (apartado 5 de style.css)
 
-    // Lo que ya entra con animación CSS al cargar (apartado 4 de style.css) no se vuelve a animar aquí.
-    var INTRO = '.case-gallery > :first-child, .post-grid > img:nth-child(-n+4), .portfolio-grid .portfolio-project:nth-child(-n+4), .about-fixed img';
-    var targets = Array.prototype.filter.call(document.querySelectorAll(REVEAL), function (el) { return !el.matches(INTRO); });
+    var targets = Array.prototype.slice.call(document.querySelectorAll(REVEAL));
     if (!targets.length) return;
 
     // Espera (como mucho ~1 s) a que la imagen esté descargada, para que no aparezca el hueco en blanco.
@@ -332,16 +329,14 @@
         var el = entry.target;
         observer.unobserve(el);
         whenReady(el, function () {
-          el.style.transitionDelay = Math.min(i, 4) * 110 + 'ms';
+          el.style.transitionDelay = (150 + Math.min(i, 5) * 130) + 'ms';
           el.classList.add('is-in');
         });
       });
     }, { rootMargin: '0px 0px -6% 0px', threshold: 0.05 });
 
-    // Lo que ya se ve al cargar se queda como está (sin volver a aparecer tras la transición de página);
-    // solo se anima lo que empieza fuera de pantalla.
+    // Todas las imágenes empiezan ocultas por CSS (también las de la parte alta) y aparecen al entrar en pantalla.
     targets.forEach(function (el) {
-      if (el.getBoundingClientRect().top < window.innerHeight) return;
       el.classList.add('reveal');
       observer.observe(el);
     });
