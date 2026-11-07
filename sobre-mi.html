@@ -1,33 +1,126 @@
 <!DOCTYPE html>
-<html lang="es"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preload" href="fonts/CarteroRegular.otf" as="font" type="font/otf" crossorigin><link rel="preload" href="fonts/CarteroBold.otf" as="font" type="font/otf" crossorigin><link rel="preload" href="fonts/WorkSans-Regular.ttf" as="font" type="font/ttf" crossorigin><link rel="preload" as="image" href="img/retrato.jpeg" fetchpriority="high">
-<meta name="description" content="Sobre Clara González Blanco, diseñadora gráfica.">
-<link rel="icon" href="img/favicon/favicon.svg?v=3" type="image/svg+xml"><link rel="icon" href="img/favicon/favicon.ico?v=3" sizes="48x48"><link rel="apple-touch-icon" href="img/favicon/apple-touch-icon.png?v=3"><title>Sobre mí</title>
-<link rel="stylesheet" href="css/tipos.css?v=42"><link rel="stylesheet" href="css/style.css?v=42"><link rel="stylesheet" href="css/responsive.css?v=42">
-<script>(function(d){try{if("IntersectionObserver"in window&&!matchMedia("(prefers-reduced-motion: reduce)").matches)d.classList.add("anim")}catch(e){}})(document.documentElement);setTimeout(function(){if(!window.__animOk)document.documentElement.classList.remove("anim")},3000)</script><script src="js/animaciones.js?v=42" defer></script>
-</head><body class="about-page">
-<header class="site-header"><div class="header-inner"><a class="brand" href="index.html">CLARA GONZÁLEZ BLANCO</a><nav class="site-nav" aria-label="Navegación principal"><a href="index.html">Proyectos</a><a href="sobre-mi.html" aria-current="page">Sobre mí</a><a href="contacto.html">Contacto</a></nav></div></header>
-<main class="about-grid">
-<aside class="about-fixed">
-<img src="img/retrato.jpeg" alt="Retrato de Clara González Blanco" fetchpriority="high">
-<p>En cada proyecto intento encontrar un equilibrio entre la claridad, la funcionalidad y la expresión visual. Mi trabajo tiende hacia un lenguaje visual limpio y minimalista, aunque me interesa explorar distintos estilos y seguir aprendiendo a través de cada proyecto.</p>
-<p>Me interesa trabajar con la organización de la información, la retícula, la tipografía y la composición, y explorar cómo estos elementos se adaptan a diferentes formatos y soportes.</p>
-</aside>
-<section class="about-accordions" aria-label="Información profesional">
-<details class="cv-accordion"><summary>Experiencia laboral <span>+</span></summary><div class="accordion-content">
-<h3>Consejería de Sanidad <span>2026</span></h3><p>Diseñadora gráfica en el Gabinete de la Consejería de Sanidad de Castilla-La Mancha.</p>
-<ul><li><strong>Creación de Contenido Digital:</strong> Diseño y elaboración de piezas gráficas para redes sociales y entornos web.</li><li><strong>Apoyo en Identidad Visual Corporativa:</strong> Maquetación de documentos corporativos, creación de logotipos, definición de paletas de colores y elaboración de plantillas, contribuyendo al mantenimiento y desarrollo de la imagen de marca de la empresa.</li><li><strong>Adaptación de Formatos y Artes Finales:</strong> Ajuste y preparación de artes finales para diferentes medios y soportes.</li></ul>
-</div></details>
-<details class="cv-accordion"><summary>Formación <span>+</span></summary><div class="accordion-content">
-<h3>Diseño Gráfico <span>2024_2026</span></h3><p>Escuela de Grabado y Diseño Gráfico, Fábrica Nacional de Moneda y Timbre.</p>
-<h3>Bellas Artes <span>2020_2024</span></h3><p>Facultad de Bellas Artes, Universidad Complutense de Madrid.</p>
-<h3>Erasmus <span>2022_2023</span></h3><p>University of the Arts London, Bellas Artes: Pintura.</p>
-</div></details>
-<details class="cv-accordion"><summary>Exposiciones y méritos <span>+</span></summary><div class="accordion-content">
-<h3 class="cv-year">2026</h3><p>Participante en la exposición «Tinta de Verano» en el Museo de Obra Gráfica de San Clemente, Cuenca.</p>
-<h3 class="cv-year">2025</h3><p>Participante en la exposición «Tinta de Verano» en el Museo Real Casa de la Moneda, Fábrica Nacional de Moneda y Timbre, Madrid.</p>
-<h3 class="cv-year">2024</h3><p>Participante en la exposición colectiva «Simbiosis» y en la exposición colectiva de Fin de Grado en la sala de exposiciones de la Facultad de Bellas Artes de Madrid.</p><p>Obra gráfica prestada para el curso educativo «Herbarios Insumisos» del Museo Thyssen.</p><p>Participante en el mercado de diseño de arquitectos POP ARQ STORE, Madrid.</p>
-<h3 class="cv-year">2023</h3><p>Participante en la exposición colectiva «Memoria» en el Centro Sociocultural El Greco, Madrid.</p><p>Participante en el mercado de artesanía de San Lucas, Toledo, y en ART ARQ, en la Fundación Alejandro de la Sota.</p>
-</div></details>
-</section></main>
-</body></html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preload" href="fonts/CarteroRegular.otf" as="font" type="font/otf" crossorigin><link rel="preload" href="fonts/CarteroBold.otf" as="font" type="font/otf" crossorigin><link rel="preload" href="fonts/WorkSans-Regular.ttf" as="font" type="font/ttf" crossorigin><link rel="preload" as="image" href="img/retrato.jpeg" fetchpriority="high">
+    <meta name="description" content="Sobre Clara González Blanco, diseñadora gráfica.">
+    <link rel="icon" href="img/favicon/favicon.svg?v=3" type="image/svg+xml"><link rel="icon" href="img/favicon/favicon.ico?v=3" sizes="48x48"><link rel="apple-touch-icon" href="img/favicon/apple-touch-icon.png?v=3"><title>Sobre mí</title>
+    <link rel="stylesheet" href="css/tipos.css?v=42"><link rel="stylesheet" href="css/style.css?v=42"><link rel="stylesheet" href="css/responsive.css?v=42">
+    <script>
+      (function(d){try{if("IntersectionObserver"in window&&!matchMedia("(prefers-reduced-motion: reduce)").matches)d.classList.add("anim")}catch(e){}})(document.documentElement);setTimeout(function(){if(!window.__animOk)document.documentElement.classList.remove("anim")},3000)
+    </script>
+    <script src="js/animaciones.js?v=42" defer>
+    </script>
+  </head>
+  <body class="about-page">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html">CLARA GONZÁLEZ BLANCO</a>
+        <nav class="site-nav" aria-label="Navegación principal">
+          <a href="index.html">Proyectos</a><a href="sobre-mi.html" aria-current="page">Sobre mí</a><a href="contacto.html">Contacto</a>
+        </nav>
+      </div>
+    </header>
+    <main class="about-grid">
+      <aside class="about-fixed">
+        <img src="img/retrato.jpeg" alt="Retrato de Clara González Blanco" fetchpriority="high">
+        <p>
+          En cada proyecto intento encontrar un equilibrio entre la claridad, la funcionalidad y la expresión visual. Mi trabajo tiende hacia un lenguaje visual limpio y minimalista, aunque me interesa explorar distintos estilos y seguir aprendiendo a través de cada proyecto.
+        </p>
+        <p>
+          Me interesa trabajar con la organización de la información, la retícula, la tipografía y la composición, y explorar cómo estos elementos se adaptan a diferentes formatos y soportes.
+        </p>
+      </aside>
+      <section class="about-accordions" aria-label="Información profesional">
+        <details class="cv-accordion">
+          <summary>
+            Experiencia laboral<span>+</span>
+          </summary>
+          <div class="accordion-content">
+            <h3>
+              Consejería de Sanidad<span>2026</span>
+            </h3>
+            <p>
+              Diseñadora gráfica en el Gabinete de la Consejería de Sanidad de Castilla-La Mancha.
+            </p>
+            <ul>
+              <li>
+                <strong>Creación de Contenido Digital:</strong>Diseño y elaboración de piezas gráficas para redes sociales y entornos web.
+              </li>
+              <li>
+                <strong>Apoyo en Identidad Visual Corporativa:</strong>Maquetación de documentos corporativos, creación de logotipos, definición de paletas de colores y elaboración de plantillas, contribuyendo al mantenimiento y desarrollo de la imagen de marca de la empresa.
+              </li>
+              <li>
+                <strong>Adaptación de Formatos y Artes Finales:</strong>Ajuste y preparación de artes finales para diferentes medios y soportes.
+              </li>
+            </ul>
+          </div>
+        </details>
+        <details class="cv-accordion">
+          <summary>
+            Formación<span>+</span>
+          </summary>
+          <div class="accordion-content">
+            <h3>
+              Diseño Gráfico<span>2024_2026</span>
+            </h3>
+            <p>
+              Escuela de Grabado y Diseño Gráfico, Fábrica Nacional de Moneda y Timbre.
+            </p>
+            <h3>
+              Bellas Artes<span>2020_2024</span>
+            </h3>
+            <p>
+              Facultad de Bellas Artes, Universidad Complutense de Madrid.
+            </p>
+            <h3>
+              Erasmus<span>2022_2023</span>
+            </h3>
+            <p>
+              University of the Arts London, Bellas Artes: Pintura.
+            </p>
+          </div>
+        </details>
+        <details class="cv-accordion">
+          <summary>
+            Exposiciones y méritos<span>+</span>
+          </summary>
+          <div class="accordion-content">
+            <h3 class="cv-year">
+              2026
+            </h3>
+            <p>
+              Participante en la exposición «Tinta de Verano» en el Museo de Obra Gráfica de San Clemente, Cuenca.
+            </p>
+            <h3 class="cv-year">
+              2025
+            </h3>
+            <p>
+              Participante en la exposición «Tinta de Verano» en el Museo Real Casa de la Moneda, Fábrica Nacional de Moneda y Timbre, Madrid.
+            </p>
+            <h3 class="cv-year">
+              2024
+            </h3>
+            <p>
+              Participante en la exposición colectiva «Simbiosis» y en la exposición colectiva de Fin de Grado en la sala de exposiciones de la Facultad de Bellas Artes de Madrid.
+            </p>
+            <p>
+              Obra gráfica prestada para el curso educativo «Herbarios Insumisos» del Museo Thyssen.
+            </p>
+            <p>
+              Participante en el mercado de diseño de arquitectos POP ARQ STORE, Madrid.
+            </p>
+            <h3 class="cv-year">
+              2023
+            </h3>
+            <p>
+              Participante en la exposición colectiva «Memoria» en el Centro Sociocultural El Greco, Madrid.
+            </p>
+            <p>
+              Participante en el mercado de artesanía de San Lucas, Toledo, y en ART ARQ, en la Fundación Alejandro de la Sota.
+            </p>
+          </div>
+        </details>
+      </section>
+    </main>
+  </body>
+</html>
