@@ -262,7 +262,7 @@
      y deja que el CSS anime cada línea con un pequeño retraso respecto a la anterior. */
   function initSplit() {
     if (!root.classList.contains('anim')) return;
-    var SEL = '.case-fixed > h1, .case-fixed > h2, .case-fixed > p, .about-fixed > p, .portfolio-intro > p, .contact-simple > h1, .contact-simple > p';
+    var SEL = '.about-fixed > p, .portfolio-intro > p, .contact-simple > h1, .contact-simple > p';
     var els = Array.prototype.slice.call(document.querySelectorAll(SEL));
     if (!els.length) return;
 
