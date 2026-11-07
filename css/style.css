@@ -19,7 +19,7 @@ body {
 	color: var(--ink);
 	font-family: "WorkSans-Regular", "Work Sans", Arial, sans-serif;
 	font-size: 15px;
-	/* line-height: 1.45; */
+	
 	-webkit-font-smoothing: antialiased;
 
 }
@@ -98,14 +98,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   font-weight: 400;
   line-height: 1.15;
 }
-.discipline-list {
-  margin: 0;
-  padding: 0;
-  color: var(--muted);
-  font-size: 15px;
-  line-height: 1.7;
-  list-style: none;
-}
+
 .portfolio-projects {
 	display: grid;
 	min-width: 0;
@@ -130,7 +123,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 
 }
 .portfolio-project-meta span:first-child {
-	/* font-weight: 600; */
+	
 
 }
 .portfolio-project-meta .project-name { font-weight: 400; }
@@ -198,10 +191,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 
 .accordion-content h3.cv-year { font-family: "CarteroRegular", "Work Sans", sans-serif; font-weight: 400; }
 .accordion-content h3 span { margin-left: 5px; font-family: "CarteroRegular", "Work Sans", sans-serif; font-weight: 400; }
-.accordion-content strong {
-	/* color: var(--blue); */
 
-}
 .accordion-content p { margin-bottom: 10px; max-width: 760px; }
 .accordion-content ul { margin: 4px 0 0; padding-left: 17px; }
 .accordion-content li { padding: 2px 0; }
@@ -310,10 +300,10 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 /* 1) Aparición de imágenes al hacer scroll (js/animaciones.js marca con .reveal solo lo que empieza fuera de pantalla y añade .is-in al llegar) */
 /* Todas las imágenes (también las de la parte alta) empiezan ocultas y aparecen con el scroll; el script añade .is-in al llegar.
    Si el script no llegara a ejecutarse, el <head> quita la clase .anim a los 3 s y se muestran solas. */
-.anim :is(.portfolio-project, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img, .carousel, .post-grid > img) {
+.anim :is(.portfolio-project, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img, .carousel) {
   transition: opacity 1.3s cubic-bezier(.3, 0, .2, 1), transform 1.3s cubic-bezier(.3, 0, .2, 1);
 }
-.anim :is(.portfolio-project, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img, .carousel, .post-grid > img):not(.is-in) {
+.anim :is(.portfolio-project, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img, .carousel):not(.is-in) {
   opacity: 0;
   transform: translateY(44px);
 }
@@ -350,7 +340,6 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   .anim .case-fixed > :nth-child(n+6) { animation-delay: 0.86s; }
 
 
-  @keyframes portrait-fade { from { opacity: 0; } to { opacity: 1; } }
   .anim .about-fixed > img { animation: none !important; opacity: 1 !important; transform: none !important; }
   .anim .about-fixed > :not(img) { animation: enter-text 1.52s cubic-bezier(.22,.61,.36,1) both; }
   .anim .about-fixed > p { animation-delay: 0.48s; }
@@ -396,10 +385,7 @@ p, li, .accordion-content { text-wrap: pretty; }
 h1, h2, h3, .portfolio-project-meta .project-name, .cv-accordion summary { text-wrap: balance; }
 
 /* Paleta de color de la identidad (horizonte 3.0) */
-.palette { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-.palette-item { min-width: 0; }
-.palette .swatch { display: grid; place-items: center; aspect-ratio: 4 / 3; padding: 12px; color: var(--ink); text-align: center; }
-.palette-label { display: block; width: 100%; text-align: center; font-family: "CarteroRegular", "Work Sans", sans-serif; font-size: 15px; line-height: 1.3; }
+
 
 
 /* ============================================================
@@ -534,8 +520,7 @@ dialog.lightbox.has-nav .lightbox-arrow { display: flex; align-items: center; ju
   .case-next-end { display: block; }
 }
 
-/* Tarjeta sin imagen todavía (se sustituye por <img> cuando haya portada) */
-.portfolio-project .thumb-empty { aspect-ratio: 1.46 / 1; background: #f1f1f1; }
+
 
 /* Carrusel horizontal de carteles (ficha 05): tira con separación entre imágenes; asoma la siguiente */
 .carousel { min-width: 0; --car-w: min(100%, calc((100vh - 120px) * 0.707)); --car-gap: 20px; }
@@ -596,6 +581,4 @@ dialog.lightbox.has-nav .lightbox-arrow { display: flex; align-items: center; ju
 @keyframes car-fill { to { transform: scaleX(1); } }
 
 /* Posts de Instagram (ficha 06): rejilla de 2 columnas */
-.post-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-.case-gallery .post-grid > img { width: 100%; height: auto; }
-@media (max-width: 900px) { .post-grid { gap: 10px; } }
+
