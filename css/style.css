@@ -308,10 +308,10 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 /* 1) Aparición de imágenes al hacer scroll (js/animaciones.js marca con .reveal solo lo que empieza fuera de pantalla y añade .is-in al llegar) */
 /* Todas las imágenes (también las de la parte alta) empiezan ocultas y aparecen con el scroll; el script añade .is-in al llegar.
    Si el script no llegara a ejecutarse, el <head> quita la clase .anim a los 3 s y se muestran solas. */
-.anim :is(.portfolio-project, .about-fixed img, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img, .carousel, .post-grid > img) {
+.anim :is(.portfolio-project, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img, .carousel, .post-grid > img) {
   transition: opacity 1.3s cubic-bezier(.3, 0, .2, 1), transform 1.3s cubic-bezier(.3, 0, .2, 1);
 }
-.anim :is(.portfolio-project, .about-fixed img, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img, .carousel, .post-grid > img):not(.is-in) {
+.anim :is(.portfolio-project, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img, .carousel, .post-grid > img):not(.is-in) {
   opacity: 0;
   transform: translateY(44px);
 }
