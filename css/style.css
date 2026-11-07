@@ -332,45 +332,45 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
    Solo CSS y solo para lo que está siempre en la parte alta; lo demás aparece al hacer scroll (apartado 1).
    Mantén esta lista igual que INTRO en js/animaciones.js. */
 @media (prefers-reduced-motion: no-preference) {
-  @keyframes enter-text { from { opacity: 0; transform: translateY(18px); filter: blur(5px); } }
-  @keyframes enter-title { from { opacity: 0; transform: translateY(26px); filter: blur(8px); } }
-  @keyframes enter-media { from { opacity: 0; transform: translateY(22px) scale(1.018); } }
+  @keyframes enter-text { from { opacity: 0; transform: translateY(12px); filter: blur(2px); } }
+  @keyframes enter-title { from { opacity: 0; transform: translateY(16px); filter: blur(3px); } }
+  @keyframes enter-media { from { opacity: 0; transform: translateY(14px) scale(1.01); } }
 
-  .anim .case-topbar-title { animation: enter-text .8s var(--ease) .05s both; }
-  .anim .case-fixed > * { animation: enter-text .9s var(--ease) both; }
-  .anim .case-fixed > .case-title { animation-name: enter-title; animation-duration: 1.05s; animation-delay: .1s; }
-  .anim .case-fixed > :nth-child(2) { animation-delay: .22s; }
-  .anim .case-fixed > :nth-child(3) { animation-delay: .3s; }
-  .anim .case-fixed > :nth-child(4) { animation-delay: .38s; }
-  .anim .case-fixed > :nth-child(5) { animation-delay: .46s; }
-  .anim .case-fixed > :nth-child(n+6) { animation-delay: .54s; }
-  .anim .case-gallery > :first-child:not(.post-grid) { animation: enter-media 1.1s var(--ease) .3s both; }
-  .anim .post-grid > img:nth-child(-n+4) { animation: enter-media 1s var(--ease) both; }
-  .anim .post-grid > img:nth-child(1) { animation-delay: .3s; }
-  .anim .post-grid > img:nth-child(2) { animation-delay: .4s; }
-  .anim .post-grid > img:nth-child(3) { animation-delay: .5s; }
-  .anim .post-grid > img:nth-child(4) { animation-delay: .6s; }
+  .anim .case-topbar-title { animation: enter-text 1.28s cubic-bezier(.22,.61,.36,1) 0.08s both; }
+  .anim .case-fixed > * { animation: enter-text 1.44s cubic-bezier(.22,.61,.36,1) both; }
+  .anim .case-fixed > .case-title { animation-name: enter-title; animation-duration: 1.68s; animation-delay: 0.16s; }
+  .anim .case-fixed > :nth-child(2) { animation-delay: 0.35s; }
+  .anim .case-fixed > :nth-child(3) { animation-delay: 0.48s; }
+  .anim .case-fixed > :nth-child(4) { animation-delay: 0.61s; }
+  .anim .case-fixed > :nth-child(5) { animation-delay: 0.74s; }
+  .anim .case-fixed > :nth-child(n+6) { animation-delay: 0.86s; }
+  .anim .case-gallery > :first-child:not(.post-grid) { animation: enter-media 1.76s cubic-bezier(.22,.61,.36,1) 0.48s both; }
+  .anim .post-grid > img:nth-child(-n+4) { animation: enter-media 1.60s cubic-bezier(.22,.61,.36,1) both; }
+  .anim .post-grid > img:nth-child(1) { animation-delay: 0.48s; }
+  .anim .post-grid > img:nth-child(2) { animation-delay: 0.64s; }
+  .anim .post-grid > img:nth-child(3) { animation-delay: 0.80s; }
+  .anim .post-grid > img:nth-child(4) { animation-delay: 0.96s; }
 
-  .anim .portfolio-grid .portfolio-project:nth-child(-n+4) { animation: enter-media 1s var(--ease) both; }
-  .anim .portfolio-grid .portfolio-project:nth-child(1) { animation-delay: .1s; }
-  .anim .portfolio-grid .portfolio-project:nth-child(2) { animation-delay: .2s; }
-  .anim .portfolio-grid .portfolio-project:nth-child(3) { animation-delay: .3s; }
-  .anim .portfolio-grid .portfolio-project:nth-child(4) { animation-delay: .4s; }
+  .anim .portfolio-grid .portfolio-project:nth-child(-n+4) { animation: enter-media 1.60s cubic-bezier(.22,.61,.36,1) both; }
+  .anim .portfolio-grid .portfolio-project:nth-child(1) { animation-delay: 0.16s; }
+  .anim .portfolio-grid .portfolio-project:nth-child(2) { animation-delay: 0.32s; }
+  .anim .portfolio-grid .portfolio-project:nth-child(3) { animation-delay: 0.48s; }
+  .anim .portfolio-grid .portfolio-project:nth-child(4) { animation-delay: 0.64s; }
 
-  .anim .about-fixed > * { animation: enter-text .95s var(--ease) both; }
-  .anim .about-fixed > img { animation-name: enter-media; animation-duration: 1.1s; animation-delay: .1s; }
-  .anim .about-fixed > p { animation-delay: .3s; }
-  .anim .cv-accordion { animation: enter-text .85s var(--ease) both; }
-  .anim .cv-accordion:nth-child(1) { animation-delay: .25s; }
-  .anim .cv-accordion:nth-child(2) { animation-delay: .33s; }
-  .anim .cv-accordion:nth-child(3) { animation-delay: .41s; }
-  .anim .cv-accordion:nth-child(4) { animation-delay: .49s; }
+  .anim .about-fixed > * { animation: enter-text 1.52s cubic-bezier(.22,.61,.36,1) both; }
+  .anim .about-fixed > img { animation-name: enter-media; animation-duration: 1.76s; animation-delay: 0.16s; }
+  .anim .about-fixed > p { animation-delay: 0.48s; }
+  .anim .cv-accordion { animation: enter-text 1.36s cubic-bezier(.22,.61,.36,1) both; }
+  .anim .cv-accordion:nth-child(1) { animation-delay: 0.40s; }
+  .anim .cv-accordion:nth-child(2) { animation-delay: 0.53s; }
+  .anim .cv-accordion:nth-child(3) { animation-delay: 0.66s; }
+  .anim .cv-accordion:nth-child(4) { animation-delay: 0.78s; }
 
-  .anim .contact-simple > * { animation: enter-text .9s var(--ease) both; }
-  .anim .contact-simple > :nth-child(1) { animation-delay: .1s; }
-  .anim .contact-simple > :nth-child(2) { animation-delay: .2s; }
-  .anim .contact-simple > :nth-child(3) { animation-delay: .3s; }
-  .anim .contact-simple > :nth-child(n+4) { animation-delay: .4s; }
+  .anim .contact-simple > * { animation: enter-text 1.44s cubic-bezier(.22,.61,.36,1) both; }
+  .anim .contact-simple > :nth-child(1) { animation-delay: 0.16s; }
+  .anim .contact-simple > :nth-child(2) { animation-delay: 0.32s; }
+  .anim .contact-simple > :nth-child(3) { animation-delay: 0.48s; }
+  .anim .contact-simple > :nth-child(n+4) { animation-delay: 0.64s; }
 }
 
 /* Al imprimir, todo visible */
