@@ -368,14 +368,14 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 @media (prefers-reduced-motion: no-preference) {
   @keyframes word-in { from { opacity: 0; transform: translateY(.55em); } }
   @keyframes split-fallback { to { opacity: 1; } }
-  .anim :is(.case-fixed > h1, .case-fixed > h2, .case-fixed > p, .about-fixed > p, .contact-simple > h1, .contact-simple > p):not(.split-ready) {
+  .anim :is(.case-fixed > h1, .case-fixed > h2, .case-fixed > p, .about-fixed > p, .portfolio-intro > p, .contact-simple > h1, .contact-simple > p):not(.split-ready) {
     opacity: 0; animation: split-fallback 0s 2s both;
   }
   .anim .split-ready { animation: none !important; opacity: 1; filter: none; transform: none; }
   .split-ready .w {
     display: inline-block;
-    animation: word-in 1.25s cubic-bezier(.22,.61,.36,1) both;
-    animation-delay: calc(var(--l, 0) * 110ms + var(--d, 150ms));
+    animation: word-in 1s cubic-bezier(.22,.61,.36,1) both;
+    animation-delay: calc(var(--l, 0) * 85ms + var(--d, 120ms));
   }
 }
 
@@ -547,12 +547,13 @@ dialog.lightbox.has-nav .lightbox-arrow { display: flex; align-items: center; ju
   scroll-snap-align: start;
 }
 /* Variante para el fotolibro (ficha 04): cada página conserva su proporción, todas a la misma altura */
-.carousel--libro { --car-time: 2.8s; --car-w: min(100%, 460px); --slide-w: min(100%, 880px, calc((100vh - 140px) * 1.44)); }
+.carousel--libro { --car-time: 2.8s; --car-w: min(100%, 460px); --ar: 3200 / 2224; --slide-w: min(100%, 880px, calc((100vh - 140px) * 1.44)); }
+.carousel--paginas { --ar: 2200 / 1467; --slide-w: min(100%, 880px, calc((100vh - 140px) * 1.5)); }
 .case-gallery .carousel--libro .carousel-track img {
   flex: 0 0 auto;
   width: var(--slide-w);
   height: auto;
-  aspect-ratio: 3200 / 2224;
+  aspect-ratio: var(--ar);
   background: none;
 }
 .carousel.is-ready .carousel-slides { overflow: hidden; scroll-snap-type: none; }

@@ -13,7 +13,7 @@
      Funciona siempre; con movimiento reducido se abre y cierra sin animar.
      Clic en la imagen ampliada: alterna entre «ajustar a pantalla» y «tamaño real».
      Se cierra con (cerrar), Esc o pulsando fuera de la imagen. */
-  var ZOOM = '.synced-gif-gallery > img:not([data-gif]), .carousel-track img, .post-grid > img, .gallery-zoom > img';
+  var ZOOM = '.synced-gif-gallery > img:not([data-gif]), .carousel:not(.no-zoom) .carousel-track img, .post-grid > img, .gallery-zoom > img';
 
   function initLightbox() {
     var thumbs = document.querySelectorAll(ZOOM);
@@ -262,7 +262,7 @@
      y deja que el CSS anime cada línea con un pequeño retraso respecto a la anterior. */
   function initSplit() {
     if (!root.classList.contains('anim')) return;
-    var SEL = '.case-fixed > h1, .case-fixed > h2, .case-fixed > p, .about-fixed > p, .contact-simple > h1, .contact-simple > p';
+    var SEL = '.case-fixed > h1, .case-fixed > h2, .case-fixed > p, .about-fixed > p, .portfolio-intro > p, .contact-simple > h1, .contact-simple > p';
     var els = Array.prototype.slice.call(document.querySelectorAll(SEL));
     if (!els.length) return;
 
