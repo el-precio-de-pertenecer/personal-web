@@ -260,6 +260,7 @@
 
   function initReveal() {
     if (!root.classList.contains('anim') || !('IntersectionObserver' in window)) return;
+    if (window.CSS && CSS.supports && CSS.supports('animation-timeline', 'view()')) return;   // lo hace el CSS ligado al scroll (apartado 5 de style.css)
 
     // Lo que ya entra con animación CSS al cargar (apartado 4 de style.css) no se vuelve a animar aquí.
     var INTRO = '.case-gallery > :first-child, .post-grid > img:nth-child(-n+4), .portfolio-grid .portfolio-project:nth-child(-n+4), .about-fixed img';

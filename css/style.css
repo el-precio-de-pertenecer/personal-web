@@ -373,6 +373,24 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   .anim .contact-simple > :nth-child(n+4) { animation-delay: 0.64s; }
 }
 
+/* 5) Aparición ligada al scroll: cada imagen se hace visible a medida que entra en pantalla, también las que ya asoman al cargar.
+   Solo donde el navegador soporta animation-timeline (Chrome, Edge, Safari reciente); en el resto lo hace el apartado 1 con JS. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes scroll-in { from { opacity: 0; transform: translateY(44px); } to { opacity: 1; transform: none; } }
+    .anim .case-gallery > img:not(:first-child),
+    .anim .case-gallery > video:not(:first-child),
+    .anim .synced-gif-gallery > img,
+    .anim .carousel,
+    .anim .post-grid > img:nth-child(n+5),
+    .anim .portfolio-grid .portfolio-project:nth-child(n+5) {
+      animation: scroll-in cubic-bezier(.22,.61,.36,1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+
 /* Al imprimir, todo visible */
 @media print {
   .anim .reveal {
