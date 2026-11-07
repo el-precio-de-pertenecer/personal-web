@@ -330,14 +330,14 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   @keyframes enter-title { from { opacity: 0; transform: translateY(16px); } }
   @keyframes enter-media { from { opacity: 0; transform: translateY(14px) scale(1.01); } }
 
-  .anim .case-topbar-title { animation: enter-text 1.28s cubic-bezier(.22,.61,.36,1) 0.08s both; }
-  .anim .case-fixed > * { animation: enter-text 1.44s cubic-bezier(.22,.61,.36,1) both; }
-  .anim .case-fixed > .case-title { animation-name: enter-title; animation-duration: 1.68s; animation-delay: 0.16s; }
-  .anim .case-fixed > :nth-child(2) { animation-delay: 0.35s; }
-  .anim .case-fixed > :nth-child(3) { animation-delay: 0.48s; }
-  .anim .case-fixed > :nth-child(4) { animation-delay: 0.61s; }
-  .anim .case-fixed > :nth-child(5) { animation-delay: 0.74s; }
-  .anim .case-fixed > :nth-child(n+6) { animation-delay: 0.86s; }
+  .anim .case-topbar-title { animation: enter-text .7s cubic-bezier(.22,.61,.36,1) .03s both; }
+  .anim .case-fixed > * { animation: enter-text .8s cubic-bezier(.22,.61,.36,1) both; }
+  .anim .case-fixed > .case-title { animation-name: enter-title; animation-duration: .9s; animation-delay: .05s; }
+  .anim .case-fixed > :nth-child(2) { animation-delay: .12s; }
+  .anim .case-fixed > :nth-child(3) { animation-delay: .19s; }
+  .anim .case-fixed > :nth-child(4) { animation-delay: .26s; }
+  .anim .case-fixed > :nth-child(5) { animation-delay: .33s; }
+  .anim .case-fixed > :nth-child(n+6) { animation-delay: .4s; }
 
 
   .anim .about-fixed > img { animation: none !important; opacity: 1 !important; transform: none !important; }
