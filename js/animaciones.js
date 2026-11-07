@@ -303,7 +303,7 @@
 
   /* ---------- 1) Aparición de imágenes al hacer scroll ----------
      Debe coincidir con la lista de selectores del bloque «Animaciones» de css/style.css. */
-  var REVEAL = '.portfolio-project, .about-fixed img, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img, .carousel, .post-grid > img';
+  var REVEAL = '.portfolio-project, .case-gallery > img, .case-gallery > video, .synced-gif-gallery > img, .carousel, .post-grid > img';
 
   function initReveal() {
     if (!root.classList.contains('anim') || !('IntersectionObserver' in window)) return;
